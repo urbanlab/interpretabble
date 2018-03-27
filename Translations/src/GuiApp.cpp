@@ -13,7 +13,7 @@ using namespace cv;
 void GuiApp::setup(){
     
     
-    cam.setDeviceID(0);
+    cam.setDeviceID(1);
     cam.setup(1920, 1080);
     contourFinder.setMinAreaRadius(10);
     contourFinder.setMaxAreaRadius(150);
@@ -46,13 +46,13 @@ void GuiApp::setup(){
     gui.add(tPredict.setup("Predict", false));
     gui.add(bSave.setup("Save model"));
     gui.add(bLoad.setup("Load model"));
-    
+    gui.add(bCameraSettings.setup("Camera settings"));
+
     gui.loadFromFile("settings.xml");
 
     guiSliders.setup();
     guiSliders.setPosition(580, 10);
     guiSliders.setName("Outputs");
-    //guiSliders.add(bAddSlider.setup("Add Slider"));
     guiSliders.add(bAddCategorical.setup("Add Categorical"));
     guiSliders.add(bAddLabel.setup("set label"));
 
@@ -63,6 +63,7 @@ void GuiApp::setup(){
     bAddSlider.addListener(this, &GuiApp::eAddSlider);
     bAddCategorical.addListener(this, &GuiApp::eAddCategorical);
     bAddLabel.addListener(this, &GuiApp::eAddLabel);
+    bCameraSettings.addListener(this, &GuiApp::changeCamera);
 
     // CCV
     

@@ -45,9 +45,28 @@
 <script type="text/javascript">
     
     if ("WebSocket" in window) {
+        
+        
+        try {
         var ws = new WebSocket("ws://localhost:9092/");
+        } catch (err) {
+            $(".lead").html("Error with websocket connection.");
+        }
+        ws.onopen = function (error) {
+            $(".lead").html("Up and running!");
+        };
+        
+        ws.onclose = function (error) {
+            $(".lead").html("Websocket has been closed.");
+        };
+        
+        ws.onerror = function (error) {
+            $(".lead").html("Error with websocket connection.");
+        };
+        
+        
     } else {
-        alert("WebSocket NOT supported by your Browser!");
+        $(".lead").html("Websocket not supported in this browser");
     }
 
     ws.onmessage = function (evt) {
