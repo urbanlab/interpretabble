@@ -1,0 +1,11 @@
+ofxCcv
+ofxCv
+ofxGSTT
+ofxGrt
+ofxGui
+ofxJSON
+ofxLibwebsockets
+ofxOpenCv
+ofxSSL
+ofxSpeech
+ofxXmlSettings
