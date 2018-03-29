@@ -8,6 +8,7 @@
 #pragma once
 
 #include "ofMain.h"
+//#include "ofApp.h"
 #include "ofxCv.h"
 #include "ofxGui.h"
 #include "ofxJSONElement.h"
@@ -22,6 +23,8 @@ struct quickDrawShape {
     vector<ofPolyline> polylines;
     
 };
+
+class ofApp;
 
 class GuiApp : public ofBaseApp{
     
@@ -111,6 +114,7 @@ public:
     
     vector<string> labels;
     
+    shared_ptr<ofApp>  app;
   
 };
 

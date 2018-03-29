@@ -394,6 +394,7 @@ void GuiApp::save(string modelName) {
 
 //--------------------------------------------------------------
 void GuiApp::load(string modelPath) {
+    
     ofDirectory dir;
     dir.open(modelPath);
     int n = dir.listDir();
@@ -456,6 +457,10 @@ void GuiApp::mousePressed(int x, int y, int button) {
 }
 
 void GuiApp::keyPressed(int key) {
+    
+    if ( key == 'n' ) {
+        app->sceneManager.nextLabel();
+    }
     
 }
 

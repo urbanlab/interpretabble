@@ -24,8 +24,10 @@ public:
     void nextLabel();
     
     void onSceneChanged();
+    void onSceneOutHandler();
+
     
-    vector<Scene> scenes;
+    vector<Scene*> scenes;
     
 private:
     

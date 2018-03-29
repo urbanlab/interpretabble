@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include "ofMain.h"
+#include "ofxAnimatableFloat.h"
 
 class Asset {
   
@@ -31,6 +32,9 @@ public:
     
     void update() {
         
+        float dt = 1.0f / 60.0f;
+        opacity.update( dt );
+        
         if(video.isLoaded()) {
             video.update();
         }
@@ -38,23 +42,37 @@ public:
     
     void draw() {
         
+        ofEnableAlphaBlending();
+        ofSetColor(255, opacity.val());
+        
         if(image.isAllocated()) {
             image.draw(0.0, 0.0);
+            ofLogNotice("drawing image") << opacity.val();
+
         }
         
         if(video.isLoaded()) {
             video.draw(0.0, 0.0);
         }
+        ofDisableAlphaBlending();
          
     }
     
     float getHeight() {
         
+        if(image.isAllocated()) {
+            return image.getHeight();
+        }
+        if(video.isLoaded()) {
+            return video.getHeight();
+        }
+        
     }
     
     ofImage image;
     ofVideoPlayer video;
-    
+    ofxAnimatableFloat opacity;
+
     
 };
 
@@ -70,7 +88,11 @@ public:
     void onStart();
     void onEnd();
     
+    ofImage toolsImage;
+
+    
 private:
+    
     
     
 };

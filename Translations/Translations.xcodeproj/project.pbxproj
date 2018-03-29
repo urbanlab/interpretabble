@@ -99,12 +99,6 @@
 		8345047F206A4A1300E3ABD8 /* PipelineThreaded.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8345047C206A4A1200E3ABD8 /* PipelineThreaded.cpp */; };
 		83AF90C3206CDD5100313CD6 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90C1206CDD5100313CD6 /* SceneManager.cpp */; };
 		83AF90C6206CDDC200313CD6 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90C4206CDDC200313CD6 /* Scene.cpp */; };
-		83AF90F1206CED2100313CD6 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90CD206CED2100313CD6 /* ofApp.cpp */; };
-		83AF90F2206CED2100313CD6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90CF206CED2100313CD6 /* main.cpp */; };
-		83AF90F3206CED2100313CD6 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90D4206CED2100313CD6 /* ofApp.cpp */; };
-		83AF90F4206CED2100313CD6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90D6206CED2100313CD6 /* main.cpp */; };
-		83AF90F5206CED2100313CD6 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90E3206CED2100313CD6 /* ofApp.cpp */; };
-		83AF90F6206CED2100313CD6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90E5206CED2100313CD6 /* main.cpp */; };
 		83AF90F7206CED2100313CD6 /* ofxAnimatableOfColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90E7206CED2100313CD6 /* ofxAnimatableOfColor.cpp */; };
 		83AF90F8206CED2100313CD6 /* ofxAnimatable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90EA206CED2100313CD6 /* ofxAnimatable.cpp */; };
 		83AF90F9206CED2100313CD6 /* ofxAnimatableFloat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90EC206CED2100313CD6 /* ofxAnimatableFloat.cpp */; };
@@ -495,26 +489,6 @@
 		83AF90C2206CDD5100313CD6 /* SceneManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SceneManager.hpp; sourceTree = "<group>"; };
 		83AF90C4206CDDC200313CD6 /* Scene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
 		83AF90C5206CDDC200313CD6 /* Scene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
-		83AF90C9206CED2100313CD6 /* License.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = License.md; sourceTree = "<group>"; };
-		83AF90CB206CED2100313CD6 /* addons.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = addons.make; sourceTree = "<group>"; };
-		83AF90CD206CED2100313CD6 /* ofApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofApp.cpp; sourceTree = "<group>"; };
-		83AF90CE206CED2100313CD6 /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofApp.h; sourceTree = "<group>"; };
-		83AF90CF206CED2100313CD6 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		83AF90D0206CED2100313CD6 /* ofxaddons_thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ofxaddons_thumbnail.png; sourceTree = "<group>"; };
-		83AF90D2206CED2100313CD6 /* addons.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = addons.make; sourceTree = "<group>"; };
-		83AF90D4206CED2100313CD6 /* ofApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofApp.cpp; sourceTree = "<group>"; };
-		83AF90D5206CED2100313CD6 /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofApp.h; sourceTree = "<group>"; };
-		83AF90D6206CED2100313CD6 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		83AF90D7206CED2100313CD6 /* ReadMe.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ReadMe.md; sourceTree = "<group>"; };
-		83AF90D8206CED2100313CD6 /* appveyor.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = appveyor.yml; sourceTree = "<group>"; };
-		83AF90D9206CED2100313CD6 /* addon_config.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = addon_config.mk; sourceTree = "<group>"; };
-		83AF90DD206CED2100313CD6 /* install.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = install.sh; sourceTree = "<group>"; };
-		83AF90DE206CED2100313CD6 /* install.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = install.sh; sourceTree = "<group>"; };
-		83AF90DF206CED2100313CD6 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
-		83AF90E1206CED2100313CD6 /* addons.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = addons.make; sourceTree = "<group>"; };
-		83AF90E3206CED2100313CD6 /* ofApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofApp.cpp; sourceTree = "<group>"; };
-		83AF90E4206CED2100313CD6 /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofApp.h; sourceTree = "<group>"; };
-		83AF90E5206CED2100313CD6 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		83AF90E7206CED2100313CD6 /* ofxAnimatableOfColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAnimatableOfColor.cpp; sourceTree = "<group>"; };
 		83AF90E8206CED2100313CD6 /* ofxAnimatableOfColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxAnimatableOfColor.h; sourceTree = "<group>"; };
 		83AF90E9206CED2100313CD6 /* ofxAnimatableOfPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxAnimatableOfPoint.h; sourceTree = "<group>"; };
@@ -1703,102 +1677,10 @@
 		83AF90C8206CED2100313CD6 /* ofxAnimatable */ = {
 			isa = PBXGroup;
 			children = (
-				83AF90C9206CED2100313CD6 /* License.md */,
-				83AF90CA206CED2100313CD6 /* example-AnimationQueue */,
-				83AF90D0206CED2100313CD6 /* ofxaddons_thumbnail.png */,
-				83AF90D1206CED2100313CD6 /* example */,
-				83AF90D7206CED2100313CD6 /* ReadMe.md */,
-				83AF90D8206CED2100313CD6 /* appveyor.yml */,
-				83AF90D9206CED2100313CD6 /* addon_config.mk */,
-				83AF90DA206CED2100313CD6 /* scripts */,
-				83AF90DF206CED2100313CD6 /* .travis.yml */,
-				83AF90E0206CED2100313CD6 /* example-CurveParameters */,
 				83AF90E6206CED2100313CD6 /* src */,
 			);
 			name = ofxAnimatable;
 			path = ../../../../openFrameworks/addons/ofxAnimatable;
-			sourceTree = "<group>";
-		};
-		83AF90CA206CED2100313CD6 /* example-AnimationQueue */ = {
-			isa = PBXGroup;
-			children = (
-				83AF90CB206CED2100313CD6 /* addons.make */,
-				83AF90CC206CED2100313CD6 /* src */,
-			);
-			path = "example-AnimationQueue";
-			sourceTree = "<group>";
-		};
-		83AF90CC206CED2100313CD6 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				83AF90CD206CED2100313CD6 /* ofApp.cpp */,
-				83AF90CE206CED2100313CD6 /* ofApp.h */,
-				83AF90CF206CED2100313CD6 /* main.cpp */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		83AF90D1206CED2100313CD6 /* example */ = {
-			isa = PBXGroup;
-			children = (
-				83AF90D2206CED2100313CD6 /* addons.make */,
-				83AF90D3206CED2100313CD6 /* src */,
-			);
-			path = example;
-			sourceTree = "<group>";
-		};
-		83AF90D3206CED2100313CD6 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				83AF90D4206CED2100313CD6 /* ofApp.cpp */,
-				83AF90D5206CED2100313CD6 /* ofApp.h */,
-				83AF90D6206CED2100313CD6 /* main.cpp */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		83AF90DA206CED2100313CD6 /* scripts */ = {
-			isa = PBXGroup;
-			children = (
-				83AF90DB206CED2100313CD6 /* ci */,
-			);
-			path = scripts;
-			sourceTree = "<group>";
-		};
-		83AF90DB206CED2100313CD6 /* ci */ = {
-			isa = PBXGroup;
-			children = (
-				83AF90DC206CED2100313CD6 /* vs */,
-				83AF90DE206CED2100313CD6 /* install.sh */,
-			);
-			path = ci;
-			sourceTree = "<group>";
-		};
-		83AF90DC206CED2100313CD6 /* vs */ = {
-			isa = PBXGroup;
-			children = (
-				83AF90DD206CED2100313CD6 /* install.sh */,
-			);
-			path = vs;
-			sourceTree = "<group>";
-		};
-		83AF90E0206CED2100313CD6 /* example-CurveParameters */ = {
-			isa = PBXGroup;
-			children = (
-				83AF90E1206CED2100313CD6 /* addons.make */,
-				83AF90E2206CED2100313CD6 /* src */,
-			);
-			path = "example-CurveParameters";
-			sourceTree = "<group>";
-		};
-		83AF90E2206CED2100313CD6 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				83AF90E3206CED2100313CD6 /* ofApp.cpp */,
-				83AF90E4206CED2100313CD6 /* ofApp.h */,
-				83AF90E5206CED2100313CD6 /* main.cpp */,
-			);
-			path = src;
 			sourceTree = "<group>";
 		};
 		83AF90E6206CED2100313CD6 /* src */ = {
@@ -2686,7 +2568,6 @@
 				0B4EAB4225777831AC4A78E1 /* Tracker.cpp in Sources */,
 				8345047F206A4A1300E3ABD8 /* PipelineThreaded.cpp in Sources */,
 				B1F2A274B343569E1AE58477 /* Calibration.cpp in Sources */,
-				83AF90F4206CED2100313CD6 /* main.cpp in Sources */,
 				84B1BE4C8E2824288AF5BABD /* Flow.cpp in Sources */,
 				583515F02D80000D2B4FA09F /* ContourFinder.cpp in Sources */,
 				DAD45A0F2EAB7B0F0B817626 /* ObjectFinder.cpp in Sources */,
@@ -2702,7 +2583,6 @@
 				3F170A1302FDC5AB49DDCB1C /* Regressifier.cpp in Sources */,
 				A8F1111730140D7CDD6E8D4A /* Classifier.cpp in Sources */,
 				DFB3777E0F35E4C4AC0C4BF9 /* FeatureExtraction.cpp in Sources */,
-				83AF90F5206CED2100313CD6 /* ofApp.cpp in Sources */,
 				0FD77680D9B6F15FBDA2086C /* Context.cpp in Sources */,
 				83AF90F7206CED2100313CD6 /* ofxAnimatableOfColor.cpp in Sources */,
 				86A3AD829C51607AFA3CA7BC /* PostProcessing.cpp in Sources */,
@@ -2751,7 +2631,6 @@
 				6931EC0946FC6201E9981015 /* ThresholdCrossingDetector.cpp in Sources */,
 				41A2E49AAC3D3A4D6ACD9FF1 /* MatrixFloat.cpp in Sources */,
 				043276E79D1CE68616DBE4FC /* TimeSeriesClassificationSample.cpp in Sources */,
-				83AF90F2206CED2100313CD6 /* main.cpp in Sources */,
 				D9E081784FA79961A7562C14 /* RegressionData.cpp in Sources */,
 				5E32E68D084533336504C07A /* ClassificationData.cpp in Sources */,
 				13E7DCAABEAB45A178DED8C6 /* ClassificationSample.cpp in Sources */,
@@ -2774,7 +2653,6 @@
 				83AF90F9206CED2100313CD6 /* ofxAnimatableFloat.cpp in Sources */,
 				FC38378C277293BA944D3A44 /* MovementTrajectoryFeatures.cpp in Sources */,
 				37BBD9EF4AD9358E1884CC5F /* TimeseriesBuffer.cpp in Sources */,
-				83AF90F1206CED2100313CD6 /* ofApp.cpp in Sources */,
 				05373C98754C22C990395560 /* Gate.cpp in Sources */,
 				CAB28BE1D42BA92B17EDC275 /* Node.cpp in Sources */,
 				A69A37CED812D257233F3BA6 /* Tree.cpp in Sources */,
@@ -2793,7 +2671,6 @@
 				004A27B7D3CD9D4C6DB24B7D /* DecisionTreeTripleFeatureNode.cpp in Sources */,
 				64261573767DAA6E2ADD5A36 /* ParticleClassifier.cpp in Sources */,
 				8C4446A2EB25E305135B06CC /* MinDist.cpp in Sources */,
-				83AF90F3206CED2100313CD6 /* ofApp.cpp in Sources */,
 				E5752FEB8780C4FB44EE9836 /* MinDistModel.cpp in Sources */,
 				305498B606F7826749E5ABDB /* DTW.cpp in Sources */,
 				948F5C7E35EE23DCD562CD3B /* libsvm.cpp in Sources */,
@@ -2826,7 +2703,6 @@
 				83AF90C6206CDDC200313CD6 /* Scene.cpp in Sources */,
 				F9FFEC715F1E0B8983CCA83E /* ofxGuiGroup.cpp in Sources */,
 				EB001AC8BCC6D654E13C4649 /* ofxLabel.cpp in Sources */,
-				83AF90F6206CED2100313CD6 /* main.cpp in Sources */,
 				CDC8B84FB14AD2C12B6896CE /* ofxPanel.cpp in Sources */,
 				841E362B729F778178E5C99B /* ofxSlider.cpp in Sources */,
 				ACB27A2E0F2372F3F6D250E4 /* ofxJSONElement.cpp in Sources */,
