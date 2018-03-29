@@ -11,6 +11,7 @@ void ofApp::setup(){
     ofxLibwebsockets::ServerOptions options = ofxLibwebsockets::defaultServerOptions();
     options.port = 9092;
     options.bUseSSL = false; // you'll have to manually accept this self-signed cert if 'true'!
+    options.documentRoot = ofToDataPath("../../translator");
     bSetup = server.setup( options );
     server.addListener(this);
     
