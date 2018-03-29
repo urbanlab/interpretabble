@@ -39,10 +39,10 @@ public:
         while(isThreadRunning()) {
             if(lock()) {
                 if (!ready) {
-                    if (toEncode) {
+                    if (toEncode && img.getWidth() > 0) {
                         features = encode(img, layer);
                     }
-                    if (toClassify) {
+                    if (toClassify && img.getWidth() > 0) {
                         results = classify(img, numResults);
                     }
                     ready = true;

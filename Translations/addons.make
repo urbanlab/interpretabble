@@ -9,3 +9,4 @@ ofxOpenCv
 ofxSSL
 ofxSpeech
 ofxXmlSettings
+ofxAnimatable

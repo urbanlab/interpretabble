@@ -97,6 +97,19 @@
 		81022CC5866B8259C4811F5D /* KMeans.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAAD4406F81993EA6804B8A4 /* KMeans.cpp */; };
 		81349366A490C6F787804AC3 /* ClassificationDataStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D5391FF95455EEF13AC23A7 /* ClassificationDataStream.cpp */; };
 		8345047F206A4A1300E3ABD8 /* PipelineThreaded.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8345047C206A4A1200E3ABD8 /* PipelineThreaded.cpp */; };
+		83AF90C3206CDD5100313CD6 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90C1206CDD5100313CD6 /* SceneManager.cpp */; };
+		83AF90C6206CDDC200313CD6 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90C4206CDDC200313CD6 /* Scene.cpp */; };
+		83AF90F1206CED2100313CD6 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90CD206CED2100313CD6 /* ofApp.cpp */; };
+		83AF90F2206CED2100313CD6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90CF206CED2100313CD6 /* main.cpp */; };
+		83AF90F3206CED2100313CD6 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90D4206CED2100313CD6 /* ofApp.cpp */; };
+		83AF90F4206CED2100313CD6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90D6206CED2100313CD6 /* main.cpp */; };
+		83AF90F5206CED2100313CD6 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90E3206CED2100313CD6 /* ofApp.cpp */; };
+		83AF90F6206CED2100313CD6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90E5206CED2100313CD6 /* main.cpp */; };
+		83AF90F7206CED2100313CD6 /* ofxAnimatableOfColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90E7206CED2100313CD6 /* ofxAnimatableOfColor.cpp */; };
+		83AF90F8206CED2100313CD6 /* ofxAnimatable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90EA206CED2100313CD6 /* ofxAnimatable.cpp */; };
+		83AF90F9206CED2100313CD6 /* ofxAnimatableFloat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90EC206CED2100313CD6 /* ofxAnimatableFloat.cpp */; };
+		83AF90FA206CED2100313CD6 /* ofxAnimatableQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90EF206CED2100313CD6 /* ofxAnimatableQueue.cpp */; };
+		83AF90FB206CED2100313CD6 /* ofxAnimatableOfPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90F0206CED2100313CD6 /* ofxAnimatableOfPoint.cpp */; };
 		841E362B729F778178E5C99B /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95037D58F985FC17EB5B556E /* ofxSlider.cpp */; };
 		84B1BE4C8E2824288AF5BABD /* Flow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5E1E62022F5E710891F0F6A /* Flow.cpp */; };
 		86801BDFDAC48323D1F90A69 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BB511ACB87355D4BEA7B215 /* jsoncpp.cpp */; };
@@ -478,6 +491,40 @@
 		8345047C206A4A1200E3ABD8 /* PipelineThreaded.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PipelineThreaded.cpp; sourceTree = "<group>"; };
 		8345047D206A4A1200E3ABD8 /* ofxCcvThreaded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCcvThreaded.h; sourceTree = "<group>"; };
 		8345047E206A4A1300E3ABD8 /* PipelineThreaded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PipelineThreaded.h; sourceTree = "<group>"; };
+		83AF90C1206CDD5100313CD6 /* SceneManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SceneManager.cpp; sourceTree = "<group>"; };
+		83AF90C2206CDD5100313CD6 /* SceneManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SceneManager.hpp; sourceTree = "<group>"; };
+		83AF90C4206CDDC200313CD6 /* Scene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
+		83AF90C5206CDDC200313CD6 /* Scene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
+		83AF90C9206CED2100313CD6 /* License.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = License.md; sourceTree = "<group>"; };
+		83AF90CB206CED2100313CD6 /* addons.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = addons.make; sourceTree = "<group>"; };
+		83AF90CD206CED2100313CD6 /* ofApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofApp.cpp; sourceTree = "<group>"; };
+		83AF90CE206CED2100313CD6 /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofApp.h; sourceTree = "<group>"; };
+		83AF90CF206CED2100313CD6 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		83AF90D0206CED2100313CD6 /* ofxaddons_thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ofxaddons_thumbnail.png; sourceTree = "<group>"; };
+		83AF90D2206CED2100313CD6 /* addons.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = addons.make; sourceTree = "<group>"; };
+		83AF90D4206CED2100313CD6 /* ofApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofApp.cpp; sourceTree = "<group>"; };
+		83AF90D5206CED2100313CD6 /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofApp.h; sourceTree = "<group>"; };
+		83AF90D6206CED2100313CD6 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		83AF90D7206CED2100313CD6 /* ReadMe.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ReadMe.md; sourceTree = "<group>"; };
+		83AF90D8206CED2100313CD6 /* appveyor.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = appveyor.yml; sourceTree = "<group>"; };
+		83AF90D9206CED2100313CD6 /* addon_config.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = addon_config.mk; sourceTree = "<group>"; };
+		83AF90DD206CED2100313CD6 /* install.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = install.sh; sourceTree = "<group>"; };
+		83AF90DE206CED2100313CD6 /* install.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = install.sh; sourceTree = "<group>"; };
+		83AF90DF206CED2100313CD6 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
+		83AF90E1206CED2100313CD6 /* addons.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = addons.make; sourceTree = "<group>"; };
+		83AF90E3206CED2100313CD6 /* ofApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofApp.cpp; sourceTree = "<group>"; };
+		83AF90E4206CED2100313CD6 /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofApp.h; sourceTree = "<group>"; };
+		83AF90E5206CED2100313CD6 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		83AF90E7206CED2100313CD6 /* ofxAnimatableOfColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAnimatableOfColor.cpp; sourceTree = "<group>"; };
+		83AF90E8206CED2100313CD6 /* ofxAnimatableOfColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxAnimatableOfColor.h; sourceTree = "<group>"; };
+		83AF90E9206CED2100313CD6 /* ofxAnimatableOfPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxAnimatableOfPoint.h; sourceTree = "<group>"; };
+		83AF90EA206CED2100313CD6 /* ofxAnimatable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAnimatable.cpp; sourceTree = "<group>"; };
+		83AF90EB206CED2100313CD6 /* ofxAnimatableFloat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxAnimatableFloat.h; sourceTree = "<group>"; };
+		83AF90EC206CED2100313CD6 /* ofxAnimatableFloat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAnimatableFloat.cpp; sourceTree = "<group>"; };
+		83AF90ED206CED2100313CD6 /* ofxAnimatableQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxAnimatableQueue.h; sourceTree = "<group>"; };
+		83AF90EE206CED2100313CD6 /* ofxAnimatable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxAnimatable.h; sourceTree = "<group>"; };
+		83AF90EF206CED2100313CD6 /* ofxAnimatableQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAnimatableQueue.cpp; sourceTree = "<group>"; };
+		83AF90F0206CED2100313CD6 /* ofxAnimatableOfPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAnimatableOfPoint.cpp; sourceTree = "<group>"; };
 		83B0006B0D5D01C995A45529 /* highgui_c.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = highgui_c.h; path = ../../../../../../dev/OF/of_v0.9.8_osx_release/addons/ofxOpenCv/libs/opencv/include/opencv2/highgui/highgui_c.h; sourceTree = SOURCE_ROOT; };
 		83D682798E52EB2DBC7B801B /* ocl.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ocl.hpp; path = ../../../../../../dev/OF/of_v0.9.8_osx_release/addons/ofxOpenCv/libs/opencv/include/opencv2/nonfree/ocl.hpp; sourceTree = SOURCE_ROOT; };
 		83F86D9E445846792DB73869 /* ofxButton.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxButton.cpp; path = ../../../../../../dev/OF/of_v0.9.8_osx_release/addons/ofxGui/src/ofxButton.cpp; sourceTree = SOURCE_ROOT; };
@@ -1653,6 +1700,124 @@
 			name = TimeseriesBuffer;
 			sourceTree = "<group>";
 		};
+		83AF90C8206CED2100313CD6 /* ofxAnimatable */ = {
+			isa = PBXGroup;
+			children = (
+				83AF90C9206CED2100313CD6 /* License.md */,
+				83AF90CA206CED2100313CD6 /* example-AnimationQueue */,
+				83AF90D0206CED2100313CD6 /* ofxaddons_thumbnail.png */,
+				83AF90D1206CED2100313CD6 /* example */,
+				83AF90D7206CED2100313CD6 /* ReadMe.md */,
+				83AF90D8206CED2100313CD6 /* appveyor.yml */,
+				83AF90D9206CED2100313CD6 /* addon_config.mk */,
+				83AF90DA206CED2100313CD6 /* scripts */,
+				83AF90DF206CED2100313CD6 /* .travis.yml */,
+				83AF90E0206CED2100313CD6 /* example-CurveParameters */,
+				83AF90E6206CED2100313CD6 /* src */,
+			);
+			name = ofxAnimatable;
+			path = ../../../../openFrameworks/addons/ofxAnimatable;
+			sourceTree = "<group>";
+		};
+		83AF90CA206CED2100313CD6 /* example-AnimationQueue */ = {
+			isa = PBXGroup;
+			children = (
+				83AF90CB206CED2100313CD6 /* addons.make */,
+				83AF90CC206CED2100313CD6 /* src */,
+			);
+			path = "example-AnimationQueue";
+			sourceTree = "<group>";
+		};
+		83AF90CC206CED2100313CD6 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				83AF90CD206CED2100313CD6 /* ofApp.cpp */,
+				83AF90CE206CED2100313CD6 /* ofApp.h */,
+				83AF90CF206CED2100313CD6 /* main.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		83AF90D1206CED2100313CD6 /* example */ = {
+			isa = PBXGroup;
+			children = (
+				83AF90D2206CED2100313CD6 /* addons.make */,
+				83AF90D3206CED2100313CD6 /* src */,
+			);
+			path = example;
+			sourceTree = "<group>";
+		};
+		83AF90D3206CED2100313CD6 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				83AF90D4206CED2100313CD6 /* ofApp.cpp */,
+				83AF90D5206CED2100313CD6 /* ofApp.h */,
+				83AF90D6206CED2100313CD6 /* main.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		83AF90DA206CED2100313CD6 /* scripts */ = {
+			isa = PBXGroup;
+			children = (
+				83AF90DB206CED2100313CD6 /* ci */,
+			);
+			path = scripts;
+			sourceTree = "<group>";
+		};
+		83AF90DB206CED2100313CD6 /* ci */ = {
+			isa = PBXGroup;
+			children = (
+				83AF90DC206CED2100313CD6 /* vs */,
+				83AF90DE206CED2100313CD6 /* install.sh */,
+			);
+			path = ci;
+			sourceTree = "<group>";
+		};
+		83AF90DC206CED2100313CD6 /* vs */ = {
+			isa = PBXGroup;
+			children = (
+				83AF90DD206CED2100313CD6 /* install.sh */,
+			);
+			path = vs;
+			sourceTree = "<group>";
+		};
+		83AF90E0206CED2100313CD6 /* example-CurveParameters */ = {
+			isa = PBXGroup;
+			children = (
+				83AF90E1206CED2100313CD6 /* addons.make */,
+				83AF90E2206CED2100313CD6 /* src */,
+			);
+			path = "example-CurveParameters";
+			sourceTree = "<group>";
+		};
+		83AF90E2206CED2100313CD6 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				83AF90E3206CED2100313CD6 /* ofApp.cpp */,
+				83AF90E4206CED2100313CD6 /* ofApp.h */,
+				83AF90E5206CED2100313CD6 /* main.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		83AF90E6206CED2100313CD6 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				83AF90E7206CED2100313CD6 /* ofxAnimatableOfColor.cpp */,
+				83AF90E8206CED2100313CD6 /* ofxAnimatableOfColor.h */,
+				83AF90E9206CED2100313CD6 /* ofxAnimatableOfPoint.h */,
+				83AF90EA206CED2100313CD6 /* ofxAnimatable.cpp */,
+				83AF90EB206CED2100313CD6 /* ofxAnimatableFloat.h */,
+				83AF90EC206CED2100313CD6 /* ofxAnimatableFloat.cpp */,
+				83AF90ED206CED2100313CD6 /* ofxAnimatableQueue.h */,
+				83AF90EE206CED2100313CD6 /* ofxAnimatable.h */,
+				83AF90EF206CED2100313CD6 /* ofxAnimatableQueue.cpp */,
+				83AF90F0206CED2100313CD6 /* ofxAnimatableOfPoint.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		83C556FCA91AA322305DC647 /* ZeroCrossingCounter */ = {
 			isa = PBXGroup;
 			children = (
@@ -1961,6 +2126,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				83AF90C8206CED2100313CD6 /* ofxAnimatable */,
 				795B0427BBCB5647F47B56C8 /* ofxCcv */,
 				6025FAF6414C2CA589764D26 /* ofxCv */,
 				C567550D3311A5493C1231D0 /* ofxGrt */,
@@ -2308,6 +2474,10 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				32858E9AA3F299C01D10DE0D /* GuiApp.cpp */,
 				F88636C4EFBB70F4A94794DC /* GuiApp.hpp */,
+				83AF90C1206CDD5100313CD6 /* SceneManager.cpp */,
+				83AF90C2206CDD5100313CD6 /* SceneManager.hpp */,
+				83AF90C4206CDDC200313CD6 /* Scene.cpp */,
+				83AF90C5206CDDC200313CD6 /* Scene.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -2516,6 +2686,7 @@
 				0B4EAB4225777831AC4A78E1 /* Tracker.cpp in Sources */,
 				8345047F206A4A1300E3ABD8 /* PipelineThreaded.cpp in Sources */,
 				B1F2A274B343569E1AE58477 /* Calibration.cpp in Sources */,
+				83AF90F4206CED2100313CD6 /* main.cpp in Sources */,
 				84B1BE4C8E2824288AF5BABD /* Flow.cpp in Sources */,
 				583515F02D80000D2B4FA09F /* ContourFinder.cpp in Sources */,
 				DAD45A0F2EAB7B0F0B817626 /* ObjectFinder.cpp in Sources */,
@@ -2531,7 +2702,9 @@
 				3F170A1302FDC5AB49DDCB1C /* Regressifier.cpp in Sources */,
 				A8F1111730140D7CDD6E8D4A /* Classifier.cpp in Sources */,
 				DFB3777E0F35E4C4AC0C4BF9 /* FeatureExtraction.cpp in Sources */,
+				83AF90F5206CED2100313CD6 /* ofApp.cpp in Sources */,
 				0FD77680D9B6F15FBDA2086C /* Context.cpp in Sources */,
+				83AF90F7206CED2100313CD6 /* ofxAnimatableOfColor.cpp in Sources */,
 				86A3AD829C51607AFA3CA7BC /* PostProcessing.cpp in Sources */,
 				5AA4EB02060EB43569FFB9F9 /* PreProcessing.cpp in Sources */,
 				A521D59F0D1FF6DB283BEF63 /* GRTBase.cpp in Sources */,
@@ -2570,6 +2743,7 @@
 				39B87A0A1EC3327E0DFA87B5 /* ErrorLog.cpp in Sources */,
 				37A582962A6927FA537B14E9 /* TrainingDataRecordingTimer.cpp in Sources */,
 				0EF3064A313B1424FFA630F3 /* TimeSeriesClassificationSampleTrimmer.cpp in Sources */,
+				83AF90FB206CED2100313CD6 /* ofxAnimatableOfPoint.cpp in Sources */,
 				F7379EB002C8162F6CE24154 /* ThreadPool.cpp in Sources */,
 				267CBB212D51231597422E34 /* Cholesky.cpp in Sources */,
 				79C757AD63A9FDABCC2B7CCE /* InfoLog.cpp in Sources */,
@@ -2577,6 +2751,7 @@
 				6931EC0946FC6201E9981015 /* ThresholdCrossingDetector.cpp in Sources */,
 				41A2E49AAC3D3A4D6ACD9FF1 /* MatrixFloat.cpp in Sources */,
 				043276E79D1CE68616DBE4FC /* TimeSeriesClassificationSample.cpp in Sources */,
+				83AF90F2206CED2100313CD6 /* main.cpp in Sources */,
 				D9E081784FA79961A7562C14 /* RegressionData.cpp in Sources */,
 				5E32E68D084533336504C07A /* ClassificationData.cpp in Sources */,
 				13E7DCAABEAB45A178DED8C6 /* ClassificationSample.cpp in Sources */,
@@ -2596,8 +2771,10 @@
 				9462351E14587772E3489912 /* FastFourierTransform.cpp in Sources */,
 				561B9448A580C681971F0A8F /* ZeroCrossingCounter.cpp in Sources */,
 				1F33DA2313766185CFE4DC3D /* SOMQuantizer.cpp in Sources */,
+				83AF90F9206CED2100313CD6 /* ofxAnimatableFloat.cpp in Sources */,
 				FC38378C277293BA944D3A44 /* MovementTrajectoryFeatures.cpp in Sources */,
 				37BBD9EF4AD9358E1884CC5F /* TimeseriesBuffer.cpp in Sources */,
+				83AF90F1206CED2100313CD6 /* ofApp.cpp in Sources */,
 				05373C98754C22C990395560 /* Gate.cpp in Sources */,
 				CAB28BE1D42BA92B17EDC275 /* Node.cpp in Sources */,
 				A69A37CED812D257233F3BA6 /* Tree.cpp in Sources */,
@@ -2612,9 +2789,11 @@
 				71CE54AA529ACBF2768A43CA /* DecisionTree.cpp in Sources */,
 				D7B788A656B02743685E92E4 /* DecisionTreeClusterNode.cpp in Sources */,
 				73E6C67F0810E74F6E5F743B /* DecisionTreeNode.cpp in Sources */,
+				83AF90C3206CDD5100313CD6 /* SceneManager.cpp in Sources */,
 				004A27B7D3CD9D4C6DB24B7D /* DecisionTreeTripleFeatureNode.cpp in Sources */,
 				64261573767DAA6E2ADD5A36 /* ParticleClassifier.cpp in Sources */,
 				8C4446A2EB25E305135B06CC /* MinDist.cpp in Sources */,
+				83AF90F3206CED2100313CD6 /* ofApp.cpp in Sources */,
 				E5752FEB8780C4FB44EE9836 /* MinDistModel.cpp in Sources */,
 				305498B606F7826749E5ABDB /* DTW.cpp in Sources */,
 				948F5C7E35EE23DCD562CD3B /* libsvm.cpp in Sources */,
@@ -2639,12 +2818,15 @@
 				530CA7056CE8D89625C44CE9 /* SelfOrganizingMap.cpp in Sources */,
 				602ED4D8BA053CC2610DAEA4 /* GaussianMixtureModels.cpp in Sources */,
 				81022CC5866B8259C4811F5D /* KMeans.cpp in Sources */,
+				83AF90FA206CED2100313CD6 /* ofxAnimatableQueue.cpp in Sources */,
 				67C8A852DFE3439F332F9000 /* ofxBaseGui.cpp in Sources */,
 				94946970C35BFB9EE33F7DC1 /* ofxSliderGroup.cpp in Sources */,
 				7753A625262C9AF3F0852EBE /* ofxToggle.cpp in Sources */,
 				A661A4E7B1C4AFB583AF363E /* ofxButton.cpp in Sources */,
+				83AF90C6206CDDC200313CD6 /* Scene.cpp in Sources */,
 				F9FFEC715F1E0B8983CCA83E /* ofxGuiGroup.cpp in Sources */,
 				EB001AC8BCC6D654E13C4649 /* ofxLabel.cpp in Sources */,
+				83AF90F6206CED2100313CD6 /* main.cpp in Sources */,
 				CDC8B84FB14AD2C12B6896CE /* ofxPanel.cpp in Sources */,
 				841E362B729F778178E5C99B /* ofxSlider.cpp in Sources */,
 				ACB27A2E0F2372F3F6D250E4 /* ofxJSONElement.cpp in Sources */,
@@ -2657,6 +2839,7 @@
 				47BB2C8BDD9728ECEFDB1C1F /* Connection.cpp in Sources */,
 				966A00ACC69236BFD473239E /* Server.cpp in Sources */,
 				2918F84C213292F8AEBB7281 /* ofxCvColorImage.cpp in Sources */,
+				83AF90F8206CED2100313CD6 /* ofxAnimatable.cpp in Sources */,
 				2ADE020B5D768265277185C4 /* ofxCvShortImage.cpp in Sources */,
 				1AE01B57D52769694DA7D117 /* ofxCvContourFinder.cpp in Sources */,
 				D9E48CBFD4997FDAC6516814 /* ofxCvHaarFinder.cpp in Sources */,
