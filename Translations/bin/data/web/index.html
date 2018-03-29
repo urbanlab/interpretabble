@@ -55,42 +55,6 @@
 
 <script type="text/javascript">
     
-    if ("WebSocket" in window) {
-        try {
-            var ws = new WebSocket("ws://localhost:9092/");
-        } catch (err) {
-            $(".lead").html("Error with websocket connection.");
-        }
-
-        ws.onopen = function (error) {
-            $(".lead").html("Up and running!");
-        };
-
-        ws.onclose = function (error) {
-            $(".lead").html("Websocket has been closed.");
-        };
-        
-        ws.onerror = function (error) {
-            $(".lead").html("Error with websocket connection.");
-        };
-
-    } else {
-        $(".lead").html("Websocket not supported in this browser");
-    }
-
-    ws.onmessage = function (evt) {
-        
-        var received_msg    = evt.data;
-        var splitted        = received_msg.split("|");
-        var type            = splitted[1];
-        var msg             = splitted[2];
-        
-        var formatted = "<p style='color:red;'>"+msg+"</p>"
-        console.log(evt.data);
-        if(type == "TRANS")
-            updateField(formatted);
-    };
-
     var mom         = this;
     var messages    = [];
     var errors      = [];
@@ -291,44 +255,60 @@
             ws.send((this.value - 1)+"|SCENARIO_CHANGE|NULL|NULL|NULL");
         }
     })
+    
+    function createWebSocket(server) {
+        
+        console.log("ws://" + server + ":9092/");
+        
+        if ("WebSocket" in window) {
+
+            try {
+                ws = new WebSocket("ws://" + server + ":9092/");
+            } catch (err) {
+                $(".lead").html("Error with websocket connection.");
+            }
+            
+            ws.onopen = function (error) {
+                $(".lead").html("Up and running!");
+            };
+            
+            ws.onclose = function (error) {
+                $(".lead").html("Websocket has been closed.");
+            };
+            
+            ws.onerror = function (error) {
+                $(".lead").html("Error with websocket connection.");
+            };
+            
+            ws.onmessage = function (evt) {
+                
+                var received_msg    = evt.data;
+                var splitted        = received_msg.split("|");
+                var id              = splitted[0];
+                var type            = splitted[1];
+                var msg             = splitted[2];
+                
+                var formatted = "<p style='color:red;'>"+msg+"</p>"
+                console.log(id + type + msg);
+                if(type == "TRANS")
+                updateField(formatted);
+                if (type == "SCENARIO_DATA") {
+                    scenario_id.options[parseInt(id) + 1] = new Option(msg, parseInt(id) + 1);
+                    
+                }
+            };
+        
+        } else {
+            alert("Y a même pas WebSocket sur ce navigateur. C'est fini IE6");
+
+        }
+    }
 
     $('#ip_selection').on('change', function() {
-        console.log("ws://" + this.value + ":9092/");
-        try {
-            ws = new WebSocket("ws://" + this.value + ":9092/");
-        } catch (err) {
-            $(".lead").html("Error with websocket connection.");
-        }
-
-        ws.onopen = function (error) {
-            $(".lead").html("Up and running!");
-        };
-
-        ws.onclose = function (error) {
-            $(".lead").html("Websocket has been closed.");
-        };
-        
-        ws.onerror = function (error) {
-            $(".lead").html("Error with websocket connection.");
-        };
-
-        ws.onmessage = function (evt) {
-
-            var received_msg    = evt.data;
-            var splitted        = received_msg.split("|");
-            var id              = splitted[0];
-            var type            = splitted[1];
-            var msg             = splitted[2];
-        
-            var formatted = "<p style='color:red;'>"+msg+"</p>"
-            console.log(id + type + msg);
-            if(type == "TRANS")
-                updateField(formatted);
-            if (type == "SCENARIO_DATA") {
-                scenario_id.options[id + 1] = new Option(msg, id + 1);
-            }
-        };
+         createWebSocket();
     })
+    
+    createWebSocket("localhost");
 
     </script>
 </html>
