@@ -53,6 +53,8 @@ class ofApp : public ofBaseApp{
     
         void parseTranslation( ofxLibwebsockets::Event& args);
     
+        void sendScenariosToSocket();
+    
         translated * getTranslatedForID(string uniqueID);
     
         // common
@@ -62,6 +64,7 @@ class ofApp : public ofBaseApp{
         ofImage tache, pattern;
         ofFbo translationsFbo;
         ofTrueTypeFont font;
+        int background;
     
         // sockets
         ofxLibwebsockets::Server server;

@@ -13,8 +13,6 @@ using namespace cv;
 //--------------------------------------------------------------
 void GuiApp::setup(){
     
-    ofApp * app = (ofApp*) ofGetAppPtr();
-    
     
     cam.setDeviceID(1);
     cam.setup(1920, 1080);
@@ -34,10 +32,14 @@ void GuiApp::setup(){
     parameters.add(croppedRectY.set("Cropped Y", 0, 0, cam.getHeight()));
     parameters.add(croppedRectW.set("Cropped W", 100, 0,cam.getWidth()));
     parameters.add(croppedRectH.set("Cropped H", 100, 0, cam.getHeight()));
+    parameters.add(backgroundOpacity.set("Opacity", 0, 0, 255));
 
-    parameters.add(translateX.set("Translate X", 100, 0, cam.getHeight()));
-    parameters.add(translateY.set("translate Y ", 100, 0, cam.getHeight()));
-    parameters.add(saveCropped.set("Save cropped ", false));
+    
+    
+
+  //  parameters.add(translateX.set("Translate X", 100, 0, cam.getHeight()));
+   // parameters.add(translateY.set("translate Y ", 100, 0, cam.getHeight()));
+   // parameters.add(saveCropped.set("Save cropped ", false));
     parameters.add(camThresoldSlider.set("thresold cam", 0.0, 0.0, 255));
 
     //parameters.add(videoSettings.set("Video settings ", false));
@@ -73,8 +75,13 @@ void GuiApp::setup(){
     bAddLabel.addListener(this, &GuiApp::eAddLabel);
     bCameraSettings.addListener(this, &GuiApp::changeCamera);
 
-    // CCV
+    labels.reserve(999);
+    string emptyLabel = "No label";
+    for(int i=0; i<999; i++) {
+        labels.push_back(emptyLabel);
+    }
     
+    // CCV
     string ccvPath = ofToDataPath("models/image-net-2012.sqlite3");
     ccv.setup(ccvPath);
     if (!ccv.isLoaded()) return;
@@ -89,7 +96,7 @@ void GuiApp::setup(){
 void GuiApp::update() {
     
     
-
+    app->background = backgroundOpacity;
     cam.update();
     
     if(cam.isFrameNew()) {
@@ -228,35 +235,43 @@ void GuiApp::draw() {
         
     }
     
+    ofEnableAlphaBlending();
     ofSetColor(255);
     ofNoFill();
+    //ofxCv::invert(camThresold, camThresold);
     camThresold.draw(croppedRectX,croppedRectY);
     ofSetColor(255,0,0);
     ofDrawRectangle(croppedRectX, croppedRectY, croppedRectW, croppedRectH);
     
     ofTranslate(croppedRectX, croppedRectY);
-    ofSetLineWidth(2);
+    ofSetLineWidth(1);
     contourFinder.draw();
     ofFill();
     ofPopMatrix();
     
     
-    ofDrawBitmapStringHighlight( "Num samples recorded: " + ofToString(numSamples), 20, 0 + cam.getHeight() );
+    ofDrawBitmapStringHighlight( "Num samples recorded: " + ofToString(numSamples), 20, 0 + cam.getHeight() * scale );
 
     if (infoText != ""){
-        ofDrawBitmapStringHighlight( infoText, 20, 50 + cam.getHeight() );
+        ofDrawBitmapStringHighlight( infoText, 20, 50 + cam.getHeight() * scale );
     }
     if (learners.size() == 1 && learners[0]->isClassifier()) {
         int sliderValue = ((CategoricalThreaded *) learners[0])->slider;
-         ofDrawBitmapStringHighlight( "Current label: " + labels[sliderValue], 20, 30 + cam.getHeight() );
+        if(sliderValue < labels.size())
+            ofDrawBitmapStringHighlight( "Current label: " + labels[sliderValue], 20, 30 + cam.getHeight() * scale);
     }
     
     if (learners.size() == 1 && learners[0]->isClassifier() && learners[0]->getTrained() && tPredict) {
         
         int sliderValue = ((CategoricalThreaded *) learners[0])->slider;
-        string txt = "Predicted Class: " + ofToString(sliderValue) + " " +  labels[sliderValue];
+        string label = ofToString(sliderValue);
+         if(sliderValue < labels.size())
+             label = labels[sliderValue];
+             
+             
+        string txt = "Predicted Class: " + ofToString(sliderValue) + " " + label;
         ofSetColor(0,255,0);
-        ofDrawBitmapStringHighlight( txt, 20, 100 + cam.getHeight() );
+        ofDrawBitmapStringHighlight( txt, 20, 100 + cam.getHeight() * scale );
 
        // largeFont.drawString(txt, 237, 92 + cam.getHeight());
     }
@@ -272,6 +287,8 @@ void GuiApp::exit() {
     // save xml settings
     xmlSettings.serialize(parameters);
     xmlSettings.save("settings.xml");
+    
+    ofLogNotice("saving");
     
     // save convnet settings
    // gui.saveToFile(ofToDataPath("settings_convnetP.xml"));
@@ -389,7 +406,8 @@ void GuiApp::save(string modelName) {
         string modelType = learners[p]->isClassifier() ? "c" : "r";
         learners[p]->save(ofToDataPath(modelName+"/p"+ofToString(p)+"_"+modelType+".grt"));
     }
-   // gui.saveToFile(ofToDataPath(modelName+"/settings.xml"));
+    gui.saveToFile(ofToDataPath(modelName+"/settings.xml"));
+    saveLabels();
 }
 
 //--------------------------------------------------------------
@@ -419,10 +437,38 @@ void GuiApp::load(string modelPath) {
         tPredict = true;
         numSamples = learners[0]->getNumTrainingSamples();
     }
-    //gui.loadFromFile(modelPath+"/settings.xml");
+    gui.loadFromFile(modelPath+"/settings.xml");
+    loadLabels();
     
 }
 
+//--------------------------------------------------------------
+void GuiApp::saveLabels(){
+    
+    string labels = "";
+    for(int i=0; i<labels.size(); i++) {
+        labels += labels[i];
+        
+        if(i < labels.size() - 1 )
+            labels += "\n";
+    }
+    
+    ofFile labelFile;
+    labelFile.open("labels.txt",ofFile::WriteOnly);
+    labelFile << labels;
+    
+}
+
+void GuiApp::loadLabels(){
+    
+    vector < string > linesOfTheFile;
+    ofBuffer buffer = ofBufferFromFile("labels.txt");
+    
+    for (auto line : buffer.getLines()){
+        labels.push_back(line);
+    }
+    
+}
 
 //--------------------------------------------------------------
 void GuiApp::clear() {

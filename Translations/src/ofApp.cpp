@@ -60,7 +60,10 @@ void ofApp::draw() {
     drawTranslations();
     
     sceneManager.draw();
-
+    
+    ofEnableAlphaBlending();
+    ofSetColor(0, background);
+    ofDrawRectangle(0.0,0.0, ofGetWidth(), ofGetHeight());
 
     if ( !bSetup ){
         ofSetColor(255,0,0);
@@ -232,6 +235,18 @@ void ofApp::keyPressed(int key) {
     
 }
 
+void ofApp::sendScenariosToSocket() {
+    
+    for(int i=0; i<sceneManager.scenes.size(); i++) {
+        
+        string message = ofToString(i) + "|" + "SCENARIO_DATA" + "|" + sceneManager.scenes[i]->label + "|NULL";
+        ofLogNotice("message:") << message;
+        server.send(message);
+    }
+    
+}
+
+
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
@@ -290,6 +305,7 @@ void ofApp::onConnect( ofxLibwebsockets::Event& args ){
 //--------------------------------------------------------------
 void ofApp::onOpen( ofxLibwebsockets::Event& args ){
     cout<<"new connection open"<<endl;
+    sendScenariosToSocket();
    // messages.push_back("New connection from " + args.conn.getClientIP() + ", " + args.conn.getClientName() );
 }
 

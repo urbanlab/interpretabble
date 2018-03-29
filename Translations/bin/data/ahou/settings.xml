@@ -1,6 +1,6 @@
 <group>
     <Scale>0.747449</Scale>
-    <color>174, 177, 176, 255</color>
+    <color>182, 182, 181, 255</color>
     <Threshold>110.587</Threshold>
     <Track_Hue_Saturation>0</Track_Hue_Saturation>
     <Calibration>0</Calibration>
@@ -8,6 +8,10 @@
     <Cropped_Y>468</Cropped_Y>
     <Cropped_W>597</Cropped_W>
     <Cropped_H>330</Cropped_H>
-    <Opacity>0</Opacity>
+    <Translate_X>440</Translate_X>
+    <translate_Y_>71</translate_Y_>
+    <Save_cropped_>0</Save_cropped_>
     <thresold_cam>252.398</thresold_cam>
+<group/>
+	<Opacity>0</Opacity>
 </group>

@@ -68,6 +68,7 @@ public:
     ofParameter<int> croppedRectX,croppedRectY, croppedRectW, croppedRectH;
     ofParameter<int> translateX, translateY;
     ofParameter<bool> saveCropped;
+    ofParameter<int> backgroundOpacity;
     ofParameter<bool> videoSettings;
     
     ofParameter<float> camThresoldSlider, brigthness;
@@ -110,6 +111,9 @@ public:
     void eSave();
     void eLoad();
     void clear();
+    
+    void saveLabels();
+    void loadLabels();
     string infoText;
     
     vector<string> labels;
