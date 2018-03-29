@@ -6,6 +6,7 @@
 #include "ofxJSONElement.h"
 #include "GuiApp.hpp"
 #include "ofxLibwebsockets.h"
+#include "SceneManager.hpp"
 
 #define NUM_MESSAGES 2
 
@@ -54,22 +55,26 @@ class ofApp : public ofBaseApp{
     
         translated * getTranslatedForID(string uniqueID);
     
+        // common
         shared_ptr<GuiApp> gui;
     
         // interface
         ofImage tache, pattern;
-    
         ofFbo translationsFbo;
-    
         ofTrueTypeFont font;
+    
+        // sockets
         ofxLibwebsockets::Server server;
-    
         bool bSetup;
-    
         vector<string> messages;
         vector<translated> translations;
-    
         int translationFontSize;
+    
+        // scene
+    
+        SceneManager sceneManager;
+    
+    
     
 #ifdef DATASETMODE
     

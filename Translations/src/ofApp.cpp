@@ -17,8 +17,7 @@ void ofApp::setup(){
     translationFontSize = 12;
     font.load("assets/fonts/CALVERTMTSTD-BOLD.OTF", translationFontSize);
     
-    translationsFbo.allocate(1920, 1080, GL_RGBA);
-    
+    sceneManager.setup();
 
 #ifdef DATASETMODE
     
@@ -31,12 +30,15 @@ void ofApp::setup(){
     
 #endif
     
+    ofToggleFullscreen();
   
     
 }
 
 void ofApp::update() {
     
+    sceneManager.update();
+
    
     
 }
@@ -49,13 +51,16 @@ void ofApp::draw() {
 #endif
     
     
-    ofBackground(255);
+    ofBackground(180);
     ofSetColor(255);
     ofEnableAlphaBlending();
     tache.draw(0.0, 0.0);
     pattern.draw(0.0,0.0);
     
     drawTranslations();
+    
+    sceneManager.draw();
+
 
     if ( !bSetup ){
         ofSetColor(255,0,0);
@@ -80,35 +85,34 @@ void ofApp::drawContourFinder() {
 
 void ofApp::drawTranslations() {
     
-    translationsFbo.begin();
-    ofClear(0);
     ofPushMatrix();
     ofTranslate(20, 800);
     float x = 0;
     float y = 0;
     
-    for (int i = translations.size() - 1; i >= 0; i-- ){
+    for (int i = 0; i < translations.size(); i++ ){
         
-        if(translations[i].trans.size() > 0) {
+        int index = translations.size() - 1 - i;
+        
+        if(translations[index].trans.size() > 0) {
             ofSetColor(255,0,0);
-            font.drawString(translations[i].raw , x, i * ( translationFontSize  * 4) );
+            font.drawString(translations[index].raw , x, i * ( translationFontSize  * 4) );
         }
         
-        if(translations[i].raw.size() > 0) {
+        if(translations[index].raw.size() > 0) {
             ofSetColor(0);
-            font.drawString(translations[i].trans , x, i * ( translationFontSize  * 4 ) + translationFontSize *2);
+            font.drawString(translations[index].trans , x, i * ( translationFontSize  * 4 ) + translationFontSize *2);
         }
         
     }
     ofPopMatrix();
-    translationsFbo.end();
     
     ofEnableAlphaBlending();
-    translationsFbo.draw(0.0,0.0);
+    //translationsFbo.draw(0.0,0.0);
     
 
 
-    ofPopMatrix();
+    //ofPopMatrix();
     //translationsFbo.getTexture().mi
     
     // delete messages if too much

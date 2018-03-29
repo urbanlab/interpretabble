@@ -66,8 +66,10 @@ public:
     ofParameter<int> translateX, translateY;
     ofParameter<bool> saveCropped;
     ofParameter<bool> videoSettings;
+    
+    ofParameter<float> camThresoldSlider, brigthness;
 
-    ofImage camImage;
+    ofImage camImage, camThresold;
     
     ofxXmlSettings xmlSettings;
     

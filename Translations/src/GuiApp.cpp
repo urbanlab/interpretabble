@@ -6,14 +6,17 @@
 //
 
 #include "GuiApp.hpp"
+#include "ofApp.h"
 
 using namespace ofxCv;
 using namespace cv;
 //--------------------------------------------------------------
 void GuiApp::setup(){
     
+    ofApp * app = (ofApp*) ofGetAppPtr();
     
-    cam.setDeviceID(0);
+    
+    cam.setDeviceID(1);
     cam.setup(1920, 1080);
     contourFinder.setMinAreaRadius(10);
     contourFinder.setMaxAreaRadius(150);
@@ -35,6 +38,8 @@ void GuiApp::setup(){
     parameters.add(translateX.set("Translate X", 100, 0, cam.getHeight()));
     parameters.add(translateY.set("translate Y ", 100, 0, cam.getHeight()));
     parameters.add(saveCropped.set("Save cropped ", false));
+    parameters.add(camThresoldSlider.set("thresold cam", 0.0, 0.0, 255));
+
     //parameters.add(videoSettings.set("Video settings ", false));
     
 
@@ -46,13 +51,16 @@ void GuiApp::setup(){
     gui.add(tPredict.setup("Predict", false));
     gui.add(bSave.setup("Save model"));
     gui.add(bLoad.setup("Load model"));
+    gui.add(bCameraSettings.setup("Camera settings"));
+    //gui.add(brightness.set("brightness cam", 0.0, 0.0, 1.0));
+
     
+
     gui.loadFromFile("settings.xml");
 
     guiSliders.setup();
     guiSliders.setPosition(580, 10);
     guiSliders.setName("Outputs");
-    //guiSliders.add(bAddSlider.setup("Add Slider"));
     guiSliders.add(bAddCategorical.setup("Add Categorical"));
     guiSliders.add(bAddLabel.setup("set label"));
 
@@ -63,6 +71,7 @@ void GuiApp::setup(){
     bAddSlider.addListener(this, &GuiApp::eAddSlider);
     bAddCategorical.addListener(this, &GuiApp::eAddCategorical);
     bAddLabel.addListener(this, &GuiApp::eAddLabel);
+    bCameraSettings.addListener(this, &GuiApp::changeCamera);
 
     // CCV
     
@@ -96,7 +105,14 @@ void GuiApp::update() {
         // get image from camera
         
         camImage.setFromPixels(cam.getPixels());
-        camImage.crop(croppedRectX, croppedRectY, croppedRectW, croppedRectH);
+        camImage.crop((int)croppedRectX, (int)croppedRectY, (int)croppedRectW, (int)croppedRectH);
+        
+        convertColor(camImage, camThresold, CV_RGB2GRAY);
+        float thresoldValue = camThresoldSlider;
+        ofxCv::threshold(camThresold,thresoldValue);
+        
+        camThresold.update();
+        
        // camImage.resize(camImage.getWidth() * scale, camImage.getHeight() * scale);
         
         contourFinder.setTargetColor(targetColor, trackHs ? TRACK_COLOR_HS : TRACK_COLOR_RGB);
@@ -112,10 +128,10 @@ void GuiApp::update() {
             croppedIds.push_back(contourFinder.getLabel(i));
             
         }
-        
+        updateCCV();
+
     }
     
-    updateCCV();
 }
 
 void GuiApp::updateCCV() {
@@ -194,7 +210,9 @@ void GuiApp::draw() {
     
     ofPushMatrix();
     ofScale(scale,scale,scale);
-    cam.draw(0, 0);
+    
+    if(cam.isInitialized())
+        cam.draw(0, 0);
     
     
     ofSetColor(255);
@@ -212,7 +230,7 @@ void GuiApp::draw() {
     
     ofSetColor(255);
     ofNoFill();
-    camImage.draw(croppedRectX,croppedRectY);
+    camThresold.draw(croppedRectX,croppedRectY);
     ofSetColor(255,0,0);
     ofDrawRectangle(croppedRectX, croppedRectY, croppedRectW, croppedRectH);
     
