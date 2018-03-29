@@ -1,33 +1,32 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-    
+    <head>
+    <title>InterpretaꓭBle interface</title>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
        <script src="http://code.jquery.com/jquery-latest.js"></script>
        <script type="text/javascript" src="languages.json"></script>
-   
-</head>
+    </head>
 <body>
     
     <!-- Begin page content -->
     <div role="main" class="container">
        <div class="row">
            <div class="col-md-12">
-               <h1 class="mt-5">WebkitSpeechRecognition + websockets</h1>
+               <h1 class="mt-5">InterpretaꓭBle interface</h1>
                <p class="lead">Yup.</p>
            </div>
            <div class="col-md-4">
+               <div class="col-md-12">
                     <p>IP for translating/scenario server</p>
-                    <form action="#">
-                        <input type="text" id="ip_selection" value="localhost">
-                    </form>
+                    <input type="text" id="ip_selection" value="localhost">
+                </div>
                 </br>
                 <div class="col-md-12">
                      <label for="select_language">Language ( input )</label>
@@ -41,7 +40,8 @@
             </br>
             <div class="col-md-12">
                 <label for="scenario_id">Type de scénario</label>
-                <select  id="scenario_id" class="form-control"></select>
+                <select  id="scenario_id" class="form-control"></select></br>
+                <label><input type="checkbox" value="" id="overwrite"> Do overwrite scenario</label>
             </div>
             </div>
             <div class="col-md-8">
@@ -59,7 +59,8 @@
     var mom         = this;
     var messages    = [];
     var errors      = [];
-    var recognition = new webkitSpeechRecognition();
+    var SpeechRecognition = window.webkitSpeechRecognition;
+    var recognition = new SpeechRecognition();
     recognition.lang = "fr-FR";
     recognition.continuous = true;
 
@@ -130,23 +131,28 @@
     })
     
     function createWebSocket(server) {
+        for (i = scenario_id.options.length; i > 0; i--) {
+            scenario_id.options[i] = null;
+        }
+        scenario_id.options[0] = new Option("Aucun", 0);
+        scenario_id.selectedIndex = 0;
         if ("WebSocket" in window) {
             try {
                 ws = new WebSocket("ws://" + server + ":9092/");
             } catch (err) {
-                $(".lead").html("Error with websocket connection.");
+                $(".lead").html("<p style='color:red;'>Error in WebSocket connection.</p>");
             }
             
             ws.onopen = function (error) {
-                $(".lead").html("Up and running!");
+                $(".lead").html("<p style='color:green;'>Up and running</p>");
             };
             
             ws.onclose = function (error) {
-                $(".lead").html("Websocket has been closed.");
+                $(".lead").html("<p style='color:red;'>Websocket has been closed.</p>");
             };
             
             ws.onerror = function (error) {
-                $(".lead").html("Error with websocket connection.");
+                $(".lead").html("<p style='color:red;'>Error in WebSocket connection.</p>");
             };
             
             ws.onmessage = function (evt) {
@@ -171,30 +177,29 @@
         createWebSocket(this.value);
     })
     
+    $('#overwrite').on('click', function() {
+        if (this.checked) {
+            ws.send("1|SCENARIO_OVERWRITE|NULL|NULL|NULL");
+        } else {
+            ws.send("0|SCENARIO_OVERWRITE|NULL|NULL|NULL");
+        }
+    });
+
     createWebSocket("localhost");
 
     var langs = JSON.parse(data);
    
 
-     var types = [
-        ["Aucun", ["Aucun"]],
-        ["Scenario 1", ["Scenario 1"]]
-     ]
-     
-     for (var i = 0; i < langs.length; i++) {
-         select_language.options[i] = new Option(langs[i][0], i);
-     }
-
+    for (var i = 0; i < langs.length; i++) {
+        select_language.options[i] = new Option(langs[i][0], i);
+    }
 
     for (var i = 0; i < langs.length; i++) {
         translate_language.options[i] = new Option(langs[i][0], i);
     }
 
-    scenario_id.options[0] = new Option("Aucun", 0);
-
     select_language.selectedIndex       = 14;
     translate_language.selectedIndex    = 10;
-    scenario_id.selectedIndex = 0;
 
     </script>
 </html>
