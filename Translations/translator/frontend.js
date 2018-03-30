@@ -68,12 +68,6 @@ $('#select_language').on('change', function() {
     recognition.stop();
 })
 
-$('#translate_language').on('change', function() {
-    console.log(this.value);
-    recognition.lang = langs[this.value][1];
-    recognition.stop();
-});
-
 $('#scenario_id').on('change', function() {
     ws.send(this.value+"|SCENARIO_CHANGE|NULL|NULL|NULL");
 })
