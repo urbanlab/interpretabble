@@ -34,4 +34,4 @@ Jacques Marques (technician teammate)
 
 ERASME Urban Lab for permitting us to achieve this projects
 
-Martial Geoffre-Rouland for caming up with a B-plan
+Martial Geoffre-Rouland for caming up with a B-plan 

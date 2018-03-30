@@ -1,205 +1,54 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-    <title>InterpretaꓭBle interface</title>
-    <!-- Required meta tags -->
+        <title>InterpretaꓭBle interface</title>
+        <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-       <script src="http://code.jquery.com/jquery-latest.js"></script>
-       <script type="text/javascript" src="languages.json"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script type="text/javascript" src="languages.js"></script>
     </head>
-<body>
-    
-    <!-- Begin page content -->
-    <div role="main" class="container">
-       <div class="row">
-           <div class="col-md-12">
-               <h1 class="mt-5">InterpretaꓭBle interface</h1>
-               <p class="lead">Yup.</p>
-           </div>
-           <div class="col-md-4">
-               <div class="col-md-12">
-                    <p>IP for translating/scenario server</p>
-                    <input type="text" id="ip_selection" value="localhost">
-                </div>
-                </br>
+    <body>
+        <!-- Begin page content -->
+        <div role="main" class="container">
+            <div class="row">
                 <div class="col-md-12">
-                     <label for="select_language">Language ( input )</label>
-                    <select  id="select_language" class="form-control"></select>
+                    <h1 class="mt-5">InterpretaꓭBle interface</h1>
+                    <p class="lead">Yup.</p>
                 </div>
-                </br>
-                <div class="col-md-12">
-                    <label for="translate_language">Language ( traduction )</label>
-                    <select  id="translate_language" class="form-control"></select>
+                <div class="col-md-4">
+                    <div class="col-md-12">
+                        <p>IP for translating/scenario server</p>
+                        <input type="text" id="ip_selection" value="localhost">
+                        <button id="refresh_bt" type="button">Refresh</button>
+                    </div>
+                    </br>
+                    <div class="col-md-12">
+                        <label for="select_language">Language ( input )</label>
+                        <select  id="select_language" class="form-control"></select>
+                    </div>
+                    </br>
+                    <div class="col-md-12">
+                        <label for="translate_language">Language ( traduction )</label>
+                        <select  id="translate_language" class="form-control"></select>
+                    </div>
+                    </br>
+                    <div class="col-md-12">
+                        <label for="scenario_id">Type de scénario</label>
+                        <select  id="scenario_id" class="form-control"></select></br>
+                    </div>
                 </div>
-            </br>
-            <div class="col-md-12">
-                <label for="scenario_id">Type de scénario</label>
-                <select  id="scenario_id" class="form-control"></select></br>
-                <label><input type="checkbox" value="" id="overwrite"> Do overwrite scenario</label>
-            </div>
-            </div>
-            <div class="col-md-8">
-                <div class="col-md-12">
-                <p id="transcripts"></p>
+                <div class="col-md-8">
+                    <div class="col-md-12">
+                        <p id="transcripts"></p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-</body>
-
-<script type="text/javascript">
-    
-    var mom         = this;
-    var messages    = [];
-    var errors      = [];
-    var SpeechRecognition = window.webkitSpeechRecognition;
-    var recognition = new SpeechRecognition();
-    recognition.lang = "fr-FR";
-    recognition.continuous = true;
-
-    recognition.onstart = function() {
-       console.log("Started recognition");
-    }
-
-    recognition.onerror = function(event) {
-        errors.push("Started recognition");
-    }
-
-    recognition.onend = function() {
-        recognition.start();
-    }
-
-    recognition.onresult = function(event) {
-        
-        console.log("result" + event);
-        
-        if(event.results && event.results.length > 0 ) {
-            
-            var transcript = event.results[event.results.length-1][0].transcript;
-            var uniqueID = (new Date()).getTime();
-            
-            var input   = langs[select_language.selectedIndex][1];
-            var output  = langs[translate_language.selectedIndex][1];
-
-            ws.send(uniqueID+"|RAW|"+transcript+"|"+input+"|"+output);
-
-            updateField(transcript);
-            
-        }
-    }
-
-    recognition.start();
-    
-    function updateField(message) {
-        
-        messages.push("<p>"+message+"</p>");
-        var txt = "";
-        for( var i = messages.length - 1; i >=0; i--) {
-            txt += messages[i];
-            
-        }
-        $("#transcripts").html(txt);
-        
-    }
-
-    // set interval for weird bug
-    // this will stop the recognition, onend event is shot, then recognition is back again
-    // ¯\_(ツ)_/¯
-    setInterval(resetVoiceRecog, 10000);
-    var t = this;
-    function resetVoiceRecog() {
-        t.recognition.stop();
-    }
-
-
-    $('#select_language').on('change', function() {
-        recognition.lang = langs[this.value][1];
-        recognition.stop();
-    })
-
-    $('#scenario_id').on('change', function() {
-        if (this.value > 0) {
-            ws.send((this.value - 1)+"|SCENARIO_CHANGE|NULL|NULL|NULL");
-        }
-    })
-    
-    function createWebSocket(server) {
-        for (i = scenario_id.options.length; i > 0; i--) {
-            scenario_id.options[i] = null;
-        }
-        scenario_id.options[0] = new Option("Aucun", 0);
-        scenario_id.selectedIndex = 0;
-        if ("WebSocket" in window) {
-            try {
-                ws = new WebSocket("ws://" + server + ":9092/");
-            } catch (err) {
-                $(".lead").html("<p style='color:red;'>Error in WebSocket connection.</p>");
-            }
-            
-            ws.onopen = function (error) {
-                $(".lead").html("<p style='color:green;'>Up and running</p>");
-            };
-            
-            ws.onclose = function (error) {
-                $(".lead").html("<p style='color:red;'>Websocket has been closed.</p>");
-            };
-            
-            ws.onerror = function (error) {
-                $(".lead").html("<p style='color:red;'>Error in WebSocket connection.</p>");
-            };
-            
-            ws.onmessage = function (evt) {
-                var received_msg    = evt.data;
-                var splitted        = received_msg.split("|");
-                var id              = splitted[0];
-                var type            = splitted[1];
-                var msg             = splitted[2];
-                
-                if(type == "TRANS")
-                    updateField("<p style='color:red;'>"+msg+"</p>");
-                if (type == "SCENARIO_DATA")
-                    scenario_id.options[parseInt(id) + 1] = new Option(msg, parseInt(id) + 1);
-            };
-        
-        } else {
-            alert("Y a même pas WebSocket sur ce navigateur. C'est fini IE6");
-        }
-    }
-
-    $('#ip_selection').on('change', function() {
-        createWebSocket(this.value);
-    })
-    
-    $('#overwrite').on('click', function() {
-        if (this.checked) {
-            ws.send("1|SCENARIO_OVERWRITE|NULL|NULL|NULL");
-        } else {
-            ws.send("0|SCENARIO_OVERWRITE|NULL|NULL|NULL");
-        }
-    });
-
-    createWebSocket("localhost");
-
-    var langs = JSON.parse(data);
-   
-
-    for (var i = 0; i < langs.length; i++) {
-        select_language.options[i] = new Option(langs[i][0], i);
-    }
-
-    for (var i = 0; i < langs.length; i++) {
-        translate_language.options[i] = new Option(langs[i][0], i);
-    }
-
-    select_language.selectedIndex       = 14;
-    translate_language.selectedIndex    = 10;
-
-    </script>
+        <script type="text/javascript" src="frontend.js"></script>
+    </body>
 </html>
