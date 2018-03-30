@@ -130,7 +130,7 @@ void ofApp::drawTranslations() {
         
         if(translations[index].trans.size() > 0) {
             
-            ofSetColor(200);
+            ofSetColor(80);
             column = fontStash.drawMultiLineColumn(   translations[index].trans,            /*string*/
                                                                translationFontSize * 1.5,            /*size*/
                                                                x, y,        /*where*/
@@ -197,7 +197,7 @@ void ofApp::drawTranslations() {
         
         if(translations[index].trans.size() > 0) {
             
-            ofSetColor(200);
+            ofSetColor(80);
             column = fontStash.drawMultiLineColumn(   translations[index].trans,            /*string*/
                                                    translationFontSize * 1.5,            /*size*/
                                                    x, y,        /*where*/
