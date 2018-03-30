@@ -4,3 +4,5 @@ bin/data/quickdraw
 bin/data/test
 bin/data/web/node_modules
 translator/node_modules
+bin/data/accueil
+bin/data/scenes

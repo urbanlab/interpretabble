@@ -19,8 +19,6 @@ void Scene::update() {
 }
 void Scene::draw() {
     
-    ofLogNotice("drawing scene ") << label;
-
     ofEnableAlphaBlending();
     
     ofPushMatrix();
@@ -32,8 +30,6 @@ void Scene::draw() {
         assets[i].draw();
         yPos +=  assets[i].getHeight();
         ofPopMatrix();
-        
-        ofLogNotice("drawing asset");
         
     }
     ofPopMatrix();
@@ -53,6 +49,7 @@ void Scene::onStart() {
         assets[i].opacity.setCurve(EASE_IN);
         assets[i].opacity.setDuration(0.55 + i * 0.1);
         assets[i].opacity.animateTo(255.0);
+        assets[i].play();
         
     }
     

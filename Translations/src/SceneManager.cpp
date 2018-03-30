@@ -13,11 +13,43 @@ void SceneManager::setup() {
     currentSceneIndex = -1;
     loadAssets();
     
+    accueil.setup();
+    accueil.loadFolder("accueil");
+    accueil.setFps(30);
+    accueil.setLoop(true);
+    accueil.play();
+    
+    bHasChanged = false;
+    tempIndex = currentSceneIndex;
+    nFramesIndexChangedDelay = 0;
+    nFramesDelaymax = 500;
 }
 
 void SceneManager::update() {
     
+    if (tempIndex != currentSceneIndex ) {
+        
+        // man, we have potentially changed.
+        // let's wait for a bit
+        nFramesIndexChangedDelay++;
+        
+        ofLogNotice("waiting... ") << nFramesIndexChangedDelay;
+        // man. Times up.
+        
+        if(nFramesIndexChangedDelay > nFramesDelaymax) {
+            
+            nFramesIndexChangedDelay = 0;
+            currentSceneIndex = tempIndex;
+            onSceneChanged();
+            
+        }
+        
+        
+    }
+    
     if(currentSceneIndex < 0 || currentSceneIndex >= scenes.size()) {
+        
+        accueil.update();
         
     } else {
         
@@ -32,6 +64,10 @@ void SceneManager::draw() {
     
     // idle mode
     if(currentSceneIndex < 0 || currentSceneIndex >= scenes.size()) {
+        
+        ofSetColor(255,255);
+        accueil.draw(0.0,0.0, 1920, 1080);
+
         
     } else {
         
@@ -69,6 +105,8 @@ void SceneManager::loadAssets() {
                 
                 ofFile file = subdir.getFile(j);
                 
+               
+                
                 
                 if ( file.getBaseName() == "tools" ) {
                     
@@ -76,10 +114,21 @@ void SceneManager::loadAssets() {
                     
                 } else {
                     
-                    string ext = file.getExtension();
                     Asset asset;
+                    if(file.isDirectory()) {
+                        
+                        ofLogNotice("check folder") << subdir.getPath(j);
+                        asset.addAsset(subdir.getPath(j), "folder");
+
+                    } else {
+                    
+                    string ext = file.getExtension();
+                    
                     asset.addAsset(file.getAbsolutePath(), file.getExtension());
+                        
+                    }
                     scene->assets.push_back(asset);
+
 
                 }
                 
@@ -101,9 +150,22 @@ void SceneManager::setCurrentLabel(string label) {
     
     // need to put a timer on this
     
+    ofLogNotice("set current label: ") << label;
+    
+    bool bhasFound = false;
     for(int i=0; i<scenes.size(); i++) {
-        if(scenes[i]->label == label)
-            currentSceneIndex = i;
+        if(scenes[i]->label == label ) {
+            
+            if(currentSceneIndex != i) {
+                tempIndex = i;
+                return;
+            }
+        }
+    }
+    
+    if(label == "rien") {
+        tempIndex = -1;
+        //ofLogNotice("Nothing");
     }
     
 }
@@ -119,12 +181,22 @@ void SceneManager::onSceneChanged() {
         
     }
     
+    tempIndex = currentSceneIndex;
+    
 }
 
 void SceneManager::onSceneOutHandler() {
     
 
 }
+
+void SceneManager::setCurrentLabel(int id) {
+    
+    currentSceneIndex = id - 1;
+    onSceneChanged();
+    
+}
+
 
 void SceneManager::nextLabel() {
     

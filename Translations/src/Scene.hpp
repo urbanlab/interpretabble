@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include "ofxAnimatableFloat.h"
+#include "ImageSequencePlayer.hpp"
 
 class Asset {
   
@@ -28,6 +29,24 @@ public:
             video.play();
         }
         
+        if(ext == "folder" ) {
+            
+            ofLogNotice("yeah folder");
+            sequence.setup();
+            sequence.loadFolder(path);
+            sequence.setFps(30);
+            sequence.setLoop(true);
+            sequence.play();
+            
+        }
+        
+    }
+    
+    void play () {
+        if(sequence.bIsLoaded){
+            sequence.play();
+            
+        }
     }
     
     void update() {
@@ -38,6 +57,11 @@ public:
         if(video.isLoaded()) {
             video.update();
         }
+        
+        if(sequence.bIsLoaded){
+            sequence.update();
+
+        }
     }
     
     void draw() {
@@ -47,13 +71,19 @@ public:
         
         if(image.isAllocated()) {
             image.draw(0.0, 0.0);
-            ofLogNotice("drawing image") << opacity.val();
 
         }
         
         if(video.isLoaded()) {
             video.draw(0.0, 0.0);
         }
+        
+        if(sequence.bIsLoaded) {
+            sequence.draw(0.0,0.0, sequence.getWidth(), sequence.getHeight());
+            ofLogNotice("drawing folder ") << sequence.getWidth() << " " << sequence.getHeight();
+
+        }
+        
         ofDisableAlphaBlending();
          
     }
@@ -67,12 +97,16 @@ public:
             return video.getHeight();
         }
         
+        if(sequence.bIsLoaded) {
+            return sequence.getHeight();
+        }
+        
     }
     
     ofImage image;
     ofVideoPlayer video;
     ofxAnimatableFloat opacity;
-
+    ImageSequencePlayer sequence;
     
 };
 

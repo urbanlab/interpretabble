@@ -15,9 +15,11 @@ void ofApp::setup(){
     bSetup = server.setup( options );
     server.addListener(this);
     
+    bEnableDetection = true;
+    
     translationFontSize = 12;
     font.load("assets/fonts/CALVERTMTSTD-BOLD.OTF", translationFontSize);
-    
+    fontStash.setup("assets/fonts/CALVERTMTSTD-BOLD (1).ttf", 1.0, 1024, false, 8, 1.5);
     sceneManager.setup();
 
 #ifdef DATASETMODE
@@ -28,11 +30,12 @@ void ofApp::setup(){
     
     tache.load("assets/images/tache.png");
     pattern.load("assets/images/fond.png");
-    
+    avatar.load("assets/images/avatar.png");
+
 #endif
     
     ofToggleFullscreen();
-  
+    sendScenariosToSocket();
     
 }
 
@@ -51,16 +54,19 @@ void ofApp::draw() {
     return;
 #endif
     
-    
     ofBackground(180);
     ofSetColor(255);
     ofEnableAlphaBlending();
     tache.draw(0.0, 0.0);
     pattern.draw(0.0,0.0);
+    avatar.draw(0.0, 0.0);
     
     drawTranslations();
     
     sceneManager.draw();
+    
+    ofSetColor(0);
+    font.drawString(currentLabel, 340,  ofGetHeight() - translationFontSize );
     
     ofEnableAlphaBlending();
     ofSetColor(0, background);
@@ -94,10 +100,53 @@ void ofApp::drawTranslations() {
     float x = 0;
     float y = 0;
     
-    for (int i = 0; i < translations.size(); i++ ){
+    int size = translations.size();
+    for (int i = 0; i < size; i++ ){
         
-        int index = translations.size() - 1 - i;
+        int index =  translations.size() - i - 1;
         
+        int numLines = 0;
+        bool wordsWereCropped;
+        ofSetColor(0,0,0);
+        ofRectangle column;
+         if( translations[index].raw.size() > 0) {
+             
+            // ofLogNotice("hey") << translations[index].raw;
+             column = fontStash.drawMultiLineColumn(    translations[index].raw,            /*string*/
+                                                     translationFontSize * 1.5,            /*size*/
+                                                     x, y,        /*where*/
+                                                     300, /*column width*/
+                                                     numLines,    /*get back the number of lines*/
+                                                     false,        /* if true, we wont draw (just get bbox back) */
+                                                     9,            /* max number of lines to draw, crop after that */
+                                                     true,        /*get the final text formatting (by adding \n's) in the supplied string;
+                                                                   BE ARWARE that using TRUE in here will modify your supplied string! */
+                                                     &wordsWereCropped, /* this bool will b set to true if the box was to small to fit all text*/
+                                                     false        /*centered*/
+                                                     );
+        
+             y += column.height + 10;
+        }
+        
+        if(translations[index].trans.size() > 0) {
+            
+            ofSetColor(200);
+            column = fontStash.drawMultiLineColumn(   translations[index].trans,            /*string*/
+                                                               translationFontSize * 1.5,            /*size*/
+                                                               x, y,        /*where*/
+                                                               300, /*column width*/
+                                                               numLines,    /*get back the number of lines*/
+                                                               false,        /* if true, we wont draw (just get bbox back) */
+                                                               9,            /* max number of lines to draw, crop after that */
+                                                               true,        /*get the final text formatting (by adding \n's) in the supplied string;
+                                                                             BE ARWARE that using TRUE in here will modify your supplied string! */
+                                                               &wordsWereCropped, /* this bool will b set to true if the box was to small to fit all text*/
+                                                               false        /*centered*/
+                                                               );
+            y += column.height + 20;
+        }
+
+        /*
         if(translations[index].trans.size() > 0) {
             ofSetColor(255,0,0);
             font.drawString(translations[index].raw , x, i * ( translationFontSize  * 4) );
@@ -106,6 +155,62 @@ void ofApp::drawTranslations() {
         if(translations[index].raw.size() > 0) {
             ofSetColor(0);
             font.drawString(translations[index].trans , x, i * ( translationFontSize  * 4 ) + translationFontSize *2);
+        }
+         
+         */
+        
+    }
+    ofPopMatrix();
+    
+    ofPushMatrix();
+    ofTranslate(320, 260);
+    ofRotateZ(180);
+    x = 0;
+    y = 0;
+    
+    for (int i = 0; i < translations.size(); i++ ){
+        
+        int index =  translations.size() - i - 1;
+        
+        int numLines = 0;
+        bool wordsWereCropped;
+        ofSetColor(0,0,0);
+        ofRectangle column;
+        if( translations[index].raw.size() > 0) {
+            
+            // ofLogNotice("hey") << translations[index].raw;
+            column = fontStash.drawMultiLineColumn(    translations[index].raw,            /*string*/
+                                                   translationFontSize * 1.5,            /*size*/
+                                                   x, y,        /*where*/
+                                                   300, /*column width*/
+                                                   numLines,    /*get back the number of lines*/
+                                                   false,        /* if true, we wont draw (just get bbox back) */
+                                                   9,            /* max number of lines to draw, crop after that */
+                                                   true,        /*get the final text formatting (by adding \n's) in the supplied string;
+                                                                 BE ARWARE that using TRUE in here will modify your supplied string! */
+                                                   &wordsWereCropped, /* this bool will b set to true if the box was to small to fit all text*/
+                                                   false        /*centered*/
+                                                   );
+            
+            y += column.height + 10;
+        }
+        
+        if(translations[index].trans.size() > 0) {
+            
+            ofSetColor(200);
+            column = fontStash.drawMultiLineColumn(   translations[index].trans,            /*string*/
+                                                   translationFontSize * 1.5,            /*size*/
+                                                   x, y,        /*where*/
+                                                   300, /*column width*/
+                                                   numLines,    /*get back the number of lines*/
+                                                   false,        /* if true, we wont draw (just get bbox back) */
+                                                   9,            /* max number of lines to draw, crop after that */
+                                                   true,        /*get the final text formatting (by adding \n's) in the supplied string;
+                                                                 BE ARWARE that using TRUE in here will modify your supplied string! */
+                                                   &wordsWereCropped, /* this bool will b set to true if the box was to small to fit all text*/
+                                                   false        /*centered*/
+                                                   );
+            y += column.height + 20;
         }
         
     }
@@ -234,12 +339,17 @@ void ofApp::mousePressed(int x, int y, int button) {
 
 void ofApp::keyPressed(int key) {
     
+    
+    
 }
 
 void ofApp::sendScenariosToSocket() {
     
+    gui->labels.clear();
+    gui->labels.push_back("rien");
     for(int i=0; i<sceneManager.scenes.size(); i++) {
         
+        gui->labels.push_back(sceneManager.scenes[i]->label);
         string message = ofToString(i) + "|" + "SCENARIO_DATA" + "|" + sceneManager.scenes[i]->label + "|NULL";
         ofLogNotice("message:") << message;
         server.send(message);
@@ -339,9 +449,30 @@ void ofApp::parseTranslation( ofxLibwebsockets::Event& args) {
     
     // split result
     vector<string> splitted = ofSplitString(args.message, "|");
-    string id     = splitted[0];
-    string type = splitted[1];
-    string mesg = splitted[2];
+    string id               = splitted[0];
+    string type             = splitted[1];
+    string mesg             = splitted[2];
+    
+    
+    if( type == "SCENARIO_CHANGE") {
+        
+        int _id = ofToInt(id);
+        if(_id == 0)
+            bEnableDetection = true;
+        else
+            bEnableDetection = false;
+        
+        sceneManager.setCurrentLabel(_id);
+        
+        
+    }
+    
+    if( type == "SCENARIO_OVERWRITE") {
+        
+        bEnableDetection = ofToBool(id);
+        return;
+        
+    }
     
     // check if already exist
     translated  * trans = getTranslatedForID(id);

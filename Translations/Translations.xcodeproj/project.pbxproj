@@ -104,6 +104,10 @@
 		83AF90F9206CED2100313CD6 /* ofxAnimatableFloat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90EC206CED2100313CD6 /* ofxAnimatableFloat.cpp */; };
 		83AF90FA206CED2100313CD6 /* ofxAnimatableQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90EF206CED2100313CD6 /* ofxAnimatableQueue.cpp */; };
 		83AF90FB206CED2100313CD6 /* ofxAnimatableOfPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AF90F0206CED2100313CD6 /* ofxAnimatableOfPoint.cpp */; };
+		83D7EBA1206E1ED000ECCEB8 /* ImageSequencePlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83D7EBA0206E1ECF00ECCEB8 /* ImageSequencePlayer.cpp */; };
+		83D7EBCD206E201E00ECCEB8 /* stb_truetype.c in Sources */ = {isa = PBXBuildFile; fileRef = 83D7EBB9206E201E00ECCEB8 /* stb_truetype.c */; };
+		83D7EBCE206E201E00ECCEB8 /* fontstash.c in Sources */ = {isa = PBXBuildFile; fileRef = 83D7EBBA206E201E00ECCEB8 /* fontstash.c */; };
+		83D7EBCF206E201E00ECCEB8 /* ofxFontStash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83D7EBC7206E201E00ECCEB8 /* ofxFontStash.cpp */; };
 		841E362B729F778178E5C99B /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95037D58F985FC17EB5B556E /* ofxSlider.cpp */; };
 		84B1BE4C8E2824288AF5BABD /* Flow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5E1E62022F5E710891F0F6A /* Flow.cpp */; };
 		86801BDFDAC48323D1F90A69 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BB511ACB87355D4BEA7B215 /* jsoncpp.cpp */; };
@@ -501,6 +505,14 @@
 		83AF90F0206CED2100313CD6 /* ofxAnimatableOfPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAnimatableOfPoint.cpp; sourceTree = "<group>"; };
 		83B0006B0D5D01C995A45529 /* highgui_c.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = highgui_c.h; path = ../../../../../../dev/OF/of_v0.9.8_osx_release/addons/ofxOpenCv/libs/opencv/include/opencv2/highgui/highgui_c.h; sourceTree = SOURCE_ROOT; };
 		83D682798E52EB2DBC7B801B /* ocl.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ocl.hpp; path = ../../../../../../dev/OF/of_v0.9.8_osx_release/addons/ofxOpenCv/libs/opencv/include/opencv2/nonfree/ocl.hpp; sourceTree = SOURCE_ROOT; };
+		83D7EB9F206E1ECF00ECCEB8 /* ImageSequencePlayer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ImageSequencePlayer.hpp; sourceTree = "<group>"; };
+		83D7EBA0206E1ECF00ECCEB8 /* ImageSequencePlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageSequencePlayer.cpp; sourceTree = "<group>"; };
+		83D7EBB9206E201E00ECCEB8 /* stb_truetype.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stb_truetype.c; sourceTree = "<group>"; };
+		83D7EBBA206E201E00ECCEB8 /* fontstash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fontstash.c; sourceTree = "<group>"; };
+		83D7EBBB206E201E00ECCEB8 /* stb_truetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_truetype.h; sourceTree = "<group>"; };
+		83D7EBBC206E201E00ECCEB8 /* fontstash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fontstash.h; sourceTree = "<group>"; };
+		83D7EBC6206E201E00ECCEB8 /* ofxFontStash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxFontStash.h; sourceTree = "<group>"; };
+		83D7EBC7206E201E00ECCEB8 /* ofxFontStash.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxFontStash.cpp; sourceTree = "<group>"; };
 		83F86D9E445846792DB73869 /* ofxButton.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxButton.cpp; path = ../../../../../../dev/OF/of_v0.9.8_osx_release/addons/ofxGui/src/ofxButton.cpp; sourceTree = SOURCE_ROOT; };
 		84E7B00843FDB7B2B099BFAA /* SOMQuantizer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SOMQuantizer.cpp; path = ../../../../../../dev/OF/of_v0.9.8_osx_release/addons/ofxGrt/libs/grt/GRT/FeatureExtractionModules/SOMQuantizer/SOMQuantizer.cpp; sourceTree = SOURCE_ROOT; };
 		857414B792066FC21D746DD4 /* RegressionTreeNode.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = RegressionTreeNode.h; path = ../../../../../../dev/OF/of_v0.9.8_osx_release/addons/ofxGrt/libs/grt/GRT/RegressionModules/RegressionTree/RegressionTreeNode.h; sourceTree = SOURCE_ROOT; };
@@ -1709,6 +1721,52 @@
 			name = ZeroCrossingCounter;
 			sourceTree = "<group>";
 		};
+		83D7EBA2206E201E00ECCEB8 /* ofxFontStash */ = {
+			isa = PBXGroup;
+			children = (
+				83D7EBB6206E201E00ECCEB8 /* libs */,
+				83D7EBC5206E201E00ECCEB8 /* src */,
+			);
+			name = ofxFontStash;
+			path = ../../../addons/ofxFontStash;
+			sourceTree = "<group>";
+		};
+		83D7EBB6206E201E00ECCEB8 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				83D7EBB7206E201E00ECCEB8 /* fontstash */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		83D7EBB7206E201E00ECCEB8 /* fontstash */ = {
+			isa = PBXGroup;
+			children = (
+				83D7EBB8206E201E00ECCEB8 /* src */,
+			);
+			path = fontstash;
+			sourceTree = "<group>";
+		};
+		83D7EBB8206E201E00ECCEB8 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				83D7EBB9206E201E00ECCEB8 /* stb_truetype.c */,
+				83D7EBBA206E201E00ECCEB8 /* fontstash.c */,
+				83D7EBBB206E201E00ECCEB8 /* stb_truetype.h */,
+				83D7EBBC206E201E00ECCEB8 /* fontstash.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		83D7EBC5206E201E00ECCEB8 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				83D7EBC6206E201E00ECCEB8 /* ofxFontStash.h */,
+				83D7EBC7206E201E00ECCEB8 /* ofxFontStash.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		84A9660D09B0D05131888773 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -2008,6 +2066,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				83D7EBA2206E201E00ECCEB8 /* ofxFontStash */,
 				83AF90C8206CED2100313CD6 /* ofxAnimatable */,
 				795B0427BBCB5647F47B56C8 /* ofxCcv */,
 				6025FAF6414C2CA589764D26 /* ofxCv */,
@@ -2360,6 +2419,8 @@
 				83AF90C2206CDD5100313CD6 /* SceneManager.hpp */,
 				83AF90C4206CDDC200313CD6 /* Scene.cpp */,
 				83AF90C5206CDDC200313CD6 /* Scene.hpp */,
+				83D7EBA0206E1ECF00ECCEB8 /* ImageSequencePlayer.cpp */,
+				83D7EB9F206E1ECF00ECCEB8 /* ImageSequencePlayer.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -2598,6 +2659,7 @@
 				03E8225D76048C10DCEFA642 /* FIRFilter.cpp in Sources */,
 				3B59444ECF7A0DC892E9E8D0 /* RMSFilter.cpp in Sources */,
 				7B5D455A0E0DDBDBF9A80852 /* Derivative.cpp in Sources */,
+				83D7EBCF206E201E00ECCEB8 /* ofxFontStash.cpp in Sources */,
 				01E5FE524BE424C93F6C84AD /* SavitzkyGolayFilter.cpp in Sources */,
 				480ED6BE167E601B3C218C33 /* DeadZone.cpp in Sources */,
 				388BFCFBB22322A4994DA800 /* MovingAverageFilter.cpp in Sources */,
@@ -2611,6 +2673,7 @@
 				611BDB71D2B7F9F139867453 /* LogisticRegression.cpp in Sources */,
 				AD114AF5D9766BFFDC8AC75F /* PeakDetection.cpp in Sources */,
 				F2970DC2163427EF94040D48 /* Util.cpp in Sources */,
+				83D7EBCE206E201E00ECCEB8 /* fontstash.c in Sources */,
 				06C8EA9D502F8F801A5AA9A4 /* LUDecomposition.cpp in Sources */,
 				CB17A196FC0D3D349E7D6E3E /* SVD.cpp in Sources */,
 				E5C998900B56ABDDCE61AA78 /* Random.cpp in Sources */,
@@ -2629,6 +2692,7 @@
 				79C757AD63A9FDABCC2B7CCE /* InfoLog.cpp in Sources */,
 				AF9D0B2B0E7388077C4495D7 /* WarningLog.cpp in Sources */,
 				6931EC0946FC6201E9981015 /* ThresholdCrossingDetector.cpp in Sources */,
+				83D7EBCD206E201E00ECCEB8 /* stb_truetype.c in Sources */,
 				41A2E49AAC3D3A4D6ACD9FF1 /* MatrixFloat.cpp in Sources */,
 				043276E79D1CE68616DBE4FC /* TimeSeriesClassificationSample.cpp in Sources */,
 				D9E081784FA79961A7562C14 /* RegressionData.cpp in Sources */,
@@ -2703,6 +2767,7 @@
 				83AF90C6206CDDC200313CD6 /* Scene.cpp in Sources */,
 				F9FFEC715F1E0B8983CCA83E /* ofxGuiGroup.cpp in Sources */,
 				EB001AC8BCC6D654E13C4649 /* ofxLabel.cpp in Sources */,
+				83D7EBA1206E1ED000ECCEB8 /* ImageSequencePlayer.cpp in Sources */,
 				CDC8B84FB14AD2C12B6896CE /* ofxPanel.cpp in Sources */,
 				841E362B729F778178E5C99B /* ofxSlider.cpp in Sources */,
 				ACB27A2E0F2372F3F6D250E4 /* ofxJSONElement.cpp in Sources */,

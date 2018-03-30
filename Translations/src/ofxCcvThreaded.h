@@ -9,6 +9,9 @@ public:
     ofxCcvThreaded() {
         ready = true;
         isNew = false;
+        toEncode = false;
+        toClassify = false;
+        recording = false;
     }
     
     void start() {
@@ -29,8 +32,10 @@ public:
         this->toEncode = toEncode;
     }
     
-    void update(ofBaseHasPixels &pix, int layer) {
+    void update(ofBaseHasPixels &pix, int layer, int category, bool recording) {
         this->layer = layer;
+        this->category = category;
+        this->recording = recording;
         ready = false;
         img.setFromPixels(pix.getPixels());
     }
@@ -40,7 +45,11 @@ public:
             if(lock()) {
                 if (!ready) {
                     if (toEncode && img.getWidth() > 0) {
-                        features = encode(img, layer);
+                        //if(category > 0 ) {
+                            features = encode(img, layer);
+                            if(recording)
+                                img.save("saved/"+ofToString(category) + "/"+ ofToString(std::time(0)) + ".jpg");
+                        //}
                     }
                     if (toClassify && img.getWidth() > 0) {
                         results = classify(img, numResults);
@@ -78,6 +87,8 @@ public:
         }
     }
     
+   
+    
 protected:
     
     ofImage img;
@@ -87,8 +98,9 @@ protected:
     bool isNew;
     bool ready;
     int layer;
-    
+    int category;
     int numResults;
     bool toClassify;
     bool toEncode;
+    bool recording;
 };
