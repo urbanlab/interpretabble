@@ -152,4 +152,4 @@ for (var i = 0; i < langs.length; i++) {
 }
 console.log(translate_language.selectedIndex)
 select_language.selectedIndex       = 14;
-translate_language.selectedIndex    = 10;
+translate_language.selectedIndex    = 11;

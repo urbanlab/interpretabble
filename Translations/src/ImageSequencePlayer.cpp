@@ -59,7 +59,7 @@ void ImageSequencePlayer::updateFrame() {
     currentFrame        = (floor)(diff * totalFrame / (float) totalTime);
     
 
-    ofLogNotice("current frame : ") << currentFrame << " size " << images.size();
+   // ofLogNotice("current frame : ") << currentFrame << " size " << images.size();
     //int numFrame =
     
     /*

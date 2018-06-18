@@ -1,3 +1,4 @@
+ofxAnimatable
 ofxCcv
 ofxCv
 ofxGSTT
@@ -6,7 +7,7 @@ ofxGui
 ofxJSON
 ofxLibwebsockets
 ofxOpenCv
+ofxOsc
 ofxSSL
 ofxSpeech
 ofxXmlSettings
-ofxAnimatable

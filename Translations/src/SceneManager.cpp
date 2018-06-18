@@ -176,6 +176,7 @@ void SceneManager::onSceneChanged() {
 
     
     if(currentSceneIndex < 0 || currentSceneIndex >= scenes.size()) {
+        accueil.play();
     } else {
         scenes[currentSceneIndex]->onStart();
         
