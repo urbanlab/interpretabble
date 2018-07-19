@@ -1,0 +1,16 @@
+<group>
+    <Scale>0.747449</Scale>
+    <color>83, 55, 31, 255</color>
+    <blur>3.90306</blur>
+    <Threshold>110.587</Threshold>
+    <Track_Hue_Saturation>0</Track_Hue_Saturation>
+    <Calibration>0</Calibration>
+    <Cropped_X>597</Cropped_X>
+    <Cropped_Y>468</Cropped_Y>
+    <Cropped_W>480</Cropped_W>
+    <Cropped_H>325</Cropped_H>
+    <Opacity>0</Opacity>
+    <Prediction_lerp>0.2</Prediction_lerp>
+    <thresold_cam>249.796</thresold_cam>
+<group/>
+</group>

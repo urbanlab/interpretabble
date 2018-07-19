@@ -28,11 +28,12 @@ void ofApp::setup(){
     
     tache.load("assets/images/tache.png");
     pattern.load("assets/images/fond.png");
-    
+    avatar.load("assets/images/avatar.png");
+
 #endif
     
     ofToggleFullscreen();
-  
+    sendScenariosToSocket();
     
 }
 
@@ -51,16 +52,19 @@ void ofApp::draw() {
     return;
 #endif
     
-    
     ofBackground(180);
     ofSetColor(255);
     ofEnableAlphaBlending();
     tache.draw(0.0, 0.0);
     pattern.draw(0.0,0.0);
+    avatar.draw(0.0, 0.0);
     
     drawTranslations();
     
     sceneManager.draw();
+    
+    ofSetColor(0);
+    font.drawString(currentLabel, 340,  ofGetHeight() - translationFontSize );
     
     ofEnableAlphaBlending();
     ofSetColor(0, background);
@@ -238,8 +242,11 @@ void ofApp::keyPressed(int key) {
 
 void ofApp::sendScenariosToSocket() {
     
+    gui->labels.clear();
+    gui->labels.push_back("rien");
     for(int i=0; i<sceneManager.scenes.size(); i++) {
         
+        gui->labels.push_back(sceneManager.scenes[i]->label);
         string message = ofToString(i) + "|" + "SCENARIO_DATA" + "|" + sceneManager.scenes[i]->label + "|NULL";
         ofLogNotice("message:") << message;
         server.send(message);

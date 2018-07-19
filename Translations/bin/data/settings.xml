@@ -1,13 +1,14 @@
 <group>
-    <Scale>0.747449</Scale>
-    <color>174, 177, 176, 255</color>
-    <Threshold>110.587</Threshold>
+    <Scale>0.8</Scale>
+    <blur>3</blur>
+    <Threshold>128</Threshold>
     <Track_Hue_Saturation>0</Track_Hue_Saturation>
     <Calibration>0</Calibration>
-    <Cropped_X>597</Cropped_X>
-    <Cropped_Y>468</Cropped_Y>
-    <Cropped_W>597</Cropped_W>
-    <Cropped_H>330</Cropped_H>
+    <Cropped_X>483</Cropped_X>
+    <Cropped_Y>705</Cropped_Y>
+    <Cropped_W>100</Cropped_W>
+    <Cropped_H>100</Cropped_H>
     <Opacity>0</Opacity>
-    <thresold_cam>252.398</thresold_cam>
+    <Prediction_lerp>0.2</Prediction_lerp>
+    <thresold_cam>114.49</thresold_cam>
 </group>

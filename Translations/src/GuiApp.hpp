@@ -59,6 +59,10 @@ public:
     ofxPanel gui;
     ofParameterGroup parameters;
     ofParameter<float> scale;
+    ofParameter<float> brightness;
+    
+    ofParameter<float> lerpAmt;
+
     ofParameter<float> threshold;
     ofParameter<ofColor> targetColor;
 

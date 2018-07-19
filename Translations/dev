@@ -1,0 +1,512 @@
+[warning] ofAvFoundationGrabber:  requested width and height aren't supported. Setting capture size to closest match: 1280 by 960
+
+[warning] ofXml: setToParent(): current element has no parent
+[notice ] ofxFontStash: Loaded font 'assets/fonts/CALVERTMTSTD-BOLD (1).ttf' in texture (1024 x 1024)
+[notice ] Loading assets: 
+[notice ] Parsing : ambulance
+[warning] ofxAnimatable: Copying an ofxAnimatable object, this might not behave as expected if you used setCurve(AnimCurve*) - you might need to call it again.
+[notice ] Adding : 1
+[notice ] Adding : 2
+[notice ] Adding : 3
+[notice ] Adding : 4
+[notice ] Adding : 5
+[notice ] Adding : Icon
+[notice ] Adding : tools
+[notice ] Parsing : biberon
+[notice ] Adding : 1
+[notice ] Adding : 2
+[notice ] Adding : 3
+[notice ] Adding : 4
+[notice ] Adding : Icon
+[notice ] Adding : tools
+[notice ] Parsing : bouche
+[notice ] Adding : 1
+[notice ] Adding : 3
+[notice ] Adding : 4
+[notice ] Adding : 5
+[notice ] Adding : 6
+[notice ] Adding : 7
+[notice ] Adding : Icon
+[notice ] Adding : tools
+[notice ] Parsing : croissance
+[notice ] Adding : 1
+[notice ] Adding : 2
+[notice ] Adding : 3
+[notice ] Adding : 4
+[notice ] Adding : 5
+[notice ] Adding : 6
+[notice ] Adding : Icon
+[notice ] Adding : tools
+[notice ] Parsing : croix
+[notice ] Adding : 1
+[notice ] Adding : 2
+[notice ] Adding : 3
+[notice ] Adding : 4
+[notice ] Adding : 5
+[notice ] Adding : Icon
+[notice ] Adding : tools
+[notice ] Parsing : lit
+[notice ] Adding : 1
+[notice ] Adding : 2
+[notice ] Adding : 3
+[notice ] Adding : 4
+[notice ] Adding : Icon
+[notice ] Adding : tools
+[notice ] Parsing : lune
+[notice ] Adding : 1
+[notice ] Adding : 2
+[notice ] Adding : 3
+[notice ] Adding : 4
+[notice ] Adding : Icon
+[notice ] Adding : tools
+[notice ] Parsing : maison
+[notice ] Adding : 2
+[notice ] Adding : 3
+[notice ] Adding : assise-01
+[notice ] Adding : Icon
+[notice ] Adding : proprete-01
+[notice ] Adding : tools
+[notice ] Parsing : nez
+[notice ] Adding : 1
+[notice ] Adding : 2
+[notice ] Adding : 3
+[notice ] Adding : Icon
+[notice ] Adding : tools
+[notice ] Parsing : yeux
+[notice ] Adding : 1
+[notice ] Adding : 2
+[notice ] Adding : 3
+[notice ] Adding : 4
+[notice ] Adding : Icon
+[notice ] Adding : tools
+[notice ] Parsing done with : 10 scenes
+[notice ] load image: accueil/Composition 2_00000.png
+[notice ] load image: accueil/Composition 2_00001.png
+[notice ] load image: accueil/Composition 2_00002.png
+[notice ] load image: accueil/Composition 2_00003.png
+[notice ] load image: accueil/Composition 2_00004.png
+[notice ] load image: accueil/Composition 2_00005.png
+[notice ] load image: accueil/Composition 2_00006.png
+[notice ] load image: accueil/Composition 2_00007.png
+[notice ] load image: accueil/Composition 2_00008.png
+[notice ] load image: accueil/Composition 2_00009.png
+[notice ] load image: accueil/Composition 2_00010.png
+[notice ] load image: accueil/Composition 2_00011.png
+[notice ] load image: accueil/Composition 2_00012.png
+[notice ] load image: accueil/Composition 2_00013.png
+[notice ] load image: accueil/Composition 2_00014.png
+[notice ] load image: accueil/Composition 2_00015.png
+[notice ] load image: accueil/Composition 2_00016.png
+[notice ] load image: accueil/Composition 2_00017.png
+[notice ] load image: accueil/Composition 2_00018.png
+[notice ] load image: accueil/Composition 2_00019.png
+[notice ] load image: accueil/Composition 2_00020.png
+[notice ] load image: accueil/Composition 2_00021.png
+[notice ] load image: accueil/Composition 2_00022.png
+[notice ] load image: accueil/Composition 2_00023.png
+[notice ] load image: accueil/Composition 2_00024.png
+[notice ] load image: accueil/Composition 2_00025.png
+[notice ] load image: accueil/Composition 2_00026.png
+[notice ] load image: accueil/Composition 2_00027.png
+[notice ] load image: accueil/Composition 2_00028.png
+[notice ] load image: accueil/Composition 2_00029.png
+[notice ] load image: accueil/Composition 2_00030.png
+[notice ] load image: accueil/Composition 2_00031.png
+[notice ] load image: accueil/Composition 2_00032.png
+new connection open
+[notice ] message:: 0|SCENARIO_DATA|ambulance|NULL
+[notice ] message:: 1|SCENARIO_DATA|biberon|NULL
+[notice ] message:: 2|SCENARIO_DATA|bouche|NULL
+[notice ] message:: 3|SCENARIO_DATA|croissance|NULL
+[notice ] message:: 4|SCENARIO_DATA|croix|NULL
+[notice ] message:: 5|SCENARIO_DATA|lit|NULL
+[notice ] message:: 6|SCENARIO_DATA|lune|NULL
+[notice ] message:: 7|SCENARIO_DATA|maison|NULL
+[notice ] message:: 8|SCENARIO_DATA|nez|NULL
+[notice ] message:: 9|SCENARIO_DATA|yeux|NULL
+on idle
+on idle
+on idle
+on idle
+on idle
+on idle
+on idle
+on idle
+on idle
+on idle
+on idle
+[notice ] load image: accueil/Composition 2_00033.png
+[notice ] load image: accueil/Composition 2_00034.png
+[notice ] load image: accueil/Composition 2_00035.png
+[notice ] load image: accueil/Composition 2_00036.png
+[notice ] load image: accueil/Composition 2_00037.png
+[notice ] load image: accueil/Composition 2_00038.png
+[notice ] load image: accueil/Composition 2_00039.png
+[notice ] load image: accueil/Composition 2_00040.png
+[notice ] load image: accueil/Composition 2_00041.png
+[notice ] load image: accueil/Composition 2_00042.png
+[notice ] load image: accueil/Composition 2_00043.png
+[notice ] load image: accueil/Composition 2_00044.png
+[notice ] load image: accueil/Composition 2_00045.png
+[notice ] load image: accueil/Composition 2_00046.png
+[notice ] load image: accueil/Composition 2_00047.png
+[notice ] load image: accueil/Composition 2_00048.png
+[notice ] load image: accueil/Composition 2_00049.png
+[notice ] load image: accueil/Composition 2_00050.png
+[notice ] load image: accueil/Composition 2_00051.png
+[notice ] load image: accueil/Composition 2_00052.png
+[notice ] load image: accueil/Composition 2_00053.png
+[notice ] load image: accueil/Composition 2_00054.png
+[notice ] load image: accueil/Composition 2_00055.png
+[notice ] load image: accueil/Composition 2_00056.png
+[notice ] load image: accueil/Composition 2_00057.png
+[notice ] load image: accueil/Composition 2_00058.png
+[notice ] load image: accueil/Composition 2_00059.png
+[notice ] load image: accueil/Composition 2_00060.png
+[notice ] load image: accueil/Composition 2_00061.png
+[notice ] load image: accueil/Composition 2_00062.png
+[notice ] load image: accueil/Composition 2_00063.png
+[notice ] load image: accueil/Composition 2_00064.png
+[notice ] load image: accueil/Composition 2_00065.png
+[notice ] load image: accueil/Composition 2_00066.png
+[notice ] load image: accueil/Composition 2_00067.png
+[notice ] load image: accueil/Composition 2_00068.png
+[notice ] load image: accueil/Composition 2_00069.png
+[notice ] load image: accueil/Composition 2_00070.png
+[notice ] load image: accueil/Composition 2_00071.png
+[notice ] load image: accueil/Composition 2_00072.png
+[notice ] load image: accueil/Composition 2_00073.png
+[notice ] load image: accueil/Composition 2_00074.png
+[notice ] load image: accueil/Composition 2_00075.png
+[notice ] load image: accueil/Composition 2_00076.png
+[notice ] load image: accueil/Composition 2_00077.png
+[notice ] load image: accueil/Composition 2_00078.png
+[notice ] load image: accueil/Composition 2_00079.png
+[notice ] load image: accueil/Composition 2_00080.png
+[notice ] load image: accueil/Composition 2_00081.png
+[notice ] load image: accueil/Composition 2_00082.png
+[notice ] load image: accueil/Composition 2_00083.png
+[notice ] load image: accueil/Composition 2_00084.png
+[notice ] load image: accueil/Composition 2_00085.png
+[notice ] load image: accueil/Composition 2_00086.png
+[notice ] load image: accueil/Composition 2_00087.png
+[notice ] load image: accueil/Composition 2_00088.png
+[notice ] load image: accueil/Composition 2_00089.png
+[notice ] load image: accueil/Composition 2_00090.png
+[notice ] load image: accueil/Composition 2_00091.png
+[notice ] load image: accueil/Composition 2_00092.png
+[notice ] load image: accueil/Composition 2_00093.png
+[notice ] load image: accueil/Composition 2_00094.png
+[notice ] load image: accueil/Composition 2_00095.png
+[notice ] load image: accueil/Composition 2_00096.png
+[notice ] load image: accueil/Composition 2_00097.png
+[notice ] load image: accueil/Composition 2_00098.png
+[notice ] load image: accueil/Composition 2_00099.png
+[notice ] load image: accueil/Composition 2_00100.png
+[notice ] load image: accueil/Composition 2_00101.png
+[notice ] load image: accueil/Composition 2_00102.png
+[notice ] load image: accueil/Composition 2_00103.png
+[notice ] load image: accueil/Composition 2_00104.png
+[notice ] load image: accueil/Composition 2_00105.png
+[notice ] load image: accueil/Composition 2_00106.png
+[notice ] load image: accueil/Composition 2_00107.png
+[notice ] load image: accueil/Composition 2_00108.png
+[notice ] load image: accueil/Composition 2_00109.png
+[notice ] load image: accueil/Composition 2_00110.png
+[notice ] load image: accueil/Composition 2_00111.png
+[notice ] load image: accueil/Composition 2_00112.png
+[notice ] load image: accueil/Composition 2_00113.png
+[notice ] load image: accueil/Composition 2_00114.png
+[notice ] load image: accueil/Composition 2_00115.png
+[notice ] load image: accueil/Composition 2_00116.png
+[notice ] load image: accueil/Composition 2_00117.png
+[notice ] load image: accueil/Composition 2_00118.png
+[notice ] load image: accueil/Composition 2_00119.png
+[notice ] load image: accueil/Composition 2_00120.png
+[notice ] load image: accueil/Composition 2_00121.png
+[notice ] load image: accueil/Composition 2_00122.png
+[notice ] load image: accueil/Composition 2_00123.png
+[notice ] load image: accueil/Composition 2_00124.png
+[notice ] load image: accueil/Composition 2_00125.png
+[notice ] load image: accueil/Composition 2_00126.png
+[notice ] load image: accueil/Composition 2_00127.png
+[notice ] load image: accueil/Composition 2_00128.png
+[notice ] load image: accueil/Composition 2_00129.png
+[notice ] load image: accueil/Composition 2_00130.png
+[notice ] load image: accueil/Composition 2_00131.png
+[notice ] load image: accueil/Composition 2_00132.png
+[notice ] load image: accueil/Composition 2_00133.png
+[notice ] load image: accueil/Composition 2_00134.png
+[notice ] load image: accueil/Composition 2_00135.png
+[notice ] load image: accueil/Composition 2_00136.png
+[notice ] load image: accueil/Composition 2_00137.png
+[notice ] load image: accueil/Composition 2_00138.png
+[notice ] load image: accueil/Composition 2_00139.png
+[notice ] load image: accueil/Composition 2_00140.png
+[notice ] load image: accueil/Composition 2_00141.png
+[notice ] load image: accueil/Composition 2_00142.png
+[notice ] load image: accueil/Composition 2_00143.png
+[notice ] load image: accueil/Composition 2_00144.png
+[notice ] load image: accueil/Composition 2_00145.png
+[notice ] load image: accueil/Composition 2_00146.png
+[notice ] load image: accueil/Composition 2_00147.png
+[notice ] load image: accueil/Composition 2_00148.png
+[notice ] load image: accueil/Composition 2_00149.png
+[notice ] done: 150
+[notice ] savedTime on play: 16504
+[notice ] message:: 0|SCENARIO_DATA|ambulance|NULL
+[notice ] message:: 1|SCENARIO_DATA|biberon|NULL
+[notice ] message:: 2|SCENARIO_DATA|bouche|NULL
+[notice ] message:: 3|SCENARIO_DATA|croissance|NULL
+[notice ] message:: 4|SCENARIO_DATA|croix|NULL
+[notice ] message:: 5|SCENARIO_DATA|lit|NULL
+[notice ] message:: 6|SCENARIO_DATA|lune|NULL
+[notice ] message:: 7|SCENARIO_DATA|maison|NULL
+[notice ] message:: 8|SCENARIO_DATA|nez|NULL
+[notice ] message:: 9|SCENARIO_DATA|yeux|NULL
+on idle
+on idle
+on idle
+on idle
+on idle
+on idle
+on idle
+on idle
+on idle
+on idle
+[notice ] current frame : : 12 size 150
+[notice ] current frame : : 16 size 150
+[notice ] current frame : : 18 size 150
+[notice ] current frame : : 19 size 150
+[notice ] current frame : : 20 size 150
+[notice ] current frame : : 21 size 150
+[notice ] current frame : : 22 size 150
+[notice ] current frame : : 23 size 150
+[notice ] current frame : : 25 size 150
+[notice ] current frame : : 26 size 150
+[notice ] current frame : : 27 size 150
+[notice ] current frame : : 28 size 150
+[notice ] current frame : : 29 size 150
+[notice ] current frame : : 30 size 150
+[notice ] current frame : : 32 size 150
+[notice ] current frame : : 33 size 150
+[notice ] current frame : : 35 size 150
+[notice ] current frame : : 36 size 150
+[notice ] current frame : : 37 size 150
+[notice ] current frame : : 38 size 150
+[notice ] current frame : : 39 size 150
+[notice ] current frame : : 41 size 150
+[notice ] current frame : : 42 size 150
+[notice ] current frame : : 43 size 150
+[notice ] current frame : : 44 size 150
+[notice ] current frame : : 46 size 150
+[notice ] current frame : : 47 size 150
+[notice ] current frame : : 49 size 150
+[notice ] current frame : : 50 size 150
+[notice ] current frame : : 51 size 150
+[notice ] current frame : : 52 size 150
+[notice ] current frame : : 53 size 150
+[notice ] current frame : : 54 size 150
+[notice ] current frame : : 55 size 150
+[notice ] current frame : : 57 size 150
+[notice ] current frame : : 58 size 150
+[notice ] current frame : : 59 size 150
+[notice ] current frame : : 60 size 150
+[notice ] current frame : : 61 size 150
+[notice ] current frame : : 62 size 150
+[notice ] current frame : : 63 size 150
+[notice ] current frame : : 64 size 150
+[notice ] current frame : : 66 size 150
+[notice ] current frame : : 67 size 150
+[notice ] current frame : : 68 size 150
+[notice ] current frame : : 69 size 150
+[notice ] current frame : : 71 size 150
+[notice ] current frame : : 72 size 150
+[notice ] current frame : : 73 size 150
+[notice ] current frame : : 74 size 150
+[notice ] current frame : : 75 size 150
+[notice ] current frame : : 75 size 150
+[notice ] current frame : : 77 size 150
+[notice ] current frame : : 77 size 150
+[notice ] current frame : : 79 size 150
+[notice ] current frame : : 81 size 150
+[notice ] current frame : : 84 size 150
+[notice ] current frame : : 85 size 150
+[notice ] current frame : : 85 size 150
+[notice ] current frame : : 86 size 150
+[notice ] current frame : : 87 size 150
+[notice ] current frame : : 87 size 150
+[notice ] current frame : : 88 size 150
+[notice ] current frame : : 88 size 150
+[notice ] current frame : : 89 size 150
+[notice ] current frame : : 89 size 150
+[notice ] current frame : : 90 size 150
+[notice ] current frame : : 90 size 150
+[notice ] current frame : : 91 size 150
+[notice ] current frame : : 91 size 150
+[notice ] current frame : : 92 size 150
+[notice ] current frame : : 93 size 150
+[notice ] current frame : : 93 size 150
+[notice ] current frame : : 94 size 150
+[notice ] current frame : : 95 size 150
+[notice ] current frame : : 95 size 150
+[notice ] current frame : : 96 size 150
+[notice ] current frame : : 96 size 150
+[notice ] current frame : : 97 size 150
+[notice ] current frame : : 97 size 150
+[notice ] current frame : : 98 size 150
+[notice ] current frame : : 98 size 150
+[notice ] current frame : : 99 size 150
+[notice ] current frame : : 99 size 150
+[notice ] current frame : : 100 size 150
+[notice ] current frame : : 100 size 150
+[notice ] current frame : : 101 size 150
+[notice ] current frame : : 101 size 150
+[notice ] current frame : : 102 size 150
+[notice ] current frame : : 102 size 150
+[notice ] current frame : : 103 size 150
+[notice ] current frame : : 103 size 150
+[notice ] current frame : : 104 size 150
+[notice ] current frame : : 104 size 150
+[notice ] current frame : : 105 size 150
+[notice ] current frame : : 105 size 150
+[notice ] current frame : : 106 size 150
+[notice ] current frame : : 106 size 150
+[notice ] current frame : : 107 size 150
+[notice ] current frame : : 107 size 150
+[notice ] current frame : : 108 size 150
+[notice ] current frame : : 108 size 150
+[notice ] current frame : : 109 size 150
+[notice ] current frame : : 109 size 150
+[notice ] current frame : : 110 size 150
+[notice ] current frame : : 111 size 150
+[notice ] current frame : : 111 size 150
+[notice ] current frame : : 112 size 150
+[notice ] current frame : : 112 size 150
+[notice ] current frame : : 113 size 150
+[notice ] current frame : : 113 size 150
+[notice ] current frame : : 114 size 150
+[notice ] current frame : : 114 size 150
+[notice ] current frame : : 115 size 150
+[notice ] current frame : : 115 size 150
+[notice ] current frame : : 116 size 150
+[notice ] current frame : : 116 size 150
+[notice ] current frame : : 117 size 150
+[notice ] current frame : : 117 size 150
+[notice ] current frame : : 118 size 150
+[notice ] current frame : : 119 size 150
+[notice ] current frame : : 119 size 150
+[notice ] current frame : : 120 size 150
+[notice ] current frame : : 120 size 150
+[notice ] current frame : : 121 size 150
+[notice ] current frame : : 121 size 150
+[notice ] current frame : : 122 size 150
+[notice ] current frame : : 122 size 150
+[notice ] current frame : : 123 size 150
+[notice ] current frame : : 123 size 150
+[notice ] current frame : : 124 size 150
+[notice ] current frame : : 124 size 150
+[notice ] current frame : : 125 size 150
+[notice ] current frame : : 125 size 150
+[notice ] current frame : : 126 size 150
+[notice ] current frame : : 126 size 150
+[notice ] current frame : : 127 size 150
+[notice ] current frame : : 128 size 150
+[notice ] current frame : : 129 size 150
+[notice ] current frame : : 130 size 150
+[notice ] current frame : : 130 size 150
+[notice ] current frame : : 132 size 150
+[notice ] current frame : : 132 size 150
+[notice ] current frame : : 133 size 150
+[notice ] current frame : : 134 size 150
+[notice ] current frame : : 135 size 150
+[notice ] current frame : : 135 size 150
+[notice ] current frame : : 136 size 150
+[notice ] current frame : : 137 size 150
+[notice ] current frame : : 137 size 150
+[notice ] current frame : : 138 size 150
+[notice ] current frame : : 139 size 150
+[notice ] current frame : : 139 size 150
+[notice ] current frame : : 140 size 150
+[notice ] current frame : : 141 size 150
+[notice ] current frame : : 142 size 150
+[notice ] current frame : : 143 size 150
+[notice ] current frame : : 143 size 150
+[notice ] current frame : : 143 size 150
+[notice ] current frame : : 144 size 150
+[notice ] current frame : : 145 size 150
+[notice ] current frame : : 146 size 150
+[notice ] current frame : : 146 size 150
+[notice ] current frame : : 146 size 150
+[notice ] current frame : : 147 size 150
+[notice ] current frame : : 148 size 150
+[notice ] current frame : : 149 size 150
+[notice ] current frame : : 150 size 150
+[notice ] current frame : : 150 size 150
+[notice ] current frame : : 150 size 150
+[notice ] current frame : : 151 size 150
+[notice ] current frame : : 152 size 150
+[notice ] current frame : : 152 size 150
+[notice ] current frame : : 153 size 150
+[notice ] current frame : : 153 size 150
+[notice ] current frame : : 154 size 150
+[notice ] current frame : : 154 size 150
+[notice ] current frame : : 155 size 150
+[notice ] current frame : : 156 size 150
+[notice ] current frame : : 156 size 150
+[notice ] current frame : : 157 size 150
+[notice ] current frame : : 157 size 150
+[notice ] current frame : : 158 size 150
+[notice ] current frame : : 159 size 150
+[notice ] current frame : : 159 size 150
+[notice ] current frame : : 160 size 150
+[notice ] current frame : : 160 size 150
+[notice ] current frame : : 161 size 150
+[notice ] current frame : : 161 size 150
+[notice ] current frame : : 162 size 150
+[notice ] current frame : : 163 size 150
+[notice ] current frame : : 163 size 150
+[notice ] current frame : : 164 size 150
+[notice ] current frame : : 164 size 150
+[notice ] current frame : : 165 size 150
+[notice ] current frame : : 165 size 150
+[notice ] current frame : : 166 size 150
+[notice ] current frame : : 167 size 150
+[notice ] current frame : : 167 size 150
+[notice ] current frame : : 168 size 150
+[notice ] current frame : : 168 size 150
+[notice ] current frame : : 169 size 150
+[notice ] current frame : : 169 size 150
+[notice ] current frame : : 170 size 150
+[notice ] current frame : : 170 size 150
+[notice ] current frame : : 171 size 150
+[notice ] current frame : : 172 size 150
+[notice ] current frame : : 172 size 150
+[notice ] current frame : : 173 size 150
+[notice ] current frame : : 173 size 150
+[notice ] current frame : : 174 size 150
+[notice ] current frame : : 174 size 150
+[notice ] current frame : : 175 size 150
+[notice ] current frame : : 175 size 150
+[notice ] current frame : : 176 size 150
+[notice ] current frame : : 177 size 150
+[notice ] current frame : : 177 size 150
+[notice ] current frame : : 178 size 150
+[notice ] current frame : : 178 size 150
+[notice ] current frame : : 179 size 150
+[notice ] current frame : : 179 size 150
+[notice ] current frame : : 180 size 150
+[notice ] current frame : : 181 size 150
+[notice ] current frame : : 181 size 150
+[notice ] current frame : : 182 size 150
+[notice ] current frame : : 182 size 150
+[notice ] current frame : : 183 size 150
+[notice ] current frame : : 183 size 150
+[notice ] current frame : : 184 size 150
+[notice ] current frame : : 184 size 150
+[notice ] current frame : : 185 size 150
+[notice ] current frame : : 186 size 150
+[notice ] current frame : : 186 size 150
+[notice ] current frame : : 187 size 150
+[notice ] current frame : : 187 size 150
+[notice ] current frame : : 188 size 150

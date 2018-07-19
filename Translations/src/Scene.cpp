@@ -19,8 +19,6 @@ void Scene::update() {
 }
 void Scene::draw() {
     
-    ofLogNotice("drawing scene ") << label;
-
     ofEnableAlphaBlending();
     
     ofPushMatrix();
@@ -32,8 +30,6 @@ void Scene::draw() {
         assets[i].draw();
         yPos +=  assets[i].getHeight();
         ofPopMatrix();
-        
-        ofLogNotice("drawing asset");
         
     }
     ofPopMatrix();

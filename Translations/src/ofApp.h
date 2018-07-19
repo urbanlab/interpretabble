@@ -61,7 +61,7 @@ class ofApp : public ofBaseApp{
         shared_ptr<GuiApp> gui;
     
         // interface
-        ofImage tache, pattern;
+        ofImage tache, pattern, avatar;
         ofFbo translationsFbo;
         ofTrueTypeFont font;
         int background;
@@ -76,7 +76,7 @@ class ofApp : public ofBaseApp{
         // scene
     
         SceneManager sceneManager;
-    
+        string currentLabel;
     
     
 #ifdef DATASETMODE

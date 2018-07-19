@@ -47,7 +47,6 @@ public:
         
         if(image.isAllocated()) {
             image.draw(0.0, 0.0);
-            ofLogNotice("drawing image") << opacity.val();
 
         }
         

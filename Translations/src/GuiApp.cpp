@@ -23,6 +23,7 @@ void GuiApp::setup(){
     gui.setup();
     parameters.add(scale.set("Scale", 0.8, 0.1, 1.0));
     parameters.add(targetColor.set("color", ofColor(255)));
+    parameters.add(brightness.set("blur", 3, 0, 255));
 
     parameters.add(threshold.set("Threshold", 128, 0, 255));
     parameters.add(trackHs.set("Track Hue/Saturation", false));
@@ -35,7 +36,8 @@ void GuiApp::setup(){
     parameters.add(backgroundOpacity.set("Opacity", 0, 0, 255));
 
     
-    
+    parameters.add(lerpAmt.set("Prediction lerp", 0.2, 0.01, 1.0));
+
 
   //  parameters.add(translateX.set("Translate X", 100, 0, cam.getHeight()));
    // parameters.add(translateY.set("translate Y ", 100, 0, cam.getHeight()));
@@ -59,6 +61,9 @@ void GuiApp::setup(){
     
 
     gui.loadFromFile("settings.xml");
+    
+    tRecord = false;
+    tPredict = false;
 
     guiSliders.setup();
     guiSliders.setPosition(580, 10);
@@ -116,16 +121,17 @@ void GuiApp::update() {
         
         convertColor(camImage, camThresold, CV_RGB2GRAY);
         float thresoldValue = camThresoldSlider;
+        ofxCv::blur(camThresold, camThresold, brightness);
         ofxCv::threshold(camThresold,thresoldValue);
-        
         camThresold.update();
         
        // camImage.resize(camImage.getWidth() * scale, camImage.getHeight() * scale);
         
-        contourFinder.setTargetColor(targetColor, trackHs ? TRACK_COLOR_HS : TRACK_COLOR_RGB);
-        contourFinder.setThreshold(threshold);
-        contourFinder.findContours(camImage);
+        //contourFinder.setTargetColor(targetColor, trackHs ? TRACK_COLOR_HS : TRACK_COLOR_RGB);
+        //contourFinder.setThreshold(threshold);
+        //contourFinder.findContours(camImage);
         
+        /*
         for(int i=0; i < contourFinder.getContours().size(); i++ ) {
             
             cv::Rect boundingBox = contourFinder.getBoundingRect(i);
@@ -135,6 +141,7 @@ void GuiApp::update() {
             croppedIds.push_back(contourFinder.getLabel(i));
             
         }
+         */
         updateCCV();
 
     }
@@ -178,7 +185,13 @@ void GuiApp::updateCCV() {
         return;
     }
     else if (cam.isFrameNew() && ccv.isReady()) {
-        ccv.update(camImage, ccv.numLayers()-1);
+        
+        int value = -1;
+        if(learners.size() == 1)
+            value = ((CategoricalThreaded *) learners[0])->slider;
+
+        
+        ccv.update(camThresold, ccv.numLayers()-1, value, tRecord);
     }
     
     // record or predict
@@ -258,7 +271,7 @@ void GuiApp::draw() {
     if (learners.size() == 1 && learners[0]->isClassifier()) {
         int sliderValue = ((CategoricalThreaded *) learners[0])->slider;
         if(sliderValue < labels.size())
-            ofDrawBitmapStringHighlight( "Current label: " + labels[sliderValue], 20, 30 + cam.getHeight() * scale);
+            ofDrawBitmapStringHighlight( "Current label: " + labels[sliderValue-1], 20, 30 + cam.getHeight() * scale);
     }
     
     if (learners.size() == 1 && learners[0]->isClassifier() && learners[0]->getTrained() && tPredict) {
@@ -266,8 +279,10 @@ void GuiApp::draw() {
         int sliderValue = ((CategoricalThreaded *) learners[0])->slider;
         string label = ofToString(sliderValue);
          if(sliderValue < labels.size())
-             label = labels[sliderValue];
-             
+             label = labels[sliderValue-1];
+        
+        app->sceneManager.setCurrentLabel(label);
+        app->currentLabel = label;
              
         string txt = "Predicted Class: " + ofToString(sliderValue) + " " + label;
         ofSetColor(0,255,0);
@@ -287,8 +302,7 @@ void GuiApp::exit() {
     // save xml settings
     xmlSettings.serialize(parameters);
     xmlSettings.save("settings.xml");
-    
-    ofLogNotice("saving");
+    saveLabels();
     
     // save convnet settings
    // gui.saveToFile(ofToDataPath("settings_convnetP.xml"));
@@ -339,9 +353,9 @@ void GuiApp::eAddCategorical() {
             addCategorical(ofToInt(numClasses));
         }
         
-        labels.clear();
-        for(int i=0; i<ofToInt(numClasses); i++)
-            labels.push_back("Label missing");
+        //labels.clear();
+        //for(int i=0; i<ofToInt(numClasses); i++)
+          //  labels.push_back("Label missing");
     }
 }
 
@@ -349,7 +363,7 @@ void GuiApp::eAddCategorical() {
 void GuiApp::updateParameters() {
     for (int i=0; i<learners.size(); i++) {
         if (learners[i]->getTrained()) {
-           // learners[i]->update(lerpAmt);
+            learners[i]->update(lerpAmt);
         }
     }
 }
@@ -438,7 +452,7 @@ void GuiApp::load(string modelPath) {
         numSamples = learners[0]->getNumTrainingSamples();
     }
     gui.loadFromFile(modelPath+"/settings.xml");
-    loadLabels();
+   // loadLabels();
     
 }
 
@@ -457,6 +471,10 @@ void GuiApp::saveLabels(){
     labelFile.open("labels.txt",ofFile::WriteOnly);
     labelFile << labels;
     
+    
+    
+    
+    
 }
 
 void GuiApp::loadLabels(){
@@ -464,8 +482,10 @@ void GuiApp::loadLabels(){
     vector < string > linesOfTheFile;
     ofBuffer buffer = ofBufferFromFile("labels.txt");
     
+   // labels.clear();
+   // labels.push_back("rien");
     for (auto line : buffer.getLines()){
-        labels.push_back(line);
+       // labels.push_back(line);
     }
     
 }

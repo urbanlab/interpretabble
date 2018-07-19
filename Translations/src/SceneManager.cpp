@@ -101,9 +101,24 @@ void SceneManager::setCurrentLabel(string label) {
     
     // need to put a timer on this
     
+    ofLogNotice("set current label: ") << label;
+    
+    bool bhasFound = false;
     for(int i=0; i<scenes.size(); i++) {
-        if(scenes[i]->label == label)
-            currentSceneIndex = i;
+        if(scenes[i]->label == label ) {
+            
+            if(currentSceneIndex != i) {
+                currentSceneIndex = i;
+                onSceneChanged();
+                bhasFound = true;
+                return;
+            }
+        }
+    }
+    
+    if(label == "rien") {
+        currentSceneIndex = -1;
+        ofLogNotice("Nothing");
     }
     
 }
