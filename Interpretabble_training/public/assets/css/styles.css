@@ -1,0 +1,44 @@
+h1, h2{
+	text-align: center;
+}
+
+hgroup{
+	position: fixed;
+	width: 400px;
+	height: 100px;
+	top: 50%;
+	left: 40%;
+	margin: -120px 0 0 -225px;
+	text-align: center;
+	border-radius: 10px;
+}
+
+.jumbotron {
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+	background-color: #90EE90;
+}
+
+.list {
+	background-color: #90EE90;
+	border-color:  #90EE90;
+	text-color: #000000;
+}
+canvas{
+	border-width: 3px;
+	border-style: solid;
+	border-radius: 10px;
+	margin-bottom: 1rem;
+	border-color: #90EE90;
+	background-color: #FFFFFF;
+	width:100%
+}
+
+.addScroll{
+  overflow-y:auto;
+  height: 400px;
+}
+
+.h-95 {
+  height: 95% !important;
+}
