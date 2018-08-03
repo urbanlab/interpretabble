@@ -12,7 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ==============================================================================
+"""Analizes a drawing to recognize what it represents and send the result to the application.
 
+In the application when the user wants to record his drawing, this sript will be launch to
+propose a category to the user.
+
+"""
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -40,6 +45,8 @@ def read_tensor_from_image_file(file_name, input_height=299, input_width=299,
   input_name = "file_reader"
   output_name = "normalized"
   file_reader = tf.read_file(file_name, input_name)
+
+ 
   if file_name.endswith(".png"):
     image_reader = tf.image.decode_png(file_reader, channels = 3,
                                        name='png_reader')
@@ -51,11 +58,14 @@ def read_tensor_from_image_file(file_name, input_height=299, input_width=299,
   else:
     image_reader = tf.image.decode_jpeg(file_reader, channels = 3,
                                         name='jpeg_reader')
+
   float_caster = tf.cast(image_reader, tf.float32)
   dims_expander = tf.expand_dims(float_caster, 0);
   resized = tf.image.resize_bilinear(dims_expander, [input_height, input_width])
   normalized = tf.divide(tf.subtract(resized, [input_mean]), [input_std])
+
   sess = tf.Session()
+  
   result = sess.run(normalized)
 
   return result
@@ -68,9 +78,10 @@ def load_labels(label_file):
   return label
 
 if __name__ == "__main__":
-  file_name = "tf_files/flower_photos/daisy/3475870145_685a19116d.jpg"
-  model_file = "tf_files/retrained_graph.pb"
-  label_file = "tf_files/retrained_labels.txt"
+  #get the path of the image to be recognized
+  file_name=sys.argv[1] 
+  model_file = "/Users/erasme/Desktop/interpretabble/Translations/prediction/tf_files/retrained_graph.pb"
+  label_file = "/Users/erasme/Desktop/interpretabble/Translations/prediction/tf_files/retrained_labels.txt"
   input_height = 224
   input_width = 224
   input_mean = 128
@@ -78,43 +89,15 @@ if __name__ == "__main__":
   input_layer = "input"
   output_layer = "final_result"
 
-  parser = argparse.ArgumentParser()
-  parser.add_argument("--image", help="image to be processed")
-  parser.add_argument("--graph", help="graph/model to be executed")
-  parser.add_argument("--labels", help="name of file containing labels")
-  parser.add_argument("--input_height", type=int, help="input height")
-  parser.add_argument("--input_width", type=int, help="input width")
-  parser.add_argument("--input_mean", type=int, help="input mean")
-  parser.add_argument("--input_std", type=int, help="input std")
-  parser.add_argument("--input_layer", help="name of input layer")
-  parser.add_argument("--output_layer", help="name of output layer")
-  args = parser.parse_args()
-
-  if args.graph:
-    model_file = args.graph
-  if args.image:
-    file_name = args.image
-  if args.labels:
-    label_file = args.labels
-  if args.input_height:
-    input_height = args.input_height
-  if args.input_width:
-    input_width = args.input_width
-  if args.input_mean:
-    input_mean = args.input_mean
-  if args.input_std:
-    input_std = args.input_std
-  if args.input_layer:
-    input_layer = args.input_layer
-  if args.output_layer:
-    output_layer = args.output_layer
-
   graph = load_graph(model_file)
+
   t = read_tensor_from_image_file(file_name,
                                   input_height=input_height,
                                   input_width=input_width,
                                   input_mean=input_mean,
                                   input_std=input_std)
+
+
 
   input_name = "import/" + input_layer
   output_name = "import/" + output_layer
@@ -126,12 +109,11 @@ if __name__ == "__main__":
     results = sess.run(output_operation.outputs[0],
                       {input_operation.outputs[0]: t})
     end=time.time()
-  results = np.squeeze(results)
+    results = np.squeeze(results)
+    top_k = results.argsort()[::-1]
+    labels = load_labels(label_file)
 
-  top_k = results.argsort()[-5:][::-1]
-  labels = load_labels(label_file)
-
-  print('\nEvaluation time (1-image): {:.3f}s\n'.format(end-start))
-  template = "{} (score={:0.5f})"
-  for i in top_k:
-    print(template.format(labels[i], results[i]))
+  #print('\nEvaluation time (1-image): {:.3f}s\n'.format(end-start))
+  #template = "{} (score={:0.5f})"
+ 
+  print(labels[top_k[0]].capitalize())
