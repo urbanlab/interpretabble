@@ -63,7 +63,6 @@ def read_tensor_from_image_file(file_name, input_height=299, input_width=299,
     file_name: Path to the image.
     input_width: Horizontal size of expected input image to model.
     input_height: Vertical size of expected input image to model.
-    input_depth: How many channels the expected input image should have.
     input_mean: Pixel value that should be zero in the image for the graph.
     input_std: How much to divide the pixel values by before recognition.
 
