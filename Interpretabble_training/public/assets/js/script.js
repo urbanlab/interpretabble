@@ -1,5 +1,6 @@
 
 $(function(){
+
 	var doc = $(document),
 		win = $(window),
 		canvas = $('#paper'),
@@ -15,8 +16,6 @@ $(function(){
 
 	document.getElementById("paper").addEventListener('touchstart',function(e){
 		e.preventDefault();
-		//prev.x = e.pageX - canvas.offset().left ;
-		//prev.y = e.pageY - canvas.offset().top;
 		prev.x = e.changedTouches[0].pageX - canvas.offset().left ;
 		prev.y = e.changedTouches[0].pageY - canvas.offset().top;
 
@@ -32,8 +31,7 @@ $(function(){
 		//readjustement of the x and y (because of the margings)
 		var realX = e.changedTouches[0].pageX-canvas.offset().left,
 			realY = e.changedTouches[0].pageY-canvas.offset().top;
-		//var realX = e.pageX-canvas.offset().left,
-		//	realY = e.pageY-canvas.offset().top;
+		
 		if(drawing){
 			drawLine(prev.x, prev.y, realX, realY);
 			prev.x = realX;
@@ -85,7 +83,6 @@ function saveImage (data){
 
 				//clear canvas and buttons
 				context.clearRect(0, 0, canvas[0].width, canvas[0].height);
-				//document.getElementById(category).disabled = false;
 				$('#instructions').fadeIn();
 				category = null;
 				$(".col-md-3").hide();
@@ -105,7 +102,6 @@ function saveImage (data){
 
 			//clear canvas and buttons
 			context.clearRect(0, 0, canvas[0].width, canvas[0].height);
-			//document.getElementById(category).disabled = false;
 			document.getElementById("Autre").disabled = false;
 			$('#instructions').fadeIn();
 			category = null;

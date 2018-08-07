@@ -27,10 +27,12 @@ io.sockets.on('connection', function (socket) {
 	socket.on('selectCat', function(data){
 	 	var buf = new Buffer(data.image, 'base64');
 
+	 	//saves image as a jpg
 	    fs.writeFile("./public/output.jpg", buf,function(err){
 	    	if(err) throw(err);
 	    });
 
+	    //call the python script to realize the prediction
 	    var pythonProcess = spawn("python2", ["../Translations/prediction/scripts/label_image.py", "/Users/erasme/Desktop/interpretabble/Interpretabble_training/public/output.jpg"]);
     
 		pythonProcess.stdout.on('data', (data) =>{
@@ -60,7 +62,7 @@ io.sockets.on('connection', function (socket) {
 	    }else{
 	    	path = path +"/"+name+i.toString().replace(/^(\d)$/,'0$1')+".jpg";
 	    	exist = statPath(path);
-		    //verify file's existence
+		    //check file's existence
     		while(exist && exist.isFile()) {
 		      i = i+1;
 		      path = "./public/Data/"+data.category+"/"+name+i.toString().replace(/^(\d)$/,'0$1')+".jpg";
