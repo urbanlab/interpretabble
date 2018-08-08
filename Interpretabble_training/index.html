@@ -36,7 +36,7 @@
           <div class="col-md-3">
             <h2> Choisissez une catégorie </h2>
             <div class="addScroll">
-              <input class="btn btn-light btn-block list" type="submit" value="Ambulance" onclick="setCategory(this);" id="Ambulance" >
+              <input class="btn btn-light btn-block list" type="submit" value="Ambulance" onclick="setCategory(this);" id="Ambulance">
               <input class="btn btn-light btn-block list" type="submit" value="Biberon" onclick="setCategory(this);"  id="Biberon">
               <input class="btn btn-light btn-block list" type="submit" value="Lit" onclick="setCategory(this);"  id="Lit">
               <input class="btn btn-light btn-block list" type="submit" value="Fleche" onclick="setCategory(this);"  id="Fleche">
@@ -46,95 +46,52 @@
               <input class="btn btn-light btn-block list" type="submit" value="Rien" onclick="setCategory(this);"  id="Rien">
               <input class="btn btn-light btn-block list" type="submit" value="Nez" onclick="setCategory(this);"  id="Nez">
               <input class="btn btn-light btn-block list" type="submit" value="Yeux" onclick="setCategory(this);"  id="Yeux">
-              <input class="btn btn-light btn-block list" type="submit" value="Autre" onclick="setCategory(this);"  id="Autre"data-toggle="modal" data-target="#defCat">
+              <input class="btn btn-light btn-block list" type="submit" value="Autre" onclick="setCategory(this);"  id="Autre">
             </div>
           </div>
           <div class="col-md-4"></div>
           <div class="col-md-2">
-            <input class="btn btn-secondary btn-block" type="submit" id="save" value="Enregistrer" onclick="saveImage();">
+            <input class="btn btn-secondary btn-block" type="submit" id="save" value="Enregistrer" onclick="saveImage();" data-toggle="modal" data-target="#confSave">
           </div>
 
           <div class="col-md-2">
             <input class="btn btn-secondary btn-block" type="submit" id="clear" value="Effacer" >
-          </div>
-          <div class="col-md-2">
-            <input class="btn btn-secondary btn-block" type="submit" id="test" value="Test" data-toggle="modal" data-target="#load">
           </div>
         </div>
         
 
         <!-- Modal -->
         <div class="modal fade" id="confSave" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog" role="document">        
-            <div class="modal-content">
-              <div class="modal-body body-block" id="conf">          
-              </div>
-              <div class="modal-footer">
-                <div class="col-md-2">
-                  <button type="button" class="btn btn-secondary" onclick="notSave()" data-dismiss="modal">Non</button>
-                </div>
-                <div class="col-md-6">
-                  <button type="button" class="btn btn-primary" onclick="save()" data-dismiss="modal">Oui</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-  
-      
-
-        <div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
-              <div class="modal-body body-block" id="message"></div>
+              <div class="modal-body body-block">
+              Enregistrer en tant que ?
+              </div>
               <div class="modal-footer">
+                <div class="col-md-10">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+              </div>
                 <div class="col-md-2">
-                  <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                <button type="button" class="btn btn-light btn-block list">Oui</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-  
-
-        <div class="modal fade" id="load" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="loader"></div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="modal fade" id="defCat" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="form-group">
-                  <label for="category-text" class="col-form-label"> Quelle catégorie est-ce ?</label>
-                  <textarea class="form-control" id="category-text"></textarea>
-              </div>
-              <div class="modal-footer">
-                <div class="col-md-2">
-                  <button type="button" class="btn btn-primary" onclick="setOther()" data-dismiss="modal" data-toggle="modal" data-target="#confirmation">Ok</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-
         <hr>
-
       </div>
-      
+        
+
+
     </main>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="public/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+   <script src="https://code.jquery.com/jquery-3.1.1.min.js">
+</script>
     <script src="/public/assets/js/script.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js">
+</script>
+<script src="public/dist/js/bootstrap.min.js">
+</script>
   </body>
 </html>
