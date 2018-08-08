@@ -49,11 +49,17 @@ $(function(){
 	}
 	//Hide the buttons of the categories
 	$(".col-md-3").hide();
+
+
 });
 
 var category = null;
+var data = null;
 
 function saveImage (data){
+
+	//$("#conf").html("Analyse du dessin...");
+	$("#load").modal();	
 	
 	var url = location.host,
   		socket = io.connect(url),
@@ -73,71 +79,68 @@ function saveImage (data){
 	if (category == null || category ==""){
 		socket.emit('selectCat', {'image':data, 'category':category});
 		socket.on('categoryPrediction', function(cat){
-			
-			if(confirm("Enregistrer le dessin en tant que "+ cat.category+" ?")){
-				category = cat.category;
-				socket.emit('sImage', {'image':data, 'category':category});
-				socket.on('confMsg', function(msg){
-					alert(msg.message);
-				});
+			$("#conf").html("Enregistrer le dessin en tant que "+cat.category+" ?");
+			category = cat.category;
+			$("#confSave").modal();	
 
-				//clear canvas and buttons
-				context.clearRect(0, 0, canvas[0].width, canvas[0].height);
-				$('#instructions').fadeIn();
-				category = null;
-				$(".col-md-3").hide();
-
-			}else{
-				//Show buttons
-				$(".col-md-3").show();
-			}
 		});
-	//Define images's category through the buttons
-	}else{
-		if(confirm("Enregistrer le dessin en tant que "+ category+" ?")){
-			socket.emit('sImage', {'image':data, 'category':category});
-			socket.on('confMsg', function(msg){
-				alert(msg.message);
-			});
-
-			//clear canvas and buttons
-			context.clearRect(0, 0, canvas[0].width, canvas[0].height);
-			document.getElementById("Autre").disabled = false;
-			$('#instructions').fadeIn();
-			category = null;
-			$(".col-md-3").hide();
-
-		}else{
-			category = null;
-		}
 	}
+	
 }
 
-function setCategory(obj){
-   	category = document.getElementById(obj.id).value;
-   	document.getElementById(obj.id).disabled = true;
-   	if (category == "Autre"){
-		category = prompt("Quelle catégorie est-ce ? ");
-	}
-	document.getElementById("Ambulance").disabled = false;
-	document.getElementById("Maison").disabled = false;
-	document.getElementById("Fleche").disabled = false;
-	document.getElementById("Biberon").disabled = false;
-	document.getElementById("Lit").disabled = false;
-	document.getElementById("Bouche").disabled = false;
-	document.getElementById("Lune").disabled = false;
-	document.getElementById("Nez").disabled = false;
-	document.getElementById("Yeux").disabled = false;
-	document.getElementById("Rien").disabled = false;
-	document.getElementById("Autre").disabled = false;
+function save(data){
+	var url = location.host,
+  		socket = io.connect(url),
+  		canvas=$('#paper'),
+  		context = canvas[0].getContext('2d');
+
+    //set and fill background to white
+	context.globalCompositeOperation = "destination-over";
+	context.fillStyle = 'white';
+	context.fillRect(0,0,canvas[0].width,canvas[0].height);
+
+  	//prepare image to send its Url to the server
+  	var dl = canvas[0].toDataURL('image/jpeg');
+	data = dl.replace(/^data:image\/\w+;base64,/, "");
+			
+	socket.emit('sImage', {'image':data, 'category':category});
+	socket.on('confMsg', function(msg){
+		$("#message").html(msg.message);
+		$('#confirmation').modal();
+
+	});
+
+	//clear canvas and buttons
+	context.clearRect(0, 0, canvas[0].width, canvas[0].height);
+	$('#instructions').fadeIn();
+	category = null;
+	$(".col-md-3").hide();					
+}
+
+function notSave(data){
+	category = null;
+	$(".col-md-3").show();		
+}
+
+function setOther(obj){
+	category = $("#category-text").val();
 	if (category !=null && category !=""){
 		category = category.substring(0,1).toUpperCase()+category.substring(1).toLowerCase();
-		saveImage();
-	}else{
-		document.getElementById(obj.id).disabled = false;
-		alert("Impossible d'enregistrer le dessin sans catégorie");
-	}
+		$("#conf").html("Enregistrer le dessin en tant que "+category+" ?");
+		save();
 		
+	}else{
+		$("#message").html("Impossible d'enregistrer le dessin sans catégorie");
+		$('#confirmation').modal();
+		
+	}
+	
+}
+function setCategory(obj){
+   	category = document.getElementById(obj.id).value;
+	$("#conf").html("Enregistrer le dessin en tant que "+category+" ?");
+	$("#confSave").modal();
+	
 }
 
 document.getElementById('clear').addEventListener('click', function() {
