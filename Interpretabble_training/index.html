@@ -23,8 +23,9 @@
  
        <div class="container-fluid">
         <div class="row">
+          
           <div class="col-md-12">
-            <canvas id="paper" height="500" style="display: block;" ></canvas>
+            <canvas id="paper" style="display: block;" ></canvas>
             <hgroup id="instructions">
               <h2>Dessinez ici</h2>
             </hgroup>
@@ -59,17 +60,8 @@
             </div>
           </div>
         </div>
-
-        <!--<div class="modal modal-ld" id="draw" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-          
-             <div class="modal-body body-block"> <h2>Dessinez ici</h2> </div>
-  
-          </div>
-        </div>-->
-  
       
-         <div class="modal " id="confMsg" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+        <div class="modal " id="confMsg" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
 
@@ -98,7 +90,7 @@
 
               <div class="form-group">
                   <label for="category-text" class="col-form-label"> Quelle catégorie est-ce ?</label>
-                  <textarea class="form-control" id="category-text"></textarea>
+                  <input class="form-control" id="category-text" ></input>
               </div>
 
               <div class="modal-footer">

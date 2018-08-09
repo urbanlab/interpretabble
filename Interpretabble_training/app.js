@@ -73,12 +73,12 @@ io.sockets.on('connection', function (socket) {
 	    
 	    fs.writeFile(path, buf, function(err){
 	    	if(err){
-	    		socket.emit('confMsg',{'message' :"Impossible d'enregistrer le dessin en tant que " + data.category});
+	    		socket.emit('confMsg',{'message' :"Impossible d'enregistrer le dessin dans la catégorie " + data.category});
 	    		console.log(err);
 	    		throw(err);
 	    	}else{
 	    		i = i+1;
-	    		socket.emit('confMsg',{'message' :"Le dessin a bien été enregistré en tant que " + data.category});
+	    		socket.emit('confMsg',{'message' :"Le dessin a bien été enregistré dans la catégorie " + data.category});
 	    	}
 	    });   
   	})

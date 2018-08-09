@@ -52,6 +52,9 @@ canvas{
 	
 }
 
+textarea{
+    resize: none; 
+}
 
 .loader {
 	position: absolute;
