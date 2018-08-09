@@ -3,14 +3,12 @@ h1, h2{
 }
 
 hgroup{
-	position: fixed;
-	width: 300px;
+	position: absolute;
+	width: 200px;
 	height: 100px;
-	top: 70%;
-	left: 50%;
-	margin: -175px 0 0 -225px;
+	top: 40%;
+	left:40%;
 	text-align: center;
-	border-radius: 10px;
 }
 
 .jumbotron {
@@ -56,6 +54,9 @@ canvas{
 
 
 .loader {
+	position: absolute;
+	left: 25%;
+	top:40%;
 	border: 16px solid #f3f3f3;
 	border-radius: 50%;
 	border-top: 16px solid #90EE90;

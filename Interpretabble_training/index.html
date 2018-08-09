@@ -22,60 +22,72 @@
        </div>     
  
        <div class="container-fluid">
-         <div class="row">
-             <div class="col-md-12">
-               <canvas id="paper" height="500" style="display: block;" ></canvas>
-               <hgroup id="instructions">
-                 <h2>Dessinez ici</h2>
-               </hgroup>
-             </div>
- 
+        <div class="row">
+          <div class="col-md-12">
+            <canvas id="paper" height="500" style="display: block;" ></canvas>
+            <hgroup id="instructions">
+              <h2>Dessinez ici</h2>
+            </hgroup>
+          </div>
+
           <div class="col-md-4"></div>
           <div class="col-md-2">
-            <input class="btn btn-secondary btn-block" type="submit" id="save" value="Enregistrer" onclick="saveImage();">
+            <input class="btn btn-secondary btn-block" type="submit" id="save" value="Enregistrer" onclick="analyseImage();">
           </div>
-           <div class="col-md-2">
+          <div class="col-md-2">
             <input class="btn btn-secondary btn-block" type="submit" id="clear" value="Effacer" >
           </div>
+
         </div>
         
          <!-- Modal -->
         <div class="modal  " id="confSave" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" >
           <div class="modal-dialog modal-dialog-centered" role="document">        
             <div class="modal-content">
+
               <div class="modal-body body-block" id="conf"></div>
+
               <div class="modal-footer">
                 <div class="col-md-2">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#boutons">Non</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#buttonsCategories">Non</button>
                 </div>
                 <div class="col-md-6">
-                  <button type="button" class="btn btn-primary" onclick="save()" data-dismiss="modal">Oui</button>
+                  <button type="button" class="btn btn-primary" onclick="saveImage()" data-dismiss="modal">Oui</button>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
+
+        <!--<div class="modal modal-ld" id="draw" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+          
+             <div class="modal-body body-block"> <h2>Dessinez ici</h2> </div>
+  
+          </div>
+        </div>-->
   
       
-         <div class="modal " id="confirmation" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+         <div class="modal " id="confMsg" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
+
               <div class="modal-body body-block" id="message"></div>
+
               <div class="modal-footer">
                 <div class="col-md-2">
                   <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
   
-         <div class="modal bd-example-modal-sm " id="load" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-body body-block"> Analyse...</div>
-              <!--<div class="col-md-10 loader"></div>-->
-            </div>
+         <div class="modal modal-ld" id="load" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+          <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+              <div class="col-md-10 loader"></div>
           </div>
         </div>
    
@@ -100,7 +112,7 @@
         </div>
 
 
-        <div class="modal " id="boutons" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+        <div class="modal " id="buttonsCategories" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
 

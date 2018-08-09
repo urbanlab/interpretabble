@@ -1,6 +1,7 @@
 
 $(function(){
 
+	$("#draw").modal();
 	var doc = $(document),
 		win = $(window),
 		canvas = $('#paper'),
@@ -20,6 +21,7 @@ $(function(){
 		prev.y = e.changedTouches[0].pageY - canvas.offset().top;
 
 		drawing=true;
+		//$("#draw").modal('hide');
 		instructions.fadeOut();
 	});
 
@@ -54,10 +56,10 @@ var category = null;
 var data = null;
 
 $('#defCat').on('show.bs.modal', function (e) {
-  $("#boutons").modal('hide');	
+  $("#buttonsCategories").modal('hide');	
 })
 
-function saveImage (data){
+function analyseImage (data){
  	
 	$("#load").modal();	
 	
@@ -66,7 +68,7 @@ function saveImage (data){
   		canvas=$('#paper'),
    		context = canvas[0].getContext('2d');
  
-     //set and fill background to white
+    //set and fill background to white
  	context.globalCompositeOperation = "destination-over";
  	context.fillStyle = 'white';
  	context.fillRect(0,0,canvas[0].width,canvas[0].height);
@@ -83,13 +85,13 @@ function saveImage (data){
 		socket.on('categoryPrediction', function(cat){
 			$("#load").modal('hide');	
 			category = cat.category;
-			$("#conf").html("Enregistrer le dessin en tant que "+cat.category+" ?");
+			$("#conf").html("Enregistrer le dessin dans la catégorie "+cat.category+" ?");
 			$("#confSave").modal();	
  		});
  	}
 }
 
-function save(data){
+function saveImage(data){
 
 	var url = location.host,
   		socket = io.connect(url),
@@ -108,10 +110,10 @@ function save(data){
 	socket.emit('sImage', {'image':data, 'category':category});
 	socket.on('confMsg', function(msg){
 		$("#message").html(msg.message);
-		$('#confirmation').modal();
+		$('#confMsg').modal();
  	});
 
- 	//clear canvas
+ 	//reset canvas
 	context.clearRect(0, 0, canvas[0].width, canvas[0].height);
 	$('#instructions').fadeIn();
 	category = null;
@@ -121,7 +123,7 @@ function save(data){
 function notSave(data){
 
 	category = null;
-	$("#boutons").modal('hide');
+	$("#buttonsCategories").modal('hide');
 			
 }
 
@@ -130,18 +132,18 @@ function setOther(obj){
 	category = $("#category-text").val();
 	if (category !=null && category !=""){
 		category = category.substring(0,1).toUpperCase()+category.substring(1).toLowerCase();
-		$("#conf").html("Enregistrer le dessin en tant que "+category+" ?");
+		$("#conf").html("Enregistrer le dessin dans la catégorie "+category+" ?");
 		$("#confSave").modal();
 
 	}else{
 		$("#message").html("Impossible d'enregistrer le dessin sans catégorie");
-		$('#confirmation').modal();
+		$('#confMsg').modal();
 	}
 }
 
 function setCategory(obj){
 
-	$("#boutons").modal('hide');
+	$("#buttonsCategories").modal('hide');
    	category = document.getElementById(obj.id).value;
    	$("#conf").html("Enregistrer le dessin en tant que "+category+" ?");
 	$("#confSave").modal();
@@ -153,6 +155,8 @@ document.getElementById('clear').addEventListener('click', function() {
 	var canvas=$('#paper'),
   		context = canvas[0].getContext('2d');
   	context.clearRect(0, 0, canvas[0].width, canvas[0].height);
+
+  	//$("#draw").modal();
 	$('#instructions').fadeIn();
 	if(category!=null) document.getElementById(category).disabled = false;
 	else category = null;
