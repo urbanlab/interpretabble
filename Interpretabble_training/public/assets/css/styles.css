@@ -4,11 +4,11 @@ h1, h2{
 
 hgroup{
 	position: fixed;
-	width: 400px;
+	width: 300px;
 	height: 100px;
-	top: 50%;
-	left: 40%;
-	margin: -120px 0 0 -225px;
+	top: 70%;
+	left: 50%;
+	margin: -175px 0 0 -225px;
 	text-align: center;
 	border-radius: 10px;
 }
@@ -31,7 +31,7 @@ canvas{
 	margin-bottom: 1rem;
 	border-color: #90EE90;
 	background-color: #FFFFFF;
-	width:100%
+	width:100%;
 }
 
 .addScroll{
@@ -50,10 +50,12 @@ canvas{
 
 .modal-ld{
 	background-color: transparent;
-	opacity: 0.1;
+	text-align: center;
+	
 }
+
+
 .loader {
-	opacity: 1;
 	border: 16px solid #f3f3f3;
 	border-radius: 50%;
 	border-top: 16px solid #90EE90;

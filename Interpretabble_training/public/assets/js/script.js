@@ -47,15 +47,18 @@ $(function(){
 		context.lineCap='round';
 		context.stroke();
 	}
-	//Hide the buttons of the categories
-	$(".col-md-3").hide();
+
 });
 
 var category = null;
 var data = null;
 
+$('#defCat').on('show.bs.modal', function (e) {
+  $("#boutons").modal('hide');	
+})
+
 function saveImage (data){
- 	//$("#conf").html("Analyse du dessin...");
+ 	
 	$("#load").modal();	
 	
 	var url = location.host,
@@ -108,26 +111,28 @@ function save(data){
 		$('#confirmation').modal();
  	});
 
- 	//clear canvas and buttons
+ 	//clear canvas
 	context.clearRect(0, 0, canvas[0].width, canvas[0].height);
 	$('#instructions').fadeIn();
 	category = null;
-	$(".col-md-3").hide();					
+				
 }
 
 function notSave(data){
 
 	category = null;
-	$(".col-md-3").show();		
+	$("#boutons").modal('hide');
+			
 }
 
 function setOther(obj){
 
 	category = $("#category-text").val();
-	if (category !=null || category !=""){
+	if (category !=null && category !=""){
 		category = category.substring(0,1).toUpperCase()+category.substring(1).toLowerCase();
 		$("#conf").html("Enregistrer le dessin en tant que "+category+" ?");
 		$("#confSave").modal();
+
 	}else{
 		$("#message").html("Impossible d'enregistrer le dessin sans catégorie");
 		$('#confirmation').modal();
@@ -136,6 +141,7 @@ function setOther(obj){
 
 function setCategory(obj){
 
+	$("#boutons").modal('hide');
    	category = document.getElementById(obj.id).value;
    	$("#conf").html("Enregistrer le dessin en tant que "+category+" ?");
 	$("#confSave").modal();
@@ -143,11 +149,11 @@ function setCategory(obj){
 }
 
 document.getElementById('clear').addEventListener('click', function() {
+
 	var canvas=$('#paper'),
   		context = canvas[0].getContext('2d');
   	context.clearRect(0, 0, canvas[0].width, canvas[0].height);
 	$('#instructions').fadeIn();
 	if(category!=null) document.getElementById(category).disabled = false;
 	else category = null;
-	$(".col-md-3").hide();
 }, false);
