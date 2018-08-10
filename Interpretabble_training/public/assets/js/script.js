@@ -7,16 +7,16 @@ $(function(){
 		context = canvas[0].getContext('2d');
 		instructions = $('#instructions');
 
-  	context.canvas.height = window.innerHeight -170;
-
   	canvas[0].width = canvas[0].offsetWidth;
 	canvas[0].height = canvas[0].offsetHeight;
+
+	context.canvas.height = window.innerHeight -170;
 
 	var drawing = false;
 	var cursor = {};
 	var prev = {};
 
-	//initialize drawing when the user touches the drawing area
+	//initializes drawing's paramenters when the user touches the drawing area
 	document.getElementById("paper").addEventListener('touchstart',function(e){
 
 		e.preventDefault();
@@ -85,7 +85,6 @@ function analyseImage (data){
  	data = dl.replace(/^data:image\/\w+;base64,/, "");
  
  	//Define images's category through the prediction
-
 	if (category == null || category ==""){
 		socket.emit('selectCat', {'image':data, 'category':category});
 		
@@ -130,7 +129,7 @@ function saveImage(data){
 	category = null;
 				
 }
-^
+
 /*
 	Gets back to the beginning.
 */
@@ -142,7 +141,7 @@ function notSave(data){
 }
 
 /*
-	Gets the the name of a new category written by the user and asks him to confirm it. 
+	Gets the the name of the new category written by the user and asks him to confirm it. 
 */
 function setOther(obj){
 
