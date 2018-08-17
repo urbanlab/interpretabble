@@ -28,6 +28,8 @@ public:
 
     
     vector<Scene*> scenes;
+    bool on;
+    bool onPause;
     
 private:
     

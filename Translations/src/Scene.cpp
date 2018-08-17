@@ -12,15 +12,13 @@ void Scene::update() {
     for (int i=0; i<assets.size(); i++) {
        
         assets[i].update();
-       
-        
+
     }
     
 }
 void Scene::draw() {
-    
+
     ofEnableAlphaBlending();
-    
     ofPushMatrix();
     float yPos = 88.0;
     for (int i=0; i<assets.size(); i++) {

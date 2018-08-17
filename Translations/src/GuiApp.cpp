@@ -56,6 +56,7 @@ void GuiApp::setup(){
     gui.add(bSave.setup("Save model"));
     gui.add(bLoad.setup("Load model"));
     gui.add(bCameraSettings.setup("Camera settings"));
+    gui.add(tPause.setup("Pause", false));
     //gui.add(brightness.set("brightness cam", 0.0, 0.0, 1.0));
 
     
@@ -64,6 +65,7 @@ void GuiApp::setup(){
     
     tRecord = false;
     tPredict = false;
+    //tPause=false;
 
     guiSliders.setup();
     guiSliders.setPosition(580, 10);
@@ -79,6 +81,7 @@ void GuiApp::setup(){
     bAddCategorical.addListener(this, &GuiApp::eAddCategorical);
     bAddLabel.addListener(this, &GuiApp::eAddLabel);
     bCameraSettings.addListener(this, &GuiApp::changeCamera);
+    //bPause.addListener(this, &GuiApp::ePause);
 
     labels.reserve(999);
     string emptyLabel = "No label";
@@ -95,6 +98,8 @@ void GuiApp::setup(){
     
     tRecord = false;
     tPredict = false;
+    
+    
     
 }
 
@@ -180,6 +185,15 @@ void GuiApp::updateCCV() {
     else if (tPredict) {
         updateParameters();
     }
+    
+    /*if(tPause){
+        ofLogNotice("debug")<<"oui";
+        app->sceneManager.onPause =true;
+    } else{
+        ofLogNotice("debug")<<"non";
+        app->sceneManager.onPause =false;
+    }*/
+    
     
     if (!cam.isFrameNew()) {
         return;
@@ -300,7 +314,7 @@ void GuiApp::draw() {
 void GuiApp::exit() {
     
     // save xml settings
-    xmlSettings.serialize(parameters);
+    //xmlSettings.serialize(parameters);
     xmlSettings.save("settings.xml");
     saveLabels();
     
@@ -406,6 +420,18 @@ void GuiApp::eSave() {
 }
 
 //--------------------------------------------------------------
+void GuiApp::ePause() {
+    if(app->sceneManager.onPause ){
+        app->sceneManager.onPause =false;
+        tPause = false;
+    }else{
+        app->sceneManager.onPause =true;
+        tPause = true;
+    }
+    
+}
+
+//--------------------------------------------------------------
 void GuiApp::eLoad() {
     ofFileDialogResult result = ofSystemLoadDialog("Which model to load?", true);
     if (result.bSuccess) {
@@ -423,6 +449,7 @@ void GuiApp::save(string modelName) {
     gui.saveToFile(ofToDataPath(modelName+"/settings.xml"));
     saveLabels();
 }
+
 
 //--------------------------------------------------------------
 void GuiApp::load(string modelPath) {
