@@ -13,7 +13,7 @@ var server = http.createServer(function (request, response) {
 	io=require('socket.io').listen(server),
 	fileServer = new staticServ.Server('./');
 
-server.listen(8080);
+server.listen(8090);
 
 function statPath(path) {
   try {
