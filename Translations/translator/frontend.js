@@ -20,10 +20,7 @@ recognition.onend = function() {
     recognition.start();
 }
 
-
-
 recognition.onresult = function(event) {
-	
 
     if(event.results && event.results.length > 0 ) {
         
@@ -33,13 +30,16 @@ recognition.onresult = function(event) {
         var	output = langs[translate_language.selectedIndex][1];
 
 		var transcript = event.results[event.results.length-1][0].transcript;
-
+		console.log(event.results[event.results.length-1][0].confidence);
         if (event.results[event.results.length-1][0].confidence > 0.8) {
 			ws.send(uniqueID+"|RAW|"+transcript+"|"+input[0]+"|"+output[0]);
             console.log("from "+input+" to "+ output);
+            updateField(transcript);
+        
         }else{
         	recognition.lang = output[0];
-            
+            recognition.stop();
+    
             temp = select_language.selectedIndex; 
             select_language.selectedIndex = translate_language.selectedIndex;
             translate_language.selectedIndex = temp;
@@ -48,17 +48,21 @@ recognition.onresult = function(event) {
         	output  = langs[translate_language.selectedIndex][1];
 
         	console.log("from "+input+" to "+ output)
+            if (input[0]=="fr-FR"){
+                ws.send(uniqueID+"|RAW|"+"changement de langue"+"|"+input[0]+"|"+output[0]);
+            }else{
+                ws.send(uniqueID+"|RAW|"+"changement de langue"+"|"+output[0]+"|"+input[0]);
+            }
 
-            ws.send(uniqueID+"|RAW|"+transcript+"|"+input[0]+"|"+output[0]);
+            updateField("<p style='color:green;'> changement de langue");
         }
 
-        updateField(transcript);
         
-    }  
-    
+    }    
 }
 
 recognition.start();
+
 
 function updateField(message) {
     
