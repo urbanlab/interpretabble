@@ -134,7 +134,6 @@ void SceneManager::setCurrentLabel(string label) {
     if(label == "rien" || label == "14") {
         currentSceneIndex = -1;
         label="rien";
-        ofLogNotice("Nothing");
     }
     
 }

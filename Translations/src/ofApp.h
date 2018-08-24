@@ -62,7 +62,7 @@ class ofApp : public ofBaseApp{
         shared_ptr<GuiApp> gui;
     
         // interface
-        ofImage tache, pattern, avatar,accueil ;
+        ofImage tache_init, tache_draw, pattern, avatar,accueil ;
         ofFbo translationsFbo;
         vector<ofImage> images;
         ofTrueTypeFont font;

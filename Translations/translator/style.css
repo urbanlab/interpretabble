@@ -1,0 +1,86 @@
+html, body {
+ margin: 0;
+ padding: 0;
+ }
+
+body {
+ font-family: Calvert, sans-serif; 
+ font-size: 100%;
+ 
+ }
+
+h1 {
+ font-size: 200%; 
+ text-align: center;
+ }
+
+h2 {
+ font-size: 150%; 
+ color: red; 
+ padding-left: 15px;
+ }
+
+
+ div{
+ 	float:none;
+ 	padding : 0%;
+ 	margin:0%;
+ }
+
+ .block{
+ 	float:none;
+ 	padding: 0%;
+ 	margin:0%;
+ }
+
+ .btn{
+ 	border-radius:0;
+ 	float:none;
+ 	padding:0;
+ 	margin:0;
+ 	background-color: #8AC0C9;
+ 	color: white;  
+ 	
+
+ }
+
+ 
+
+
+.form-control{
+	background-color:#ACD3D9;
+	color: #008091;
+}
+select:focus{
+	background-color: #ACD3D9 !important;
+	color: #008091 !important;
+}
+input:active{
+	background-color: #FADC55;
+	outline: none;
+}
+
+input:focus{
+ 	background-color: #FADC55;
+ }
+
+input:hover {
+ 	background-color: #FADC55;
+ 	text-decoration: none;
+}
+
+button:active{
+	background-color: #FADC55;
+}
+
+button:focus{
+ 	background-color: #FADC55 !important;
+ }
+
+button:hover {
+ 	text-decoration: none;
+}
+
+*:focus {box-shadow: none !important; }
+
+

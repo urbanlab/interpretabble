@@ -28,8 +28,9 @@ void ofApp::setup(){
     ndJsonTest();
     
 #else
+    tache_init.load("assets/images/tache_points.png");
+    tache_draw.load("assets/images/tache_rien.png");
     
-    tache.load("assets/images/tache.png");
     //pattern.load("assets/images/fond.png");
     avatar.load("assets/images/avatar.png");
     
@@ -89,12 +90,13 @@ void ofApp::draw() {
     ofBackground(180, 182, 183  );
     ofSetColor(255);
     ofEnableAlphaBlending();
-    tache.draw(0.0, 0.0);
+    //tache_init.draw(0.0, 0.0);
     //pattern.draw(0.0,0.0);
     avatar.draw(0.0, 0.0);
     
     //if nothing is drawn show the animation "welcome"
     if(sceneManager.on){
+        tache_init.draw(0.0, 0.0);
         uint64_t frameIndex = 0;
          
          if(bFrameIndependent) {
@@ -119,6 +121,11 @@ void ofApp::draw() {
              images[i].draw(0.0+x, ofGetHeight()-40, 40, 40);
              x += 40;
          }
+    }else{
+        tache_init.clear();
+        tache_init.update();
+        tache_draw.draw(0.0, 0.0);
+        tache_init.load("assets/images/tache_points.png");
     }
 
     drawTranslations();
@@ -415,40 +422,48 @@ void ofApp::parseTranslation( ofxLibwebsockets::Event& args) {
     string mesg = splitted[2];
     
     // check if already exist
-    translated  * trans = getTranslatedForID(id);
-    
-    if(trans) {
+    if(type == "PAUSE"){
+        sceneManager.onPause=true;
+    }else if(type=="PLAY"){
+        sceneManager.onPause=false;
+    }else{
+        translated  * trans = getTranslatedForID(id);
         
-        // update
-        trans->uniqueID = id;
-        if(type == "RAW")
-            trans->raw = mesg;
-        if(type == "TRANS")
-            trans->trans = mesg;
+        if(trans) {
+            
+            // update
+            trans->uniqueID = id;
+            if(type == "RAW")
+                trans->raw = mesg;
+            if(type == "TRANS")
+                trans->trans = mesg;
+            
+            
+        } else {
+            
+            // create & store
+            translated trans;
+            trans.uniqueID = id;
+            if(type == "RAW")
+                trans.raw = mesg;
+            if(type == "TRANS")
+                trans.trans = mesg;
+            
+            translations.push_back(trans);
+        }
         
-    } else {
+        // if type is not a translation we send for translation
+        //if(type == "RAW")
+        // send back for traduction
         
-        // create & store
-        translated trans;
-        trans.uniqueID = id;
-        if(type == "RAW")
-            trans.raw = mesg;
-        if(type == "TRANS")
-            trans.trans = mesg;
+        ofLogNotice("send back to server") << args.message;
+        server.send( args.message );
         
-        translations.push_back(trans);
+        
+        // is that necessary?
+        args.conn.send( args.message );
     }
     
-    // if type is not a translation we send for translation
-    //if(type == "RAW")
-        // send back for traduction
-    
-    ofLogNotice("send back to server") << args.message;
-    server.send( args.message );
-    
-    
-    // is that necessary?
-    args.conn.send( args.message );
     
 }
 

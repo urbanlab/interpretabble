@@ -56,7 +56,7 @@ void GuiApp::setup(){
     gui.add(bSave.setup("Save model"));
     gui.add(bLoad.setup("Load model"));
     gui.add(bCameraSettings.setup("Camera settings"));
-    gui.add(tPause.setup("Pause", false));
+    //gui.add(tPause.setup("Pause", false));
     //gui.add(brightness.set("brightness cam", 0.0, 0.0, 1.0));
 
     
@@ -81,7 +81,7 @@ void GuiApp::setup(){
     bAddCategorical.addListener(this, &GuiApp::eAddCategorical);
     bAddLabel.addListener(this, &GuiApp::eAddLabel);
     bCameraSettings.addListener(this, &GuiApp::changeCamera);
-    //bPause.addListener(this, &GuiApp::ePause);
+   
 
     labels.reserve(999);
     string emptyLabel = "No label";
@@ -186,15 +186,6 @@ void GuiApp::updateCCV() {
         updateParameters();
     }
     
-    /*if(tPause){
-        ofLogNotice("debug")<<"oui";
-        app->sceneManager.onPause =true;
-    } else{
-        ofLogNotice("debug")<<"non";
-        app->sceneManager.onPause =false;
-    }*/
-    
-    
     if (!cam.isFrameNew()) {
         return;
     }
@@ -294,10 +285,10 @@ void GuiApp::draw() {
         string label = ofToString(sliderValue);
          if(sliderValue < labels.size())
              label = labels[sliderValue-1];
-        
-        app->sceneManager.setCurrentLabel(label);
-        app->currentLabel = label;
-             
+        if(app->sceneManager.onPause !=true){
+            app->sceneManager.setCurrentLabel(label);
+            app->currentLabel = label;
+        }
         string txt = "Predicted Class: " + ofToString(sliderValue) + " " + label;
         ofSetColor(0,255,0);
         ofDrawBitmapStringHighlight( txt, 20, 100 + cam.getHeight() * scale );
@@ -417,18 +408,6 @@ void GuiApp::eSave() {
     if (modelName != "") {
         save(modelName);
     }
-}
-
-//--------------------------------------------------------------
-void GuiApp::ePause() {
-    if(app->sceneManager.onPause ){
-        app->sceneManager.onPause =false;
-        tPause = false;
-    }else{
-        app->sceneManager.onPause =true;
-        tPause = true;
-    }
-    
 }
 
 //--------------------------------------------------------------
