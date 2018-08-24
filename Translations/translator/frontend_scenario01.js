@@ -106,12 +106,12 @@ $('#pause_bt').on('click', function() {
 	if(!pause){
 		ws.send("NULL|PAUSE|NULL|NULL|NULL");
 		pause = true;
-		$(this).css("background-image", "url(img/play.jpeg)");
+		$(this).css("background-image", "url(img/play.png)");
 	} 
 	else{
 		ws.send("NULL|PLAY|NULL|NULL|NULL");
 		pause = false;
-		$(this).css("background-image", "url(img/pause.jpg)");
+		$(this).css("background-image", "url(img/pause.png)");
 
 	} 
 });

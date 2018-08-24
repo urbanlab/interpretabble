@@ -9,6 +9,10 @@ body {
  
  }
 
+@font-family: "Calvert";
+    src: url("../bin/data/assets/fonts/CALVERTMTSTD.OTF");
+    font-style: normal;
+
 h1 {
  font-size: 200%; 
  text-align: center;
@@ -44,7 +48,6 @@ h2 {
 
  }
 
- 
 
 
 .form-control{
@@ -61,7 +64,7 @@ input:active{
 }
 
 input:focus{
- 	background-color: #FADC55;
+ 	background-color: #FADC55 !important;
  }
 
 input:hover {
@@ -69,13 +72,6 @@ input:hover {
  	text-decoration: none;
 }
 
-button:active{
-	background-color: #FADC55;
-}
-
-button:focus{
- 	background-color: #FADC55 !important;
- }
 
 button:hover {
  	text-decoration: none;
