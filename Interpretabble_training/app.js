@@ -33,7 +33,7 @@ io.sockets.on('connection', function (socket) {
 	    });
 
 	    //call the python script to realize the prediction
-	    var pythonProcess = spawn("python2", ["../Translations/prediction/scripts/label_image.py", "/Users/erasme/Desktop/interpretabble/Interpretabble_training/public/output.jpg"]);
+	    var pythonProcess = spawn("python2", ["../Translations/prediction/scripts/label_image.py", "./public/output.jpg"]);
     
 		pythonProcess.stdout.on('data', (data) =>{
 			var rep = data.toString();
@@ -51,8 +51,8 @@ io.sockets.on('connection', function (socket) {
 
 		var date = new Date(),
 	    	name = date.getFullYear()+date.getMonth().toString().replace(/^(\d)$/,'0$1')+date.getDate().toString().replace(/^(\d)$/,'0$1'),
-	    	path = "./public/Data/"+data.category,
-	    	//path = "../Translations/prediction/tf_files/drawings/"+data.category,
+	    	//path = "./public/Data/"+data.category,
+	    	path = "../Translations/prediction/tf_files/drawings/"+data.category,
 	    	exist = statPath(path);
 
 	    //create category's folder
@@ -65,8 +65,8 @@ io.sockets.on('connection', function (socket) {
 		    //check file's existence
     		while(exist && exist.isFile()) {
 		      i = i+1;
-		      path = "./public/Data/"+data.category+"/"+name+i.toString().replace(/^(\d)$/,'0$1')+".jpg";
-		      //path = "../Translations/prediction/tf_files/drawings/"+data.category+"/"+name+i.toString().replace(/^(\d)$/,'0$1')+".jpg",
+		      //path = "./public/Data/"+data.category+"/"+name+i.toString().replace(/^(\d)$/,'0$1')+".jpg";
+		      path = "../Translations/prediction/tf_files/drawings/"+data.category+"/"+name+i.toString().replace(/^(\d)$/,'0$1')+".jpg",
 		      exist = statPath(path);
 		    }
 	    }

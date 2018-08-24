@@ -167,7 +167,7 @@ function setOther(obj){
 }
 
 /*
-	Gets the category from the selected buton and asks the user to confirm his choice.
+	Gets the category from the selected button and asks the user to confirm his choice.
 */
 function setCategory(obj){
 

@@ -79,9 +79,9 @@ def load_labels(label_file):
 
 if __name__ == "__main__":
   #get the path of the image to be recognized
-  file_name=sys.argv[1] 
-  model_file = "/Users/erasme/Desktop/interpretabble/Translations/prediction/tf_files/retrained_graph.pb"
-  label_file = "/Users/erasme/Desktop/interpretabble/Translations/prediction/tf_files/retrained_labels.txt"
+  file_name=sys.argv[1]
+  model_file = "../Translations/prediction/tf_files/retrained_graph.pb"
+  label_file = "../Translations/prediction/tf_files/retrained_labels.txt"
   input_height = 224
   input_width = 224
   input_mean = 128
