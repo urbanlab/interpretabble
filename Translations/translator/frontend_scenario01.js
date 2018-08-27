@@ -101,7 +101,9 @@ var t = this;
 function resetVoiceRecog() {
     t.recognition.stop();
 }
-
+/*$('.btn').click(function(){
+      $('.collapse').collapse($(this).attr('id'))
+    })*/
 $('#pause_bt').on('click', function() {
 	if(!pause){
 		ws.send("NULL|PAUSE|NULL|NULL|NULL");
@@ -119,7 +121,8 @@ $('#pause_bt').on('click', function() {
 function setScenario(data){
     console.log(data.id);
 
-    if(data.id != "sante"){
+    
+    if(data.id != "sante" && data.id != "yeux"){
         $('#SanteBoutons').hide();
     }else{
         $('#SanteBoutons').show();

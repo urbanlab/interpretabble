@@ -26,7 +26,7 @@
             <div class="block col-md-3" style="float:none; background-color:#8AC0C9; padding-bottom:100%">    
               <div class="col-md-12">
                 <button class="btn btn-lg btn-block" style="background-color: #8AC0C9; padding: none; float: none margin=none;" onclick="document.location.href='./index.html';">
-                  <span data-feather="arrow-left-circle" color = #008091></span>
+                  <img src="img/fleche.png" style=" width:70px; height:70px;">
                   <h1 style="color:white">Accueil</h1></button>
               </div>
             
@@ -35,30 +35,38 @@
                 <input class="btn btn-lg" id="Auto" type="submit" onclick="setScenario(this)" style="background-color: #008091; " value="Auto">
               </div>
               <div class="col-md-12 text-center">
-                <button class="btn btn-lg" id="pause_bt" type="button"  style="background-image: url(img/pause.png); width:235px; height:177px; background-size: 235px 177px; 
+                <button class="btn btn-lg" id="pause_bt" type="button"  style="background-image: url(img/pause.png); width:111px; height:111px; background-size: 111px 111px; 
     background-repeat: no-repeat;"></button>
            
                 </div>
             </div>
             
-            <div class="block col-md-3" style="margin-left:0.2%; background-color:#ACD3D9; padding-bottom:100%">
-                
+            <div class="block col-md-3" style="margin-left:0.2%; background-color:#ACD3D9; padding-bottom:100%" >
+                <div class="body-block" id ="parent">
                   <input class="btn btn-lg btn-block " type="submit" value="Naissance" id="ambulance" onclick="setScenario(this)">
-                  <input class="btn btn-lg btn-block " type="submit" value="Santé" id="sante" href= "#SanteBoutons" data-toggle="collapse" aria-expanded="false" aria-controls="SanteBoutons" onclick="setScenario(this)">
-                  <input class="btn btn-lg btn-block " type="submit" value="Alimentation" id="biberon"href= "#AlimentationBoutons" data-toggle="collapse" aria-expanded="false" aria-controls="AlimentationBoutons" onclick="setScenario(this)">
+                  <input class="btn btn-lg btn-block " type="submit" value="Santé" id="sante" href= "#SanteBoutons" data-toggle="collapse" onclick="setScenario(this)">
+                  <input class="btn btn-lg btn-block " type="submit" value="Alimentation" id="biberon" href= "#AlimentationBoutons" data-toggle="collapse" onclick="setScenario(this)">
                   <input class="btn btn-lg btn-block " type="submit" value="Sommeil" id="lit" onclick="setScenario(this)">
                   <input class="btn btn-lg btn-block " type="submit" value="Hygiène" id="Hygiene" onclick="setScenario(this)">
                   <input class="btn btn-lg btn-block " type="submit" value="Eveil" id="maison" onclick="setScenario(this)">
+                </div>
             </div>
 
             <div class="block col-md-3" style="margin-left:0.2%; background-color:#ACD3D9; padding-bottom:100%">
-                <section id="SanteBoutons" class=" collapse">
+                <div id="SanteBoutons" class="collapse" data-parent="#parent">
                   <div class="body-block">
-                    <input class="btn btn-lg btn-block " type="submit" value="Vaccins" id="Vaccin" >
-                    <input class="btn btn-lg btn-block " type="submit" value="Vue" id="Vue">
-                    <input class="btn btn-lg btn-block " type="submit" value="Médicaments" id="Medicament">
+                    <input class="btn btn-lg btn-block " type="submit" value="Vaccins" id="vaccin" >
+                    <input class="btn btn-lg btn-block " type="submit" value="Vue" id="yeux" onclick="setScenario(this)">
+                    <input class="btn btn-lg btn-block " type="submit" value="Médicaments" id="medicament">
                   </div>
-                </section>
+                </div>
+                <div id="AlimentationBoutons" class=" collapse" data-parent="#parent">
+                  <div class="body-block">
+                    <input class="btn btn-lg btn-block " type="submit" value="Biberon" id="vaccin" >
+                    <input class="btn btn-lg btn-block " type="submit" value="Vue" id="yeux" onclick="setScenario(this)">
+                    <input class="btn btn-lg btn-block " type="submit" value="Médicaments" id="medicament">
+                  </div>
+                </div>
 
             </div>
             <div class="block col-md-2" style="margin-left: 0.2%; margin-right :100%%; background-color:#ACD3D9; padding-bottom:100%">
@@ -74,10 +82,6 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Icons -->
-    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-    <script>
-      feather.replace()
-    </script>
     <script type="text/javascript" src="frontend_scenario01.js"></script>
    
   </body>
