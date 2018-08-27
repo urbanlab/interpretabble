@@ -5,10 +5,10 @@
     <Track_Hue_Saturation>0</Track_Hue_Saturation>
     <Calibration>0</Calibration>
     <Cropped_X>597</Cropped_X>
-    <Cropped_Y>468</Cropped_Y>
-    <Cropped_W>480</Cropped_W>
-    <Cropped_H>325</Cropped_H>
+    <Cropped_Y>424</Cropped_Y>
+    <Cropped_W>1077</Cropped_W>
+    <Cropped_H>639</Cropped_H>
     <Opacity>0</Opacity>
     <Prediction_lerp>0.2</Prediction_lerp>
-    <thresold_cam>131.403</thresold_cam>
+    <thresold_cam>148.316</thresold_cam>
 </group>
