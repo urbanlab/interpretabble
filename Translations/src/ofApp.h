@@ -7,7 +7,7 @@
 #include "GuiApp.hpp"
 #include "ofxLibwebsockets.h"
 #include "SceneManager.hpp"
-#include <stdlib.h>
+#include "ofxFontStash.h"
 
 #define NUM_MESSAGES 2
 
@@ -62,15 +62,12 @@ class ofApp : public ofBaseApp{
         shared_ptr<GuiApp> gui;
     
         // interface
-        ofImage tache_init, tache_draw, pattern, avatar,accueil ;
+        ofImage tache, pattern, avatar;
         ofFbo translationsFbo;
-        vector<ofImage> images;
         ofTrueTypeFont font;
+        ofxFontStash fontStash;
+
         int background;
-    
-        int   appFPS;
-        float sequenceFPS;
-        bool  bFrameIndependent;
     
         // sockets
         ofxLibwebsockets::Server server;
@@ -83,6 +80,8 @@ class ofApp : public ofBaseApp{
     
         SceneManager sceneManager;
         string currentLabel;
+    
+        bool bEnableDetection;
     
     
 #ifdef DATASETMODE

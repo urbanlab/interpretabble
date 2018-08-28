@@ -15,6 +15,7 @@
 #include "ofxXmlSettings.h"
 #include "ofxCcvThreaded.h"
 #include "PipelineThreaded.h"
+#include "ofxOsc.h"
 
 #define SIZE_INPUT_VECTOR 4096
 
@@ -76,6 +77,9 @@ public:
     ofParameter<bool> videoSettings;
     
     ofParameter<float> camThresoldSlider, brigthness;
+    
+    ofParameter<int> frameDelay;
+
 
     ofImage camImage, camThresold;
     
@@ -95,8 +99,8 @@ public:
     
     ofxPanel guiSliders;
     
-    ofxButton bTrain, bSave, bLoad, bClear, bAddSlider, bAddCategorical, bOscSettings, bCameraSettings, bAddLabel, bPause;
-    ofxToggle tRecord, tPredict, tPause;
+    ofxButton bTrain, bSave, bLoad, bClear, bAddSlider, bAddCategorical, bOscSettings, bCameraSettings, bAddLabel;
+    ofxToggle tRecord, tPredict;
 
     
     void updateCCV();
@@ -114,7 +118,6 @@ public:
 
     void eSave();
     void eLoad();
-    void ePause();
     void clear();
     
     void saveLabels();
@@ -124,6 +127,9 @@ public:
     vector<string> labels;
     
     shared_ptr<ofApp>  app;
+    
+    ofxOscReceiver osc;
+    ofxOscSender sender;
   
 };
 

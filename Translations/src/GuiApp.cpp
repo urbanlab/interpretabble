@@ -22,7 +22,7 @@ void GuiApp::setup(){
     
     gui.setup();
     parameters.add(scale.set("Scale", 0.8, 0.1, 1.0));
-    parameters.add(targetColor.set("color", ofColor(255)));
+    //parameters.add(targetColor.set("color", ofColor(255)));
     parameters.add(brightness.set("blur", 3, 0, 255));
 
     parameters.add(threshold.set("Threshold", 128, 0, 255));
@@ -49,14 +49,15 @@ void GuiApp::setup(){
 
     gui.add(parameters);
     
-    gui.add(tRecord.setup("Record", false));
-    gui.add(bClear.setup("Clear training data"));
-    gui.add(bTrain.setup("Train"));
-    gui.add(tPredict.setup("Predict", false));
-    gui.add(bSave.setup("Save model"));
-    gui.add(bLoad.setup("Load model"));
+   // gui.add(tRecord.setup("Record", false));
+   // gui.add(bClear.setup("Clear training data"));
+    //gui.add(bTrain.setup("Train"));
+   // gui.add(tPredict.setup("Predict", false));
+    //gui.add(bSave.setup("Save model"));
+   // gui.add(bLoad.setup("Load model"));
     gui.add(bCameraSettings.setup("Camera settings"));
-    //gui.add(tPause.setup("Pause", false));
+    
+    //gui.add(frameDelay.set("Frame delay", 200, 0, 1000));
     //gui.add(brightness.set("brightness cam", 0.0, 0.0, 1.0));
 
     
@@ -65,23 +66,21 @@ void GuiApp::setup(){
     
     tRecord = false;
     tPredict = false;
-    //tPause=false;
 
     guiSliders.setup();
     guiSliders.setPosition(580, 10);
     guiSliders.setName("Outputs");
-    guiSliders.add(bAddCategorical.setup("Add Categorical"));
-    guiSliders.add(bAddLabel.setup("set label"));
+    //guiSliders.add(bAddCategorical.setup("Add Categorical"));
+   // guiSliders.add(bAddLabel.setup("set label"));
 
-    bTrain.addListener(this, &GuiApp::train);
-    bSave.addListener(this, &GuiApp::eSave);
-    bLoad.addListener(this, &GuiApp::eLoad);
-    bClear.addListener(this, &GuiApp::clear);
-    bAddSlider.addListener(this, &GuiApp::eAddSlider);
-    bAddCategorical.addListener(this, &GuiApp::eAddCategorical);
-    bAddLabel.addListener(this, &GuiApp::eAddLabel);
+   // bTrain.addListener(this, &GuiApp::train);
+   // bSave.addListener(this, &GuiApp::eSave);
+   // bLoad.addListener(this, &GuiApp::eLoad);
+   // bClear.addListener(this, &GuiApp::clear);
+   // bAddSlider.addListener(this, &GuiApp::eAddSlider);
+   // bAddCategorical.addListener(this, &GuiApp::eAddCategorical);
+   // bAddLabel.addListener(this, &GuiApp::eAddLabel);
     bCameraSettings.addListener(this, &GuiApp::changeCamera);
-   
 
     labels.reserve(999);
     string emptyLabel = "No label";
@@ -99,7 +98,14 @@ void GuiApp::setup(){
     tRecord = false;
     tPredict = false;
     
+    // caption OSC
+    osc.setup(2223);
+    sender.setup("localhost", 2222);
     
+    ofxOscMessage mess;
+    mess.setAddress("/img");
+    mess.addStringArg(ofToDataPath("output.jpg", true));
+    sender.sendMessage(mess, false);
     
 }
 
@@ -107,6 +113,7 @@ void GuiApp::update() {
     
     
     app->background = backgroundOpacity;
+    app->sceneManager.nFramesDelaymax = frameDelay;
     cam.update();
     
     if(cam.isFrameNew()) {
@@ -147,8 +154,44 @@ void GuiApp::update() {
             
         }
          */
-        updateCCV();
+        //updateCCV();
+        
+        
+       
+        
 
+    }
+    
+    // update the cameras
+    while(osc.hasWaitingMessages()){
+        
+        
+        // get the next message
+        ofxOscMessage m;
+        osc.getNextMessage(m);
+        
+        //  ofLogNotice("message") << m.getAddress();
+        string caption = m.getAddress();
+        // check for mouse moved message
+        // both the arguments are int32's
+        //caption = m.getArgAsString(0);
+        
+        //vector<string> splitted = ofSplitString(caption, "_");
+        //string id = splitted[0];
+        //caption = splitted[1];
+
+        ofLogNotice("Message received ") << caption;
+        
+        app->currentLabel = caption;
+        
+         camThresold.save("output.jpg");
+        ofxOscMessage mess;
+        mess.setAddress("/img");
+        mess.addStringArg(ofToDataPath("output.jpg", true));
+        sender.sendMessage(mess, false);
+        
+        
+        
     }
     
 }
@@ -268,6 +311,7 @@ void GuiApp::draw() {
     ofPopMatrix();
     
     
+    
     ofDrawBitmapStringHighlight( "Num samples recorded: " + ofToString(numSamples), 20, 0 + cam.getHeight() * scale );
 
     if (infoText != ""){
@@ -285,10 +329,12 @@ void GuiApp::draw() {
         string label = ofToString(sliderValue);
          if(sliderValue < labels.size())
              label = labels[sliderValue-1];
-        if(app->sceneManager.onPause !=true){
+        
+        if(app->bEnableDetection)
             app->sceneManager.setCurrentLabel(label);
-            app->currentLabel = label;
-        }
+        
+        //app->currentLabel = label;
+             
         string txt = "Predicted Class: " + ofToString(sliderValue) + " " + label;
         ofSetColor(0,255,0);
         ofDrawBitmapStringHighlight( txt, 20, 100 + cam.getHeight() * scale );
@@ -296,8 +342,16 @@ void GuiApp::draw() {
        // largeFont.drawString(txt, 237, 92 + cam.getHeight());
     }
     
+    if(app->bEnableDetection)
+        app->sceneManager.setCurrentLabel(app->currentLabel );
+    
     gui.draw();
     guiSliders.draw();
+    
+    string txt = "Predicted Class: " + app->currentLabel;
+    ofSetColor(0,255,0);
+    ofDrawBitmapStringHighlight( txt, 20, 100 + cam.getHeight() * scale );
+    
 
     
 }
@@ -305,7 +359,7 @@ void GuiApp::draw() {
 void GuiApp::exit() {
     
     // save xml settings
-    //xmlSettings.serialize(parameters);
+    xmlSettings.serialize(parameters);
     xmlSettings.save("settings.xml");
     saveLabels();
     
@@ -429,7 +483,6 @@ void GuiApp::save(string modelName) {
     saveLabels();
 }
 
-
 //--------------------------------------------------------------
 void GuiApp::load(string modelPath) {
     
@@ -532,6 +585,13 @@ void GuiApp::keyPressed(int key) {
     
     if ( key == 'n' ) {
         app->sceneManager.nextLabel();
+    }
+    
+    if ( key == 'o' ) {
+    ofxOscMessage mess;
+    mess.setAddress("/img");
+    mess.addStringArg(ofToDataPath("output.jpg", true));
+    sender.sendMessage(mess, false);
     }
     
 }

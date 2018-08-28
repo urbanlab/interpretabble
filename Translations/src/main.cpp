@@ -6,11 +6,13 @@
 int main( ){
     
     ofGLWindowSettings settings;
-    settings.setSize(600,600);
+    settings.width = 600;
+    settings.height = 600;
     settings.setPosition(ofVec2f(2400,0));
     auto mainWindow = ofCreateWindow(settings);
     
-    settings.setSize(1280,1080);
+    settings.width = 1280;
+    settings.height = 1080;
     settings.setPosition(ofVec2f(0,0));
     auto guiWindow = ofCreateWindow(settings);
     

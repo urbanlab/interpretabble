@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include "Scene.hpp"
-
+#include "ImageSequencePlayer.hpp"
 class SceneManager {
   
 public:
@@ -21,6 +21,8 @@ public:
     void draw();
     void loadAssets();
     void setCurrentLabel(string label);
+    void setCurrentLabel(int id);
+
     void nextLabel();
     
     void onSceneChanged();
@@ -28,13 +30,17 @@ public:
 
     
     vector<Scene*> scenes;
-    bool on;
-    bool onPause;
+    
+    int nFramesDelaymax;
     
 private:
     
+    ImageSequencePlayer accueil;
     int currentSceneIndex;
     
+    int nFramesIndexChangedDelay;
+    bool bHasChanged;
+    int tempIndex;
 };
 
 #endif /* SceneManager_hpp */

@@ -12,13 +12,15 @@ void Scene::update() {
     for (int i=0; i<assets.size(); i++) {
        
         assets[i].update();
-
+       
+        
     }
     
 }
 void Scene::draw() {
-
+    
     ofEnableAlphaBlending();
+    
     ofPushMatrix();
     float yPos = 88.0;
     for (int i=0; i<assets.size(); i++) {
@@ -47,6 +49,7 @@ void Scene::onStart() {
         assets[i].opacity.setCurve(EASE_IN);
         assets[i].opacity.setDuration(0.55 + i * 0.1);
         assets[i].opacity.animateTo(255.0);
+        assets[i].play();
         
     }
     
