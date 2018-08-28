@@ -1,0 +1,10 @@
+ambulance
+biberon
+bouche
+croissance
+croix
+lit
+lune
+maison
+nez
+yeux

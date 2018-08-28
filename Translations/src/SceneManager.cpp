@@ -10,49 +10,18 @@
 
 void SceneManager::setup() {
     
+    on = true;
     currentSceneIndex = -1;
     loadAssets();
     
-    accueil.setup();
-    accueil.loadFolder("accueil");
-    accueil.setFps(30);
-    accueil.setLoop(true);
-    accueil.play();
-    
-    bHasChanged = false;
-    tempIndex = currentSceneIndex;
-    nFramesIndexChangedDelay = 0;
-    nFramesDelaymax = 500;
 }
 
 void SceneManager::update() {
     
-    if (tempIndex != currentSceneIndex ) {
-        
-        // man, we have potentially changed.
-        // let's wait for a bit
-        nFramesIndexChangedDelay++;
-        
-        ofLogNotice("waiting... ") << nFramesIndexChangedDelay;
-        // man. Times up.
-        
-        if(nFramesIndexChangedDelay > nFramesDelaymax) {
-            
-            nFramesIndexChangedDelay = 0;
-            currentSceneIndex = tempIndex;
-            onSceneChanged();
-            
-        }
-        
-        
-    }
-    
     if(currentSceneIndex < 0 || currentSceneIndex >= scenes.size()) {
-        
-        accueil.update();
-        
+        on = true;
     } else {
-        
+        on = false;
         // draw
         scenes[currentSceneIndex]->update();
         
@@ -64,13 +33,9 @@ void SceneManager::draw() {
     
     // idle mode
     if(currentSceneIndex < 0 || currentSceneIndex >= scenes.size()) {
-        
-        ofSetColor(255,255);
-        accueil.draw(0.0,0.0, 1920, 1080);
-
-        
+        //on = true;
     } else {
-        
+        //on = false;
         // draw
         scenes[currentSceneIndex]->draw();
         ofLogNotice("Drawing ") << scenes[currentSceneIndex]->label;
@@ -103,43 +68,44 @@ void SceneManager::loadAssets() {
 
             for(int j = 0; j < subdir.size(); j++){
                 
-                ofFile file = subdir.getFile(j);
-                
-               
-                
-                
-                if ( file.getBaseName() == "tools" ) {
-                    
-                    scene->toolsImage.load(file.getAbsolutePath());
-                    
-                } else {
+                ofDirectory subsubdir(subdir.getPath(j));
+                if(subsubdir.isDirectory()){
                     
                     Asset asset;
-                    if(file.isDirectory()) {
+                    asset.addAsset(subsubdir.getAbsolutePath(), "dir");
+                    scene->assets.push_back(asset);
+                    
+                    
+                }else{
+                    ofFile file = subdir.getFile(j);
+                    
+                    
+                    
+                    if ( file.getBaseName() == "tools" ) {
                         
-                        ofLogNotice("check folder") << subdir.getPath(j);
-                        asset.addAsset(subdir.getPath(j), "folder");
-
+                        scene->toolsImage.load(file.getAbsolutePath());
+                        
                     } else {
-                    
-                    string ext = file.getExtension();
-                    
-                    asset.addAsset(file.getAbsolutePath(), file.getExtension());
+                        
+                        string ext = file.getExtension();
+                        Asset asset;
+                        asset.addAsset(file.getAbsolutePath(), file.getExtension());
+                        scene->assets.push_back(asset);
                         
                     }
-                    scene->assets.push_back(asset);
-
-
+                    
+                    ofLogNotice("Adding ") << file.getBaseName();
+                    
+                    
+                }
                 }
                 
-                ofLogNotice("Adding ") << file.getBaseName();
                 
-                
-            }
             scenes.push_back(scene);
             
         }
     }
+
     
     ofLogNotice("Parsing done with ") << scenes.size() << " scenes";
 
@@ -157,15 +123,18 @@ void SceneManager::setCurrentLabel(string label) {
         if(scenes[i]->label == label ) {
             
             if(currentSceneIndex != i) {
-                tempIndex = i;
+                currentSceneIndex = i;
+                onSceneChanged();
+                bhasFound = true;
                 return;
             }
         }
     }
     
-    if(label == "rien") {
-        tempIndex = -1;
-        //ofLogNotice("Nothing");
+    if(label == "rien" || label == "14") {
+        currentSceneIndex = -1;
+        label="rien";
+        ofLogNotice("Nothing");
     }
     
 }
@@ -176,13 +145,11 @@ void SceneManager::onSceneChanged() {
 
     
     if(currentSceneIndex < 0 || currentSceneIndex >= scenes.size()) {
-        accueil.play();
+        
     } else {
         scenes[currentSceneIndex]->onStart();
         
     }
-    
-    tempIndex = currentSceneIndex;
     
 }
 
@@ -190,14 +157,6 @@ void SceneManager::onSceneOutHandler() {
     
 
 }
-
-void SceneManager::setCurrentLabel(int id) {
-    
-    currentSceneIndex = id - 1;
-    onSceneChanged();
-    
-}
-
 
 void SceneManager::nextLabel() {
     

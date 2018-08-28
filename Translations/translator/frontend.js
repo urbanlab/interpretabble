@@ -4,6 +4,7 @@ var messages    = [];
 var errors      = [];
 var SpeechRecognition = window.webkitSpeechRecognition;
 var recognition = new SpeechRecognition();
+
 recognition.lang = "fr-FR";
 recognition.continuous = true;
 
@@ -20,26 +21,48 @@ recognition.onend = function() {
 }
 
 recognition.onresult = function(event) {
-    
-    console.log("result" + event);
-    console.log(translate_language.selectedIndex)
+
     if(event.results && event.results.length > 0 ) {
         
-        var transcript = event.results[event.results.length-1][0].transcript;
         var uniqueID = (new Date()).getTime();
-        
-        console.log(translate_language.selectedIndex)
-        var input   = langs[select_language.selectedIndex][1];
-        var output  = langs[translate_language.selectedIndex][1];
 
-        ws.send(uniqueID+"|RAW|"+transcript+"|"+input+"|"+output);
+        var input  = langs[select_language.selectedIndex][1];
+        var	output = langs[translate_language.selectedIndex][1];
 
-        updateField(transcript);
+		var transcript = event.results[event.results.length-1][0].transcript;
+		console.log(event.results[event.results.length-1][0].confidence);
+        if (event.results[event.results.length-1][0].confidence > 0.8) {
+			ws.send(uniqueID+"|RAW|"+transcript+"|"+input[0]+"|"+output[0]);
+            console.log("from "+input+" to "+ output);
+            updateField(transcript);
         
-    }
+        }else{
+        	recognition.lang = output[0];
+            recognition.stop();
+    
+            temp = select_language.selectedIndex; 
+            select_language.selectedIndex = translate_language.selectedIndex;
+            translate_language.selectedIndex = temp;
+
+            input   = langs[select_language.selectedIndex][1];
+        	output  = langs[translate_language.selectedIndex][1];
+
+        	console.log("from "+input+" to "+ output)
+            if (input[0]=="fr-FR"){
+                ws.send(uniqueID+"|RAW|"+"changement de langue"+"|"+input[0]+"|"+output[0]);
+            }else{
+                ws.send(uniqueID+"|RAW|"+"changement de langue"+"|"+output[0]+"|"+input[0]);
+            }
+
+            updateField("<p style='color:green;'> changement de langue");
+        }
+
+        
+    }    
 }
 
 recognition.start();
+
 
 function updateField(message) {
     
@@ -150,6 +173,5 @@ for (var i = 0; i < langs.length; i++) {
 for (var i = 0; i < langs.length; i++) {
     translate_language.options[i] = new Option(langs[i][0], i);
 }
-console.log(translate_language.selectedIndex)
 select_language.selectedIndex       = 14;
 translate_language.selectedIndex    = 11;

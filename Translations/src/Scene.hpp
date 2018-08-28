@@ -11,7 +11,6 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include "ofxAnimatableFloat.h"
-#include "ImageSequencePlayer.hpp"
 
 class Asset {
   
@@ -24,27 +23,40 @@ public:
             image.load(path);
         }
         
-        if (ext == "mov" || ext == "mp4") {
+        if (ext == "mov" || ext == "mp4" || ext =="avi") {
             video.load(path);
             video.play();
         }
         
-        if(ext == "folder" ) {
+        if(ext == "dir") {
+            ofDirectory dir;
+            int nFiles = dir.listDir(path);
+            if(nFiles) {
+                
+                for(int i=0; i<dir.numFiles()-1; i++) {
+                    
+                    // add the image to the vector
+                    string filePath = dir.getPath(i);
+                    ofLogNotice("AddAsset ") << filePath;
+                    images.push_back(ofImage());
+                    images.back().load(filePath);
+                    
+                }
+                
+            } else ofLog(OF_LOG_WARNING) << "Could not find folder";
             
-            ofLogNotice("yeah folder");
-            sequence.setup();
-            sequence.loadFolder(path);
-            sequence.setFps(30);
-            sequence.setLoop(true);
-            sequence.play();
+            // this toggle will tell the sequence
+            // to be indepent of the app fps
+            bFrameIndependent = true;
             
-        }
-        
-    }
-    
-    void play () {
-        if(sequence.bIsLoaded){
-            sequence.play();
+            // this will set the speed to play
+            // the animation back we set the
+            // default to 24fps
+            sequenceFPS = 24;
+            
+            // set the app fps
+            appFPS = 60;
+            ofSetFrameRate(appFPS);
             
         }
     }
@@ -56,11 +68,6 @@ public:
         
         if(video.isLoaded()) {
             video.update();
-        }
-        
-        if(sequence.bIsLoaded){
-            sequence.update();
-
         }
     }
     
@@ -78,12 +85,33 @@ public:
             video.draw(0.0, 0.0);
         }
         
-        if(sequence.bIsLoaded) {
-            sequence.draw(0.0,0.0, sequence.getWidth(), sequence.getHeight());
-            ofLogNotice("drawing folder ") << sequence.getWidth() << " " << sequence.getHeight();
-
+        if(images.size()>0){
+            ofLogNotice("Draw ") << images.size();
+            uint64_t frameIndex = 0;
+            
+            if(bFrameIndependent) {
+                // calculate the frame index based on the app time
+                // and the desired sequence fps. then mod to wrap
+                frameIndex = (int)(ofGetElapsedTimef() * sequenceFPS)% images.size();
+            }
+            else {
+                // set the frame index based on the app frame
+                // count. then mod to wrap.
+                frameIndex = ofGetFrameNum() % images.size();
+            }
+            
+            // draw the image sequence at the new frame count
+            images[frameIndex].draw(0.0, 0.0);
+            
+            
+            // draw where we are in the sequence
+            float x = 0;
+            for(int offset = 0; offset < 5; offset++) {
+                int i = (frameIndex + offset) % images.size();
+                images[i].draw(0.0+x, ofGetHeight()-40, 40, 40);
+                x += 40;
+            }
         }
-        
         ofDisableAlphaBlending();
          
     }
@@ -97,8 +125,8 @@ public:
             return video.getHeight();
         }
         
-        if(sequence.bIsLoaded) {
-            return sequence.getHeight();
+        if(images.size()>0){
+            return images[0].getHeight();
         }
         
     }
@@ -106,7 +134,12 @@ public:
     ofImage image;
     ofVideoPlayer video;
     ofxAnimatableFloat opacity;
-    ImageSequencePlayer sequence;
+    vector<ofImage> images;
+    
+    int   appFPS;
+    float sequenceFPS;
+    bool  bFrameIndependent;
+
     
 };
 
@@ -123,6 +156,7 @@ public:
     void onEnd();
     
     ofImage toolsImage;
+    ofVideoPlayer accueil;
 
     
 private:

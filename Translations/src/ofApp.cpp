@@ -1,4 +1,7 @@
 #include "ofApp.h"
+#include <sstream>
+#include <string>
+#include <iomanip>
 
 using namespace ofxCv;
 using namespace cv;
@@ -15,11 +18,9 @@ void ofApp::setup(){
     bSetup = server.setup( options );
     server.addListener(this);
     
-    bEnableDetection = true;
-    
     translationFontSize = 12;
     font.load("assets/fonts/CALVERTMTSTD-BOLD.OTF", translationFontSize);
-    fontStash.setup("assets/fonts/CALVERTMTSTD-BOLD (1).ttf", 1.0, 1024, false, 8, 1.5);
+    
     sceneManager.setup();
 
 #ifdef DATASETMODE
@@ -29,8 +30,41 @@ void ofApp::setup(){
 #else
     
     tache.load("assets/images/tache.png");
-    pattern.load("assets/images/fond.png");
+    //pattern.load("assets/images/fond.png");
     avatar.load("assets/images/avatar.png");
+    
+    // read the directory for the images
+    ofDirectory dir;
+    
+    // load the sequence of images
+    int nFiles = dir.listDir("accueil");
+    if(nFiles) {
+        
+        for(int i=0; i<dir.numFiles()-1; i++) {
+            
+            // add the image to the vector
+            string filePath = dir.getPath(i);
+            ofLogNotice("Setup ") << filePath;
+            images.push_back(ofImage());
+            images.back().load(filePath);
+            
+        }
+        
+    } else ofLog(OF_LOG_WARNING) << "Could not find folder";
+    
+    // this toggle will tell the sequence
+    // to be indepent of the app fps
+    bFrameIndependent = true;
+    
+    // this will set the speed to play
+    // the animation back we set the
+    // default to 24fps
+    sequenceFPS = 24;
+    
+    // set the app fps
+    appFPS = 60;
+    ofSetFrameRate(appFPS);
+
 
 #endif
     
@@ -43,8 +77,6 @@ void ofApp::update() {
     
     sceneManager.update();
 
-   
-    
 }
 
 void ofApp::draw() {
@@ -54,19 +86,47 @@ void ofApp::draw() {
     return;
 #endif
     
-    ofBackground(180);
+    ofBackground(180, 182, 183  );
     ofSetColor(255);
     ofEnableAlphaBlending();
     tache.draw(0.0, 0.0);
-    pattern.draw(0.0,0.0);
+    //pattern.draw(0.0,0.0);
     avatar.draw(0.0, 0.0);
     
+    //if nothing is drawn show the animation "welcome"
+    if(sceneManager.on){
+        uint64_t frameIndex = 0;
+         
+         if(bFrameIndependent) {
+         // calculate the frame index based on the app time
+         // and the desired sequence fps. then mod to wrap
+         frameIndex = (int)(ofGetElapsedTimef() * sequenceFPS)% images.size();
+         }
+         else {
+         // set the frame index based on the app frame
+         // count. then mod to wrap.
+         frameIndex = ofGetFrameNum() % images.size();
+         }
+         
+         // draw the image sequence at the new frame count
+         images[frameIndex].draw(0.0, 0.0);
+         
+         
+         // draw where we are in the sequence
+         float x = 0;
+         for(int offset = 0; offset < 5; offset++) {
+             int i = (frameIndex + offset) % images.size();
+             images[i].draw(0.0+x, ofGetHeight()-40, 40, 40);
+             x += 40;
+         }
+    }
+
     drawTranslations();
     
     sceneManager.draw();
     
     ofSetColor(0);
-    font.drawString(currentLabel, 340,  ofGetHeight() - translationFontSize );
+    font.drawString(currentLabel, 900,  ofGetHeight() - translationFontSize );
     
     ofEnableAlphaBlending();
     ofSetColor(0, background);
@@ -76,6 +136,8 @@ void ofApp::draw() {
         ofSetColor(255,0,0);
         ofDrawBitmapString("WebSocket server is not setup!!!", 20, 20);
     }
+    
+    
     
 }
 
@@ -100,53 +162,10 @@ void ofApp::drawTranslations() {
     float x = 0;
     float y = 0;
     
-    int size = translations.size();
-    for (int i = 0; i < size; i++ ){
+    for (int i = 0; i < translations.size(); i++ ){
         
-        int index =  translations.size() - i - 1;
+        int index = translations.size() - 1 - i;
         
-        int numLines = 0;
-        bool wordsWereCropped;
-        ofSetColor(0,0,0);
-        ofRectangle column;
-         if( translations[index].raw.size() > 0) {
-             
-            // ofLogNotice("hey") << translations[index].raw;
-             column = fontStash.drawMultiLineColumn(    translations[index].raw,            /*string*/
-                                                     translationFontSize * 1.5,            /*size*/
-                                                     x, y,        /*where*/
-                                                     300, /*column width*/
-                                                     numLines,    /*get back the number of lines*/
-                                                     false,        /* if true, we wont draw (just get bbox back) */
-                                                     9,            /* max number of lines to draw, crop after that */
-                                                     true,        /*get the final text formatting (by adding \n's) in the supplied string;
-                                                                   BE ARWARE that using TRUE in here will modify your supplied string! */
-                                                     &wordsWereCropped, /* this bool will b set to true if the box was to small to fit all text*/
-                                                     false        /*centered*/
-                                                     );
-        
-             y += column.height + 10;
-        }
-        
-        if(translations[index].trans.size() > 0) {
-            
-            ofSetColor(80);
-            column = fontStash.drawMultiLineColumn(   translations[index].trans,            /*string*/
-                                                               translationFontSize * 1.5,            /*size*/
-                                                               x, y,        /*where*/
-                                                               300, /*column width*/
-                                                               numLines,    /*get back the number of lines*/
-                                                               false,        /* if true, we wont draw (just get bbox back) */
-                                                               9,            /* max number of lines to draw, crop after that */
-                                                               true,        /*get the final text formatting (by adding \n's) in the supplied string;
-                                                                             BE ARWARE that using TRUE in here will modify your supplied string! */
-                                                               &wordsWereCropped, /* this bool will b set to true if the box was to small to fit all text*/
-                                                               false        /*centered*/
-                                                               );
-            y += column.height + 20;
-        }
-
-        /*
         if(translations[index].trans.size() > 0) {
             ofSetColor(255,0,0);
             font.drawString(translations[index].raw , x, i * ( translationFontSize  * 4) );
@@ -155,62 +174,6 @@ void ofApp::drawTranslations() {
         if(translations[index].raw.size() > 0) {
             ofSetColor(0);
             font.drawString(translations[index].trans , x, i * ( translationFontSize  * 4 ) + translationFontSize *2);
-        }
-         
-         */
-        
-    }
-    ofPopMatrix();
-    
-    ofPushMatrix();
-    ofTranslate(320, 260);
-    ofRotateZ(180);
-    x = 0;
-    y = 0;
-    
-    for (int i = 0; i < translations.size(); i++ ){
-        
-        int index =  translations.size() - i - 1;
-        
-        int numLines = 0;
-        bool wordsWereCropped;
-        ofSetColor(0,0,0);
-        ofRectangle column;
-        if( translations[index].raw.size() > 0) {
-            
-            // ofLogNotice("hey") << translations[index].raw;
-            column = fontStash.drawMultiLineColumn(    translations[index].raw,            /*string*/
-                                                   translationFontSize * 1.5,            /*size*/
-                                                   x, y,        /*where*/
-                                                   300, /*column width*/
-                                                   numLines,    /*get back the number of lines*/
-                                                   false,        /* if true, we wont draw (just get bbox back) */
-                                                   9,            /* max number of lines to draw, crop after that */
-                                                   true,        /*get the final text formatting (by adding \n's) in the supplied string;
-                                                                 BE ARWARE that using TRUE in here will modify your supplied string! */
-                                                   &wordsWereCropped, /* this bool will b set to true if the box was to small to fit all text*/
-                                                   false        /*centered*/
-                                                   );
-            
-            y += column.height + 10;
-        }
-        
-        if(translations[index].trans.size() > 0) {
-            
-            ofSetColor(80);
-            column = fontStash.drawMultiLineColumn(   translations[index].trans,            /*string*/
-                                                   translationFontSize * 1.5,            /*size*/
-                                                   x, y,        /*where*/
-                                                   300, /*column width*/
-                                                   numLines,    /*get back the number of lines*/
-                                                   false,        /* if true, we wont draw (just get bbox back) */
-                                                   9,            /* max number of lines to draw, crop after that */
-                                                   true,        /*get the final text formatting (by adding \n's) in the supplied string;
-                                                                 BE ARWARE that using TRUE in here will modify your supplied string! */
-                                                   &wordsWereCropped, /* this bool will b set to true if the box was to small to fit all text*/
-                                                   false        /*centered*/
-                                                   );
-            y += column.height + 20;
         }
         
     }
@@ -339,8 +302,6 @@ void ofApp::mousePressed(int x, int y, int button) {
 
 void ofApp::keyPressed(int key) {
     
-    
-    
 }
 
 void ofApp::sendScenariosToSocket() {
@@ -449,30 +410,9 @@ void ofApp::parseTranslation( ofxLibwebsockets::Event& args) {
     
     // split result
     vector<string> splitted = ofSplitString(args.message, "|");
-    string id               = splitted[0];
-    string type             = splitted[1];
-    string mesg             = splitted[2];
-    
-    
-    if( type == "SCENARIO_CHANGE") {
-        
-        int _id = ofToInt(id);
-        if(_id == 0)
-            bEnableDetection = true;
-        else
-            bEnableDetection = false;
-        
-        sceneManager.setCurrentLabel(_id);
-        
-        
-    }
-    
-    if( type == "SCENARIO_OVERWRITE") {
-        
-        bEnableDetection = ofToBool(id);
-        return;
-        
-    }
+    string id     = splitted[0];
+    string type = splitted[1];
+    string mesg = splitted[2];
     
     // check if already exist
     translated  * trans = getTranslatedForID(id);

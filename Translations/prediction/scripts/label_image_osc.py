@@ -12,7 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ==============================================================================
+"""Analizes a drawing to recognize what it represents and send the result to the application.
 
+This script is regulary called when Interpretabble runs to recognize the drawing made  on the table.
+
+An example of command-line usage is:
+python2 -m scripts.label_image_osc \
+    --graph=tf_files/retrained_graph.pb\
+    --image=tf_files/images.duckduckgo.png
+"""
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -27,6 +35,14 @@ import numpy as np
 import tensorflow as tf
 
 def load_graph(model_file):
+  """Loads and read trainded graph.
+
+  Args:
+    model_file: Path to the graph that will be load.
+
+  Returns:
+    Graph holding the trained Inception network
+  """
   graph = tf.Graph()
   graph_def = tf.GraphDef()
 
@@ -39,6 +55,20 @@ def load_graph(model_file):
 
 def read_tensor_from_image_file(file_name, input_height=299, input_width=299,
 				input_mean=0, input_std=255):
+  """Generates image's tensor.
+
+  According to the image's type, tensorflow will generate a tensor.
+
+  Args:
+    file_name: Path to the image.
+    input_width: Horizontal size of expected input image to model.
+    input_height: Vertical size of expected input image to model.
+    input_mean: Pixel value that should be zero in the image for the graph.
+    input_std: How much to divide the pixel values by before recognition.
+
+  Returns:
+    Tensor of the image
+  """
   input_name = "file_reader"
   output_name = "normalized"
   file_reader = tf.read_file(file_name, input_name)
@@ -63,6 +93,17 @@ def read_tensor_from_image_file(file_name, input_height=299, input_width=299,
   return result
 
 def load_labels(label_file):
+  """Gets the categories available.
+
+  When the graph is trained, a file is generated where the labels of the images
+  which can be recognized
+
+  Args:
+    label_file: Path to the file that contains the list of labels.
+
+  Returns:
+    Array of the labels.
+  """
   label = []
   proto_as_ascii_lines = tf.gfile.GFile(label_file).readlines()
   for l in proto_as_ascii_lines:
@@ -70,6 +111,7 @@ def load_labels(label_file):
   return label
 
 if __name__ == "__main__":
+  #Parameters by default
   file_name = "tf_files/flower_photos/daisy/3475870145_685a19116d.jpg"
   model_file = "tf_files/retrained_graph.pb"
   label_file = "tf_files/retrained_labels.txt"
@@ -80,6 +122,7 @@ if __name__ == "__main__":
   input_layer = "input"
   output_layer = "final_result"
 
+  #Parsing the arguments
   parser = argparse.ArgumentParser()
   parser.add_argument("--image", help="image to be processed")
   parser.add_argument("--graph", help="graph/model to be executed")
@@ -92,6 +135,7 @@ if __name__ == "__main__":
   parser.add_argument("--output_layer", help="name of output layer")
   args = parser.parse_args()
 
+  #Parameters according to the arguments
   if args.graph:
     model_file = args.graph
   if args.image:
@@ -113,12 +157,21 @@ if __name__ == "__main__":
 
   graph = load_graph(model_file)
 
-
+  #Connects client to server
   client = OSCClient()
   client.connect( ("localhost", 2223) )
   server = OSCServer( ("localhost", 2222) )
 
   def img_osc_callback(path, tags, args, source):
+    """Sends the result of the prediction to the server.
+
+    Args:
+      path:
+      tags:
+      args:
+      source:
+
+    """
     file = args[0]
     print(file)
     t = read_tensor_from_image_file(file,
@@ -132,21 +185,20 @@ if __name__ == "__main__":
     input_operation = graph.get_operation_by_name(input_name);
     output_operation = graph.get_operation_by_name(output_name);
 
+    #Starts a tensorflow session to realize the prediction
     with tf.Session(graph=graph) as sess:
         start = time.time()
         results = sess.run(output_operation.outputs[0], {input_operation.outputs[0]: t})
         end=time.time()
         results = np.squeeze(results)
+        #Top 5 of the prediction (according to the score) 
         top_k = results.argsort()[-5:][::-1]
         labels = load_labels(label_file)
         template = "{} (score={:0.5f})"
-        index = 0
-        for i in top_k:
-            if (index == 0):
-                print(template.format(labels[i], results[i]))
-                mess = labels[i]
-                client.send( OSCMessage(mess ) )
-            index = index + 1
+        #Sends the label (and its score) of the prediction that has the best score to the server.  
+        print(template.format(labels[top_k[0]], results[top_k[0]]))
+        mess = labels[top_k[0]]
+        client.send( OSCMessage(mess ) )
 
   server.addMsgHandler( "/img", img_osc_callback )
 

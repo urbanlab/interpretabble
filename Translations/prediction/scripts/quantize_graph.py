@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ==============================================================================
-r"""Transforms a float-trained graph into an equivalent quantized version.
+"""Transforms a float-trained graph into an equivalent quantized version.
 
 An example of command-line usage is:
 bazel build tensorflow/tools/quantization:quantize_graph \

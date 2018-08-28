@@ -14,12 +14,13 @@ python -m scripts.retrain \
   --architecture="${ARCHITECTURE}" \
   --image_dir=tf_files/drawings
 
-
+// prediction
 python2 -m scripts.label_image_osc \
     --graph=tf_files/retrained_graph.pb  \
     --image=tf_files/images.duckduckgo.jpg
 
-python -m scripts.retrain \
+//Retrain model
+python2 -m scripts.retrain \
   --bottleneck_dir=tf_files/bottlenecks \
   --model_dir=tf_files/models/ \
   --summaries_dir=tf_files/training_summaries/"${ARCHITECTURE}" \

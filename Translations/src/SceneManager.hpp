@@ -30,6 +30,8 @@ public:
 
     
     vector<Scene*> scenes;
+    bool on;
+    bool onPause;
     
     int nFramesDelaymax;
     

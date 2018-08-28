@@ -99,8 +99,8 @@ public:
     
     ofxPanel guiSliders;
     
-    ofxButton bTrain, bSave, bLoad, bClear, bAddSlider, bAddCategorical, bOscSettings, bCameraSettings, bAddLabel;
-    ofxToggle tRecord, tPredict;
+    ofxButton bTrain, bSave, bLoad, bClear, bAddSlider, bAddCategorical, bOscSettings, bCameraSettings, bAddLabel, bPause;
+    ofxToggle tRecord, tPredict, tPause;
 
     
     void updateCCV();
@@ -118,6 +118,7 @@ public:
 
     void eSave();
     void eLoad();
+    void ePause();
     void clear();
     
     void saveLabels();
