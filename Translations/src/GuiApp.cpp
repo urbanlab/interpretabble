@@ -342,8 +342,16 @@ void GuiApp::draw() {
        // largeFont.drawString(txt, 237, 92 + cam.getHeight());
     }
     
+    if(app->bEnableDetection)
+        app->sceneManager.setCurrentLabel(app->currentLabel );
+    
     gui.draw();
     guiSliders.draw();
+    
+    string txt = "Predicted Class: " + app->currentLabel;
+    ofSetColor(0,255,0);
+    ofDrawBitmapStringHighlight( txt, 20, 100 + cam.getHeight() * scale );
+    
 
     
 }
