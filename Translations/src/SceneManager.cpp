@@ -9,11 +9,11 @@
 
 
 void SceneManager::setup() {
-    
+    bOnNothing = true;
     currentSceneIndex = -1;
     loadAssets();
     
-    accueil.setup();
+    /*accueil.setup();
     accueil.loadFolder("accueil");
     accueil.setFps(30);
     accueil.setLoop(true);
@@ -22,7 +22,7 @@ void SceneManager::setup() {
     bHasChanged = false;
     tempIndex = currentSceneIndex;
     nFramesIndexChangedDelay = 0;
-    nFramesDelaymax = 500;
+    nFramesDelaymax = 500;*/
 }
 
 void SceneManager::update() {
@@ -48,11 +48,11 @@ void SceneManager::update() {
     }
     
     if(currentSceneIndex < 0 || currentSceneIndex >= scenes.size()) {
-        
-        accueil.update();
+        bOnNothing = true;
+        //accueil.update();
         
     } else {
-        
+        bOnNothing =false;
         // draw
         scenes[currentSceneIndex]->update();
         
@@ -65,8 +65,8 @@ void SceneManager::draw() {
     // idle mode
     if(currentSceneIndex < 0 || currentSceneIndex >= scenes.size()) {
         
-        ofSetColor(255,255);
-        accueil.draw(0.0,0.0, 1920, 1080);
+        /*ofSetColor(255,255);
+        accueil.draw(0.0,0.0, 1920, 1080);*/
 
         
     } else {
@@ -103,38 +103,33 @@ void SceneManager::loadAssets() {
 
             for(int j = 0; j < subdir.size(); j++){
                 
-                ofFile file = subdir.getFile(j);
-                
-               
-                
-                
-                if ( file.getBaseName() == "tools" ) {
-                    
-                    scene->toolsImage.load(file.getAbsolutePath());
-                    
-                } else {
+                ofDirectory subsubdir(subdir.getPath(j));
+                if(subsubdir.isDirectory()){
                     
                     Asset asset;
-                    if(file.isDirectory()) {
+                    asset.addAsset(subsubdir.getAbsolutePath(), "dir");
+                    scene->assets.push_back(asset);
+                  
+                }else{
+                    ofFile file = subdir.getFile(j);
+                    
+                    if ( file.getBaseName() == "tools" ) {
                         
-                        ofLogNotice("check folder") << subdir.getPath(j);
-                        asset.addAsset(subdir.getPath(j), "folder");
-
+                        scene->toolsImage.load(file.getAbsolutePath());
+                        
                     } else {
-                    
-                    string ext = file.getExtension();
-                    
-                    asset.addAsset(file.getAbsolutePath(), file.getExtension());
+                        
+                        string ext = file.getExtension();
+                        Asset asset;
+                        asset.addAsset(file.getAbsolutePath(), file.getExtension());
+                        scene->assets.push_back(asset);
                         
                     }
-                    scene->assets.push_back(asset);
-
-
+                    
+                    ofLogNotice("Adding ") << file.getBaseName();
+                    
+                    
                 }
-                
-                ofLogNotice("Adding ") << file.getBaseName();
-                
-                
             }
             scenes.push_back(scene);
             
@@ -158,12 +153,13 @@ void SceneManager::setCurrentLabel(string label) {
             
             if(currentSceneIndex != i) {
                 tempIndex = i;
+                bhasFound = true;
                 return;
             }
         }
     }
     
-    if(label == "rien") {
+    if(label == "rien" | label =="") {
         tempIndex = -1;
         //ofLogNotice("Nothing");
     }
@@ -176,7 +172,7 @@ void SceneManager::onSceneChanged() {
 
     
     if(currentSceneIndex < 0 || currentSceneIndex >= scenes.size()) {
-        accueil.play();
+        //accueil.play();
     } else {
         scenes[currentSceneIndex]->onStart();
         

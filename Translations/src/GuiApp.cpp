@@ -184,7 +184,7 @@ void GuiApp::update() {
         
         app->currentLabel = caption;
         
-         camThresold.save("output.jpg");
+        camThresold.save("output.jpg");
         ofxOscMessage mess;
         mess.setAddress("/img");
         mess.addStringArg(ofToDataPath("output.jpg", true));
@@ -359,7 +359,7 @@ void GuiApp::draw() {
 void GuiApp::exit() {
     
     // save xml settings
-    xmlSettings.serialize(parameters);
+    //xmlSettings.serialize(parameters);
     xmlSettings.save("settings.xml");
     saveLabels();
     

@@ -62,12 +62,16 @@ class ofApp : public ofBaseApp{
         shared_ptr<GuiApp> gui;
     
         // interface
-        ofImage tache, pattern, avatar;
+        ofImage tache_init, tache_draw, pattern, avatar ;
         ofFbo translationsFbo;
+        vector<ofImage> accueil;
         ofTrueTypeFont font;
         ofxFontStash fontStash;
 
         int background;
+    
+        int   appFPS;
+        float sequenceFPS;
     
         // sockets
         ofxLibwebsockets::Server server;

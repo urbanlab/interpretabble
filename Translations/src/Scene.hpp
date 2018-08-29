@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include "ofxAnimatableFloat.h"
-#include "ImageSequencePlayer.hpp"
+//#include "ImageSequencePlayer.hpp"
 
 class Asset {
   
@@ -29,25 +29,41 @@ public:
             video.play();
         }
         
-        if(ext == "folder" ) {
+        //load sequence of images in case of animation
+        if(ext == "dir") {
+            ofDirectory dir;
+            int nFiles = dir.listDir(path);
+            if(nFiles) {
+                
+                for(int i=0; i<dir.numFiles()-1; i++) {
+                    
+                    // add the image to the vector
+                    string filePath = dir.getPath(i);
+                    ofLogNotice("AddAsset ") << filePath;
+                    images.push_back(ofImage());
+                    images.back().load(filePath);
+                    
+                }
+                
+            } else ofLog(OF_LOG_WARNING) << "Could not find folder";
             
-            ofLogNotice("yeah folder");
-            sequence.setup();
-            sequence.loadFolder(path);
-            sequence.setFps(30);
-            sequence.setLoop(true);
-            sequence.play();
+            // set the speed to play the animation
+            sequenceFPS = 24;
+            
+            // set the app fps
+            appFPS = 60;
+            ofSetFrameRate(appFPS);
             
         }
         
     }
     
-    void play () {
+    /*void play () {
         if(sequence.bIsLoaded){
             sequence.play();
             
         }
-    }
+    }*/
     
     void update() {
         
@@ -58,10 +74,10 @@ public:
             video.update();
         }
         
-        if(sequence.bIsLoaded){
+        /*if(sequence.bIsLoaded){
             sequence.update();
 
-        }
+         }*/
     }
     
     void draw() {
@@ -78,10 +94,24 @@ public:
             video.draw(0.0, 0.0);
         }
         
-        if(sequence.bIsLoaded) {
-            sequence.draw(0.0,0.0, sequence.getWidth(), sequence.getHeight());
-            ofLogNotice("drawing folder ") << sequence.getWidth() << " " << sequence.getHeight();
-
+        if(images.size()>0){
+            ofLogNotice("Draw ") << images.size();
+            uint64_t frameIndex = 0;
+            
+            // calculate the frame index based on the app time
+            // and the desired sequence fps
+            frameIndex = (int)(ofGetElapsedTimef() * sequenceFPS)% images.size();
+            
+            // draw the image sequence at the new frame count
+            images[frameIndex].draw(0.0, 0.0);
+            
+            // draw where we are in the sequence
+            float x = 0;
+            for(int offset = 0; offset < 5; offset++) {
+                int i = (frameIndex + offset) % images.size();
+                images[i].draw(0.0+x, ofGetHeight()-40, 40, 40);
+                x += 40;
+            }
         }
         
         ofDisableAlphaBlending();
@@ -97,8 +127,8 @@ public:
             return video.getHeight();
         }
         
-        if(sequence.bIsLoaded) {
-            return sequence.getHeight();
+        if(images.size()>0){
+            return images[0].getHeight();
         }
         
     }
@@ -106,7 +136,12 @@ public:
     ofImage image;
     ofVideoPlayer video;
     ofxAnimatableFloat opacity;
-    ImageSequencePlayer sequence;
+    //ImageSequencePlayer sequence;
+    
+    vector<ofImage> images;
+    
+    int   appFPS;
+    float sequenceFPS;
     
 };
 

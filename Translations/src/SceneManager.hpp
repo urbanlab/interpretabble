@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include "Scene.hpp"
-#include "ImageSequencePlayer.hpp"
+//#include "ImageSequencePlayer.hpp"
 class SceneManager {
   
 public:
@@ -32,10 +32,11 @@ public:
     vector<Scene*> scenes;
     
     int nFramesDelaymax;
+    bool bOnNothing;
     
 private:
     
-    ImageSequencePlayer accueil;
+    //ImageSequencePlayer accueil;
     int currentSceneIndex;
     
     int nFramesIndexChangedDelay;

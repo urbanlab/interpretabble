@@ -27,10 +27,32 @@ void ofApp::setup(){
     ndJsonTest();
     
 #else
-    
-    tache.load("assets/images/tache.png");
-    pattern.load("assets/images/fond.png");
+    tache_init.load("assets/images/tache_points.png");
+    tache_draw.load("assets/images/tache_rien.png");
+ 
     avatar.load("assets/images/avatar.png");
+    
+    //load the sequence of images of "acceuil"
+    ofDirectory dir;
+    int nFiles = dir.listDir("accueil");
+    if(nFiles) {
+        
+        for(int i=0; i<dir.numFiles()-1; i++) {
+            // add the image to the vector
+            string filePath = dir.getPath(i);
+            ofLogNotice("Setup ") << filePath;
+            accueil.push_back(ofImage());
+            accueil.back().load(filePath);
+        }
+        
+    } else ofLog(OF_LOG_WARNING) << "Could not find folder";
+
+    // set the speed to play the animation
+    sequenceFPS = 24;
+    
+    // set the app fps
+    appFPS = 60;
+    ofSetFrameRate(appFPS);
 
 #endif
     
@@ -42,8 +64,6 @@ void ofApp::setup(){
 void ofApp::update() {
     
     sceneManager.update();
-
-   
     
 }
 
@@ -54,16 +74,46 @@ void ofApp::draw() {
     return;
 #endif
     
-    ofBackground(180);
+    ofBackground(180, 182, 183);
     ofSetColor(255);
     ofEnableAlphaBlending();
-    tache.draw(0.0, 0.0);
-    pattern.draw(0.0,0.0);
+    //tache.draw(0.0, 0.0);
+    //pattern.draw(0.0,0.0);
     avatar.draw(0.0, 0.0);
+
+    if(sceneManager.bOnNothing){
+        tache_init.draw(0.0, 0.0);
+        
+        //draw "acceuil" animation
+        uint64_t frameIndex = 0;
+       
+        // calculate the frame index based on the app time
+        // and the desired sequence fps.
+        frameIndex = (int)(ofGetElapsedTimef() * sequenceFPS)% accueil.size();
+        
+        // draw the image sequence at the new frame count
+        accueil[frameIndex].draw(0.0, 0.0);
+
+        // draw where we are in the sequence
+        float x = 0;
+        for(int offset = 0; offset < 5; offset++) {
+            int i = (frameIndex + offset) % accueil.size();
+            accueil[i].draw(0.0+x, ofGetHeight()-40, 40, 40);
+            x += 40;
+        }
+    }else{
+        //change the background of the drawing zone
+        tache_init.clear();
+        tache_init.update();
+        tache_draw.draw(0.0, 0.0);
+        tache_init.load("assets/images/tache_points.png");
+        
+        sceneManager.draw();
+    }
     
     drawTranslations();
     
-    sceneManager.draw();
+    
     
     ofSetColor(0);
     font.drawString(currentLabel, 340,  ofGetHeight() - translationFontSize );
@@ -473,7 +523,16 @@ void ofApp::parseTranslation( ofxLibwebsockets::Event& args) {
         return;
         
     }
-    
+    if(type == "PAUSE"){
+        bEnableDetection = false;
+        //sceneManager.onPause=true;
+        return;
+    }
+    if(type=="PLAY"){
+        bEnableDetection = true;
+        //sceneManager.onPause=false;
+        return;
+    }
     // check if already exist
     translated  * trans = getTranslatedForID(id);
     
