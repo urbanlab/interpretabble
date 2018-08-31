@@ -74,7 +74,7 @@ recognition.onresult = function(event) {
             updateField("<p style='color:green;'> changement de langue");
         }
 
-        
+ 		recogniton.end();       
     }    
 }
 

@@ -29,10 +29,10 @@ void GuiApp::setup(){
     parameters.add(trackHs.set("Track Hue/Saturation", false));
     parameters.add(calibrationMode.set("Calibration", false));
     
-    parameters.add(croppedRectX.set("Cropped X", 0, 0, cam.getWidth()));
-    parameters.add(croppedRectY.set("Cropped Y", 0, 0, cam.getHeight()));
-    parameters.add(croppedRectW.set("Cropped W", 100, 0,cam.getWidth()));
-    parameters.add(croppedRectH.set("Cropped H", 100, 0, cam.getHeight()));
+    parameters.add(croppedRectX.set("Cropped X", 333, 0, cam.getWidth()));
+    parameters.add(croppedRectY.set("Cropped Y", 548, 0, cam.getHeight()));
+    parameters.add(croppedRectW.set("Cropped W", 365, 0,cam.getWidth()));
+    parameters.add(croppedRectH.set("Cropped H", 254, 0, cam.getHeight()));
     parameters.add(backgroundOpacity.set("Opacity", 0, 0, 255));
 
     
@@ -42,7 +42,7 @@ void GuiApp::setup(){
   //  parameters.add(translateX.set("Translate X", 100, 0, cam.getHeight()));
    // parameters.add(translateY.set("translate Y ", 100, 0, cam.getHeight()));
    // parameters.add(saveCropped.set("Save cropped ", false));
-    parameters.add(camThresoldSlider.set("thresold cam", 0.0, 0.0, 255));
+    parameters.add(camThresoldSlider.set("thresold cam", 120, 0.0, 255));
 
     //parameters.add(videoSettings.set("Video settings ", false));
     
@@ -304,7 +304,7 @@ void GuiApp::draw() {
     ofSetColor(255,0,0);
     ofDrawRectangle(croppedRectX, croppedRectY, croppedRectW, croppedRectH);
     
-    ofTranslate(croppedRectX, croppedRectY);
+    ofTranslate(0, 0);
     ofSetLineWidth(1);
     contourFinder.draw();
     ofFill();
@@ -588,10 +588,10 @@ void GuiApp::keyPressed(int key) {
     }
     
     if ( key == 'o' ) {
-    ofxOscMessage mess;
-    mess.setAddress("/img");
-    mess.addStringArg(ofToDataPath("output.jpg", true));
-    sender.sendMessage(mess, false);
+        ofxOscMessage mess;
+        mess.setAddress("/img");
+        mess.addStringArg(ofToDataPath("output.jpg", true));
+        sender.sendMessage(mess, false);
     }
     
 }

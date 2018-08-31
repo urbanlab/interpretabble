@@ -108,16 +108,17 @@ void ofApp::draw() {
         tache_draw.draw(0.0, 0.0);
         tache_init.load("assets/images/tache_points.png");
         
-        sceneManager.draw();
+        
     }
-    
     drawTranslations();
+    sceneManager.draw();
+    
     
     
     
     ofSetColor(0);
     font.drawString(currentLabel, 340,  ofGetHeight() - translationFontSize );
-    
+   
     ofEnableAlphaBlending();
     ofSetColor(0, background);
     ofDrawRectangle(0.0,0.0, ofGetWidth(), ofGetHeight());
@@ -165,7 +166,7 @@ void ofApp::drawTranslations() {
              column = fontStash.drawMultiLineColumn(    translations[index].raw,            /*string*/
                                                      translationFontSize * 1.5,            /*size*/
                                                      x, y,        /*where*/
-                                                     300, /*column width*/
+                                                     270, /*column width*/
                                                      numLines,    /*get back the number of lines*/
                                                      false,        /* if true, we wont draw (just get bbox back) */
                                                      9,            /* max number of lines to draw, crop after that */
@@ -184,7 +185,7 @@ void ofApp::drawTranslations() {
             column = fontStash.drawMultiLineColumn(   translations[index].trans,            /*string*/
                                                                translationFontSize * 1.5,            /*size*/
                                                                x, y,        /*where*/
-                                                               300, /*column width*/
+                                                               270, /*column width*/
                                                                numLines,    /*get back the number of lines*/
                                                                false,        /* if true, we wont draw (just get bbox back) */
                                                                9,            /* max number of lines to draw, crop after that */
@@ -213,7 +214,7 @@ void ofApp::drawTranslations() {
     ofPopMatrix();
     
     ofPushMatrix();
-    ofTranslate(320, 260);
+    ofTranslate(275, 260);
     ofRotateZ(180);
     x = 0;
     y = 0;
@@ -232,7 +233,7 @@ void ofApp::drawTranslations() {
             column = fontStash.drawMultiLineColumn(    translations[index].raw,            /*string*/
                                                    translationFontSize * 1.5,            /*size*/
                                                    x, y,        /*where*/
-                                                   300, /*column width*/
+                                                   270, /*column width*/
                                                    numLines,    /*get back the number of lines*/
                                                    false,        /* if true, we wont draw (just get bbox back) */
                                                    9,            /* max number of lines to draw, crop after that */
@@ -251,7 +252,7 @@ void ofApp::drawTranslations() {
             column = fontStash.drawMultiLineColumn(   translations[index].trans,            /*string*/
                                                    translationFontSize * 1.5,            /*size*/
                                                    x, y,        /*where*/
-                                                   300, /*column width*/
+                                                   270, /*column width*/
                                                    numLines,    /*get back the number of lines*/
                                                    false,        /* if true, we wont draw (just get bbox back) */
                                                    9,            /* max number of lines to draw, crop after that */
