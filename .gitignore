@@ -5,3 +5,6 @@ Translations/bin/TranslationsDebug.app
 Translations/translator/node_modules
 .mypy_cache
 Translations/bin/data/models
+Translations/bin/data/output.jpg
+Interpretable_traning/public/output.jpg
+.DS_Store
