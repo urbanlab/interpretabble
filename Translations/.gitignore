@@ -4,3 +4,9 @@ bin/data/quickdraw
 bin/data/test
 bin/data/web/node_modules
 translator/node_modules
+bin/data/accueil
+bin/data/scenes
+predictions/tf_files/drawings/*
+predictions/tf_files/training_summaries/*
+predictions/tf_files/training_summaries/mobilenet_0.50_224/train/*
+predictions/tf_files/training_summaries/mobilenet_0.50_224/validation/*

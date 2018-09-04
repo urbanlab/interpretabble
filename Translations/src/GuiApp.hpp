@@ -15,6 +15,7 @@
 #include "ofxXmlSettings.h"
 #include "ofxCcvThreaded.h"
 #include "PipelineThreaded.h"
+#include "ofxOsc.h"
 
 #define SIZE_INPUT_VECTOR 4096
 
@@ -76,6 +77,9 @@ public:
     ofParameter<bool> videoSettings;
     
     ofParameter<float> camThresoldSlider, brigthness;
+    
+    ofParameter<int> frameDelay;
+
 
     ofImage camImage, camThresold;
     
@@ -124,6 +128,9 @@ public:
     vector<string> labels;
     
     shared_ptr<ofApp>  app;
+    
+    ofxOscReceiver osc;
+    ofxOscSender sender;
   
 };
 
