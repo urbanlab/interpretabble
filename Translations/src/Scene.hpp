@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include "ofxAnimatableFloat.h"
+//#include "ImageSequencePlayer.hpp"
 
 class Asset {
   
@@ -23,11 +24,12 @@ public:
             image.load(path);
         }
         
-        if (ext == "mov" || ext == "mp4" || ext =="avi") {
+        if (ext == "mov" || ext == "mp4") {
             video.load(path);
             video.play();
         }
         
+        //load sequence of images in case of animation
         if(ext == "dir") {
             ofDirectory dir;
             int nFiles = dir.listDir(path);
@@ -45,13 +47,7 @@ public:
                 
             } else ofLog(OF_LOG_WARNING) << "Could not find folder";
             
-            // this toggle will tell the sequence
-            // to be indepent of the app fps
-            bFrameIndependent = true;
-            
-            // this will set the speed to play
-            // the animation back we set the
-            // default to 24fps
+            // set the speed to play the animation
             sequenceFPS = 24;
             
             // set the app fps
@@ -59,7 +55,15 @@ public:
             ofSetFrameRate(appFPS);
             
         }
+        
     }
+    
+    /*void play () {
+        if(sequence.bIsLoaded){
+            sequence.play();
+            
+        }
+    }*/
     
     void update() {
         
@@ -69,6 +73,11 @@ public:
         if(video.isLoaded()) {
             video.update();
         }
+        
+        /*if(sequence.bIsLoaded){
+            sequence.update();
+
+         }*/
     }
     
     void draw() {
@@ -89,20 +98,12 @@ public:
             ofLogNotice("Draw ") << images.size();
             uint64_t frameIndex = 0;
             
-            if(bFrameIndependent) {
-                // calculate the frame index based on the app time
-                // and the desired sequence fps. then mod to wrap
-                frameIndex = (int)(ofGetElapsedTimef() * sequenceFPS)% images.size();
-            }
-            else {
-                // set the frame index based on the app frame
-                // count. then mod to wrap.
-                frameIndex = ofGetFrameNum() % images.size();
-            }
+            // calculate the frame index based on the app time
+            // and the desired sequence fps
+            frameIndex = (int)(ofGetElapsedTimef() * sequenceFPS)% images.size();
             
             // draw the image sequence at the new frame count
             images[frameIndex].draw(0.0, 0.0);
-            
             
             // draw where we are in the sequence
             float x = 0;
@@ -112,6 +113,7 @@ public:
                 x += 40;
             }
         }
+        
         ofDisableAlphaBlending();
          
     }
@@ -134,12 +136,12 @@ public:
     ofImage image;
     ofVideoPlayer video;
     ofxAnimatableFloat opacity;
+    //ImageSequencePlayer sequence;
+    
     vector<ofImage> images;
     
     int   appFPS;
     float sequenceFPS;
-    bool  bFrameIndependent;
-
     
 };
 
@@ -156,7 +158,6 @@ public:
     void onEnd();
     
     ofImage toolsImage;
-    ofVideoPlayer accueil;
 
     
 private:

@@ -30,7 +30,7 @@ if (cluster.isMaster) {
     };
 
     client.onmessage = function(e) {
-        console.log("msg received" + e.data);
+        console.log("msg received " + e.data);
 
         if (typeof e.data === 'string') {
 
@@ -52,6 +52,13 @@ if (cluster.isMaster) {
                     console.log(result["sentences"][0]["trans"]);
                 });
             }
+            if(type =="PAUSE"){
+            	client.send("NULL|PAUSE|NULL|NULL|NULL");
+            }
+            if(type=="PLAY"){
+            	client.send("NULL|PLAY|NULL|NULL|NULL");
+            }
+          
         }
     }
 };

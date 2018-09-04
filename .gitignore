@@ -2,5 +2,9 @@ ii_t/model
 ii_t/other
 Translations/bin/Translations.app
 Translations/bin/TranslationsDebug.app
-package.json
+Translations/translator/node_modules
 .mypy_cache
+Translations/bin/data/models
+Translations/bin/data/output.jpg
+Interpretable_traning/public/output.jpg
+.DS_Store

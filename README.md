@@ -3,10 +3,10 @@
 ---
 
 ### Running
+Launch prediction.command script.
+Launch the OpenFramework program then, click several times on the key 'o' of the keyboard to start the prediciton.
 
-Launch the OpenFramework program then, click onto "Load model" and choose the accurate model (named final on computer)
-
-Take care of opacity and thresold, for having a clear line of sight (no dark pixels on the drawing zone) and no auto-focusing all the time (change opacity for that)
+Place (X,Y) and resize (W,H) the drawing zone. Take care of opacity and thresold, for having a clear line of sight (no dark pixels on the drawing zone) and no auto-focusing all the time (change opacity for that).
 
 After you setted up all of the parameters, launch the translating server with this command, executed at the root of the
 project, using a terminal.
@@ -20,6 +20,9 @@ Then, open *(CHROME ONLY)* the address:
 ```
 localhost:9092
 ```
+Choose the languages and the type of scenario then click on the the yellow button. 
+
+Make sure the right microphone is connected to the web page.
 
 You can now talk into the microphone, search for scenario and display all of that.
 
@@ -29,11 +32,29 @@ In case of bug, relaunch the OpenFramework program.
 
 For the device to work, you must draw something on the drawing zone, for it to oper.
 
-If what you draw continue switching between labels, remember that the Web site (localhost:9092) can help you choose a fixed scenario.
+If what you draw continues switching between labels, remember that the Web site (localhost:9092) has a play/pause button to fix the scenario.
+If you don't want to draw, you can select the scenario through the web site. 
 
-In other case, you can talk for it to detect that you speech, however you must before choose the language you are talking in.
+In other case, you can talk for it to detect that you speech.
 
 Therefore, it will translate what you've said in the language you specified.
+
+### Training app : Running 
+
+Launch the server of the app with this command, executed at the root of the project, using a terminal.
+
+```
+node Interpretabble_training/app.js
+```
+Connect a tablet with the IP adress of the computer and the port number  8090.
+
+### Training app : Working
+
+The user can draw, save and choose a label for its drawing.
+
+The drawing will be analized to propose automatically a label. 
+
+If a label doesn't exist yet a file is created in Translations/prediction/tf_files/drawings (where all the drawings are saved).
 
 ### Author list.
 
