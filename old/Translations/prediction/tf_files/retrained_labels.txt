@@ -1,0 +1,9 @@
+ambulance
+biberon
+bouche
+fleche
+lit
+lune
+maison
+rien
+yeux
